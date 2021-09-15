@@ -1,0 +1,9 @@
+[book]
+authors = ["Christian Beilschmidt <christian.beilschmidt@geoengine.de>"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Geo Engine Docs"
+
+[rust]
+edition = "2021"
