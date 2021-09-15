@@ -1,4 +1,4 @@
-name: Rust
+name: CI
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install mdBook
-      run: cargo install --vers "^0.3" mdbook
+      run: cargo install --vers "^0.4" mdbook
     - name: Build
       run: mdbook build
     - name: Run tests
