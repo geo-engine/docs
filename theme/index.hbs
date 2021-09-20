@@ -102,7 +102,12 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            
             <div class="sidebar-scrollbox">
+                <!-- TODO: Replace with standard functionality: https://github.com/rust-lang/mdBook/pull/1584 -->
+                <div class="sidebar-book-logo">
+                    <img src="{{ path_to_root }}images/geoengine-web.svg" alt="Geo Engine">
+                </div>
                 {{#toc}}{{/toc}}
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
