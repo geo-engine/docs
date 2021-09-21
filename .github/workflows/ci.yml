@@ -18,9 +18,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Install mdBook
-      run: cargo install --vers "^0.4" mdbook
+    
+    - name: Setup mdBook
+      uses: peaceiris/actions-mdbook@v1
+      with:
+        mdbook-version: '0.4.12'
+      
     - name: Build
       run: mdbook build
+      
     - name: Run tests
       run: mdbook test
