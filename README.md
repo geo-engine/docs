@@ -1,6 +1,6 @@
 # Geo Engine Docs
 
-This repository is a central place for the Geo Engine user documentation.
+This repository is a central place for the Geo Engine user documentation available at https://docs.geoengine.io.
 
 ## Develop locally
 
