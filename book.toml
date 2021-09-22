@@ -7,3 +7,8 @@ title = "Geo Engine Docs"
 
 [rust]
 edition = "2018" # TODO: use 2021
+
+[output.html]
+theme = "theme"
+default-theme = "geo-engine"
+preferred-dark-theme = "geo-engine"
