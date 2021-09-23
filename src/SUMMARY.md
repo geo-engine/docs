@@ -7,7 +7,9 @@
   - [Engine](./geo-engine/engine.md)
   - [Workflows](./geo-engine/workflows.md)
 
-- [Operators](./operators.md)
+- [Operators](./operators/intro.md)
+
+  - [GdalSource](./operators/gdalsource.md)
 
 - [OGC Access](./ogc/intro.md)
 
