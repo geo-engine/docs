@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Geo Engine Pro - Geo Engine Docs</title>
+        <title>GdalSource - Geo Engine Docs</title>
                 
 
         <!-- Custom HTML head -->
@@ -87,7 +87,7 @@
                 <div class="sidebar-book-logo">
                     <img src="../images/geoengine-web.svg" alt="Geo Engine">
                 </div>
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome to Geo Engine Docs</a></li><li class="chapter-item expanded "><a href="../geo-engine/intro.html"><strong aria-hidden="true">2.</strong> The Geo Engine</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../geo-engine/engine.html"><strong aria-hidden="true">2.1.</strong> Engine</a></li><li class="chapter-item expanded "><a href="../geo-engine/workflows.html"><strong aria-hidden="true">2.2.</strong> Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="../operators.html"><strong aria-hidden="true">3.</strong> Operators</a></li><li class="chapter-item expanded "><a href="../ogc/intro.html"><strong aria-hidden="true">4.</strong> OGC Access</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../ogc/wms.html"><strong aria-hidden="true">4.1.</strong> WMS</a></li></ol></li><li class="chapter-item expanded "><a href="../api/intro.html"><strong aria-hidden="true">5.</strong> API</a></li><li class="chapter-item expanded "><a href="../python/intro.html"><strong aria-hidden="true">6.</strong> Python Library</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../python/workflows.html"><strong aria-hidden="true">6.1.</strong> Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="../solutions/intro.html"><strong aria-hidden="true">7.</strong> Solutions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../solutions/geo-engine-pro.html" class="active"><strong aria-hidden="true">7.1.</strong> Geo Engine Pro</a></li></ol></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome to Geo Engine Docs</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> The Geo Engine</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Engine</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><a href="../operators/intro.html"><strong aria-hidden="true">3.</strong> Operators</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../operators/gdalsource.html" class="active"><strong aria-hidden="true">3.1.</strong> GdalSource</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> OGC Access</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> WMS</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> API</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Python Library</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Solutions</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> Geo Engine Pro</div></li></ol></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -149,13 +149,34 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="geo-engine-pro"><a class="header" href="#geo-engine-pro">Geo Engine Pro</a></h1>
+                        <h1 id="gdalsource"><a class="header" href="#gdalsource">GdalSource</a></h1>
+<p>The <code>GdalSource</code> is a <em>source operator</em> that reads raster data using GDAL.
+The counter part for vector data is the <a href=""><code>OgrSource</code></a> (TODO: link).</p>
+<h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
+<table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th><th>Default Value</th></tr></thead><tbody>
+<tr><td><code>dataset</code></td><td><code>DatasetId</code></td><td>The id of the dataset to be loaded</td><td><pre><code>{<br>  &quot;type&quot;: &quot;internal&quot;,<br>  &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;<br>}</code></pre></td><td></td></tr>
+</tbody></table>
+<h2 id="inputs"><a class="header" href="#inputs">Inputs</a></h2>
+<p>None</p>
+<h2 id="errors"><a class="header" href="#errors">Errors</a></h2>
+<p>If the given dataset does not exist or is not readable, an error is thrown.</p>
+<h2 id="example-json"><a class="header" href="#example-json">Example JSON</a></h2>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;GdalSource&quot;,
+  &quot;params&quot;: {
+    &quot;dataset&quot;: {
+      &quot;type&quot;: &quot;internal&quot;,
+      &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
+    }
+  }
+}
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                                                    <a rel="prev" href="../solutions/intro.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                                    <a rel="prev" href="../operators/intro.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
@@ -166,7 +187,7 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                                    <a rel="prev" href="../solutions/intro.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                    <a rel="prev" href="../operators/intro.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
