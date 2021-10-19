@@ -10,6 +10,7 @@
 - [Operators](./operators/intro.md)
 
   - [GdalSource](./operators/gdalsource.md)
+  - [Reprojection](./operators/reprojection.md)
   - [TemporalRasterAggregation](./operators/temporalrasteraggregation.md)
 
 - [OGC Access]()
