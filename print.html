@@ -88,7 +88,7 @@
                 <div class="sidebar-book-logo">
                     <img src="images/geoengine-web.svg" alt="Geo Engine">
                 </div>
-                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> Welcome to Geo Engine Docs</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> The Geo Engine</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Engine</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><a href="operators/intro.html"><strong aria-hidden="true">3.</strong> Operators</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="operators/gdalsource.html"><strong aria-hidden="true">3.1.</strong> GdalSource</a></li><li class="chapter-item expanded "><a href="operators/temporalrasteraggregation.html"><strong aria-hidden="true">3.2.</strong> TemporalRasterAggregation</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> OGC Access</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> WMS</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> API</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Python Library</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Solutions</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> Geo Engine Pro</div></li></ol></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> Welcome to Geo Engine Docs</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> The Geo Engine</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Engine</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><a href="operators/intro.html"><strong aria-hidden="true">3.</strong> Operators</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="operators/gdalsource.html"><strong aria-hidden="true">3.1.</strong> GdalSource</a></li><li class="chapter-item expanded "><a href="operators/reprojection.html"><strong aria-hidden="true">3.2.</strong> Reprojection</a></li><li class="chapter-item expanded "><a href="operators/temporalrasteraggregation.html"><strong aria-hidden="true">3.3.</strong> TemporalRasterAggregation</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> OGC Access</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> WMS</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> API</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Python Library</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Solutions</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> Geo Engine Pro</div></li></ol></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -177,6 +177,55 @@ The counter part for vector data is the <a href="operators/"><code>OgrSource</co
   }
 }
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="reprojection"><a class="header" href="#reprojection">Reprojection</a></h1>
+<p>The <code>Reprojection</code> operator reprojects data from one spatial reference system to another.
+It accepts exactly one input which can either be a raster or a vector data stream.
+The operator produces all data that, after reprojection, is contained in the query rectangle.</p>
+<h2 id="data-type-specifics"><a class="header" href="#data-type-specifics">Data type specifics</a></h2>
+<p>The concrete behavior depends on the data type.</p>
+<h3 id="vector-data"><a class="header" href="#vector-data">Vector data</a></h3>
+<p>The reprojection operator reprojects all coordinates of the features individually.
+The result contains all features that, after reprojection, are <em>intersected</em> by the query rectangle.
+If not all coordinates of the vector data stream could be projected, the operator returns an error.</p>
+<h3 id="raster-data"><a class="header" href="#raster-data">Raster data</a></h3>
+<p>To creates tiles in the target projection, the operator first loads the corresponding tiles in the source projection.
+Note, that in order to create one reprojected output tile, it may be necessary to load multiple source tiles.
+For each output pixel, the operator takes the value of the input pixel nearest to its upper left corner.</p>
+<p>In order to obtain precise results but avoid loading too much data, the operators estimates the resolution in which it loads the input raster stream.
+The estimate is based on the target resolution defined by the query rectangle and the relationship between the length of the diagonal of the query rectangle in both projections.
+Please refer to the source code for details.</p>
+<p>In case a tile, or part of a tile, is not available in the source projection because it is outside of the defined extent, the operator will produce pixels with <em>no data</em> values.
+If the input raster stream has no <em>no data</em> value defined, the value <em>0</em> will be used instead.</p>
+<h2 id="parameters-1"><a class="header" href="#parameters-1">Parameters</a></h2>
+<table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<tr><td><code>targetSpatialReference</code></td><td><code>String</code></td><td>The srs string (<em>authority:code</em>) of the target spatial reference.</td><td><code>EPSG:4326</code></td></tr>
+</tbody></table>
+<h2 id="inputs-1"><a class="header" href="#inputs-1">Inputs</a></h2>
+<p>The <code>Reprojection</code> operator expects exactly one <em>raster</em> or <em>vector</em> input.</p>
+<table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<tr><td><code>source</code></td><td><code>RasterOrVectorOperator</code></td></tr>
+</tbody></table>
+<h2 id="errors-1"><a class="header" href="#errors-1">Errors</a></h2>
+<p>The operator returns an error if the target projection is unknown or if the input data cannot be reprojected.</p>
+<h2 id="example-json-1"><a class="header" href="#example-json-1">Example JSON</a></h2>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;Reprojection&quot;,
+  &quot;params&quot;: {
+    &quot;targetSpatialReference&quot;: &quot;EPSG:4326&quot;
+  },
+  &quot;sources&quot;: {
+    &quot;source&quot;: {
+      &quot;type&quot;: &quot;GdalSource&quot;,
+      &quot;params&quot;: {
+        &quot;dataset&quot;: {
+          &quot;type&quot;: &quot;internal&quot;,
+          &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
+        }
+      }
+    }
+  }
+}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="temporalrasteraggregation"><a class="header" href="#temporalrasteraggregation">TemporalRasterAggregation</a></h1>
 <p>The <code>TemporalRasterAggregation</code> aggregates a raster time series into uniform time intervals.
 The output is a time series that begins at the <code>start</code> of the query time.
@@ -188,7 +237,7 @@ Here, the query should start at the beginning of the month and the window should
 The aggregation method allows calculating, e.g., the maximum or mean value for each pixel.
 If we perform a query with time [2021-01-01, 2021-04-1), we would get a time series with three time steps.
 If we perform a query with an instant like [2021-01-01, 2021-01-1), we will get a single time step containing the aggregated values for January 2021.</p>
-<h2 id="parameters-1"><a class="header" href="#parameters-1">Parameters</a></h2>
+<h2 id="parameters-2"><a class="header" href="#parameters-2">Parameters</a></h2>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
 <tr><td><code>aggregation</code></td><td><code>Aggregation</code></td><td>method for aggregating pixels</td><td><pre><code>{<br>  &quot;type&quot;: &quot;max&quot;,<br>  &quot;ignoreNoData&quot;: false<br>}</code></pre></td></tr>
 <tr><td><code>window</code></td><td><code>TimeStep</code></td><td>length of time steps</td><td><pre><code>{<br>  &quot;granularity&quot;: &quot;Months&quot;,<br>  &quot;step&quot;: 1<br>}</code></pre></td></tr>
@@ -222,14 +271,14 @@ Encountering a <em>no data</em> value makes the aggregation value of a pixel als
 <tr><td><code>Months</code></td><td>months</td></tr>
 <tr><td><code>Years</code></td><td>years</td></tr>
 </tbody></table>
-<h2 id="inputs-1"><a class="header" href="#inputs-1">Inputs</a></h2>
+<h2 id="inputs-2"><a class="header" href="#inputs-2">Inputs</a></h2>
 <p>The <code>TemporalRasterAggregation</code> operator expects exactly one <em>raster</em> input.</p>
 <table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
 <tr><td><code>raster</code></td><td><code>SingleRasterSource</code></td></tr>
 </tbody></table>
-<h2 id="errors-1"><a class="header" href="#errors-1">Errors</a></h2>
+<h2 id="errors-2"><a class="header" href="#errors-2">Errors</a></h2>
 <p>If the aggregation method is <code>first</code>, <code>last</code> or <code>mean</code> and the input raster has no <em>no data</em> value, an error is thrown.</p>
-<h2 id="example-json-1"><a class="header" href="#example-json-1">Example JSON</a></h2>
+<h2 id="example-json-2"><a class="header" href="#example-json-2">Example JSON</a></h2>
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;TemporalRasterAggregation&quot;,
   &quot;params&quot;: {
