@@ -12,6 +12,7 @@
   - [GdalSource](./operators/gdalsource.md)
   - [Reprojection](./operators/reprojection.md)
   - [TemporalRasterAggregation](./operators/temporalrasteraggregation.md)
+  - [BoxPlot](./operators/boxplot.md)
 
 - [OGC Access]()
 
