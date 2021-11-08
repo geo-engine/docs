@@ -13,6 +13,7 @@
   - [Reprojection](./operators/reprojection.md)
   - [TemporalRasterAggregation](./operators/temporalrasteraggregation.md)
   - [BoxPlot](./operators/boxplot.md)
+  - [ScatterPlot](./operators/scatterplot.md)
 
 - [OGC Access]()
 
