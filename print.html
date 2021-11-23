@@ -88,7 +88,7 @@
                 <div class="sidebar-book-logo">
                     <img src="images/geoengine-web.svg" alt="Geo Engine">
                 </div>
-                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> Welcome to Geo Engine Docs</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> The Geo Engine</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Engine</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><a href="operators/intro.html"><strong aria-hidden="true">3.</strong> Operators</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="operators/gdalsource.html"><strong aria-hidden="true">3.1.</strong> GdalSource</a></li><li class="chapter-item expanded "><a href="operators/reprojection.html"><strong aria-hidden="true">3.2.</strong> Reprojection</a></li><li class="chapter-item expanded "><a href="operators/temporalrasteraggregation.html"><strong aria-hidden="true">3.3.</strong> TemporalRasterAggregation</a></li><li class="chapter-item expanded "><a href="operators/boxplot.html"><strong aria-hidden="true">3.4.</strong> BoxPlot</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> OGC Access</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> WMS</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> API</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Python Library</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Solutions</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> Geo Engine Pro</div></li></ol></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> Welcome to Geo Engine Docs</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> The Geo Engine</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Engine</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><a href="operators/intro.html"><strong aria-hidden="true">3.</strong> Operators</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="operators/gdalsource.html"><strong aria-hidden="true">3.1.</strong> GdalSource</a></li><li class="chapter-item expanded "><a href="operators/reprojection.html"><strong aria-hidden="true">3.2.</strong> Reprojection</a></li><li class="chapter-item expanded "><a href="operators/temporalrasteraggregation.html"><strong aria-hidden="true">3.3.</strong> TemporalRasterAggregation</a></li><li class="chapter-item expanded "><a href="operators/boxplot.html"><strong aria-hidden="true">3.4.</strong> BoxPlot</a></li><li class="chapter-item expanded "><a href="operators/scatterplot.html"><strong aria-hidden="true">3.5.</strong> ScatterPlot</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> OGC Access</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> WMS</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> API</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Python Library</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Solutions</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> Geo Engine Pro</div></li></ol></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -398,6 +398,47 @@ Volume 28 (October), Number 10, 1985, p. 1076-1085.
         }
       }
     ]
+  }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="scatterplot"><a class="header" href="#scatterplot">ScatterPlot</a></h1>
+<p>The <code>ScatterPlot</code> is a <em>plot operator</em> that computes a scatter plot over two attributes of a vector dataset. 
+Thereby, the operator considers all data in the given query rectangle.</p>
+<p>In case of more than <code>500</code> points to plot, the representation changes from a regular scatter plot
+to a 2D Histogram with buckets determined from the underlying data.</p>
+<h2 id="parameter-2"><a class="header" href="#parameter-2">Parameter</a></h2>
+<table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<tr><td><code>columnX</code></td><td><code>String</code></td><td>The name of the attribute making up the x-axis of the plot.</td><td><code>&quot;width&quot;</code></td></tr>
+<tr><td><code>columnY</code></td><td><code>String</code></td><td>The name of the attribute making up the y-axis of the plot.</td><td><code>&quot;height&quot;</code></td></tr>
+</tbody></table>
+<h2 id="inputs-4"><a class="header" href="#inputs-4">Inputs</a></h2>
+<p>The operator consumes exactly one <em>vector</em> operator.</p>
+<table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<tr><td><code>source</code></td><td><code>SingleVectorSource</code></td></tr>
+</tbody></table>
+<h2 id="errors-4"><a class="header" href="#errors-4">Errors</a></h2>
+<p>The operator returns an error if one of the selected columns does not exist or is not numeric.</p>
+<h2 id="notes-1"><a class="header" href="#notes-1">Notes</a></h2>
+<p>If your dataset contains <code>infinite</code> or <code>NAN</code> values, they are ignored for the computation. Moreover, if 
+your dataset contains more than <code>10.000</code> values, the buckets of the histogram are generated based on
+those <code>10.000</code>values. Later values outside those bounds are ignored. </p>
+<h2 id="example-json-4"><a class="header" href="#example-json-4">Example JSON</a></h2>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;ScatterPlot&quot;,
+  &quot;params&quot;: {
+    &quot;columnX&quot;: &quot;width&quot;,
+    &quot;columnY&quot;: &quot;height&quot;
+  },
+  &quot;sources&quot;: {
+    &quot;vector&quot;: {
+      &quot;type&quot;: &quot;OgrSource&quot;,
+      &quot;params&quot;: {
+        &quot;dataset&quot;: {
+          &quot;type&quot;: &quot;internal&quot;,
+          &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
+        }
+      }
+    }
   }
 }
 </code></pre>

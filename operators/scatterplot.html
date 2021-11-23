@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Reprojection - Geo Engine Docs</title>
+        <title>ScatterPlot - Geo Engine Docs</title>
                 
 
         <!-- Custom HTML head -->
@@ -87,7 +87,7 @@
                 <div class="sidebar-book-logo">
                     <img src="../images/geoengine-web.svg" alt="Geo Engine">
                 </div>
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome to Geo Engine Docs</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> The Geo Engine</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Engine</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><a href="../operators/intro.html"><strong aria-hidden="true">3.</strong> Operators</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../operators/gdalsource.html"><strong aria-hidden="true">3.1.</strong> GdalSource</a></li><li class="chapter-item expanded "><a href="../operators/reprojection.html" class="active"><strong aria-hidden="true">3.2.</strong> Reprojection</a></li><li class="chapter-item expanded "><a href="../operators/temporalrasteraggregation.html"><strong aria-hidden="true">3.3.</strong> TemporalRasterAggregation</a></li><li class="chapter-item expanded "><a href="../operators/boxplot.html"><strong aria-hidden="true">3.4.</strong> BoxPlot</a></li><li class="chapter-item expanded "><a href="../operators/scatterplot.html"><strong aria-hidden="true">3.5.</strong> ScatterPlot</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> OGC Access</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> WMS</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> API</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Python Library</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Solutions</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> Geo Engine Pro</div></li></ol></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome to Geo Engine Docs</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> The Geo Engine</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Engine</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><a href="../operators/intro.html"><strong aria-hidden="true">3.</strong> Operators</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../operators/gdalsource.html"><strong aria-hidden="true">3.1.</strong> GdalSource</a></li><li class="chapter-item expanded "><a href="../operators/reprojection.html"><strong aria-hidden="true">3.2.</strong> Reprojection</a></li><li class="chapter-item expanded "><a href="../operators/temporalrasteraggregation.html"><strong aria-hidden="true">3.3.</strong> TemporalRasterAggregation</a></li><li class="chapter-item expanded "><a href="../operators/boxplot.html"><strong aria-hidden="true">3.4.</strong> BoxPlot</a></li><li class="chapter-item expanded "><a href="../operators/scatterplot.html" class="active"><strong aria-hidden="true">3.5.</strong> ScatterPlot</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> OGC Access</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> WMS</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> API</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Python Library</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Solutions</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">7.1.</strong> Geo Engine Pro</div></li></ol></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -149,45 +149,37 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="reprojection"><a class="header" href="#reprojection">Reprojection</a></h1>
-<p>The <code>Reprojection</code> operator reprojects data from one spatial reference system to another.
-It accepts exactly one input which can either be a raster or a vector data stream.
-The operator produces all data that, after reprojection, is contained in the query rectangle.</p>
-<h2 id="data-type-specifics"><a class="header" href="#data-type-specifics">Data type specifics</a></h2>
-<p>The concrete behavior depends on the data type.</p>
-<h3 id="vector-data"><a class="header" href="#vector-data">Vector data</a></h3>
-<p>The reprojection operator reprojects all coordinates of the features individually.
-The result contains all features that, after reprojection, are <em>intersected</em> by the query rectangle.
-If not all coordinates of the vector data stream could be projected, the operator returns an error.</p>
-<h3 id="raster-data"><a class="header" href="#raster-data">Raster data</a></h3>
-<p>To creates tiles in the target projection, the operator first loads the corresponding tiles in the source projection.
-Note, that in order to create one reprojected output tile, it may be necessary to load multiple source tiles.
-For each output pixel, the operator takes the value of the input pixel nearest to its upper left corner.</p>
-<p>In order to obtain precise results but avoid loading too much data, the operators estimates the resolution in which it loads the input raster stream.
-The estimate is based on the target resolution defined by the query rectangle and the relationship between the length of the diagonal of the query rectangle in both projections.
-Please refer to the source code for details.</p>
-<p>In case a tile, or part of a tile, is not available in the source projection because it is outside of the defined extent, the operator will produce pixels with <em>no data</em> values.
-If the input raster stream has no <em>no data</em> value defined, the value <em>0</em> will be used instead.</p>
-<h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
+                        <h1 id="scatterplot"><a class="header" href="#scatterplot">ScatterPlot</a></h1>
+<p>The <code>ScatterPlot</code> is a <em>plot operator</em> that computes a scatter plot over two attributes of a vector dataset. 
+Thereby, the operator considers all data in the given query rectangle.</p>
+<p>In case of more than <code>500</code> points to plot, the representation changes from a regular scatter plot
+to a 2D Histogram with buckets determined from the underlying data.</p>
+<h2 id="parameter"><a class="header" href="#parameter">Parameter</a></h2>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>targetSpatialReference</code></td><td><code>String</code></td><td>The srs string (<em>authority:code</em>) of the target spatial reference.</td><td><code>EPSG:4326</code></td></tr>
+<tr><td><code>columnX</code></td><td><code>String</code></td><td>The name of the attribute making up the x-axis of the plot.</td><td><code>&quot;width&quot;</code></td></tr>
+<tr><td><code>columnY</code></td><td><code>String</code></td><td>The name of the attribute making up the y-axis of the plot.</td><td><code>&quot;height&quot;</code></td></tr>
 </tbody></table>
 <h2 id="inputs"><a class="header" href="#inputs">Inputs</a></h2>
-<p>The <code>Reprojection</code> operator expects exactly one <em>raster</em> or <em>vector</em> input.</p>
+<p>The operator consumes exactly one <em>vector</em> operator.</p>
 <table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
-<tr><td><code>source</code></td><td><code>RasterOrVectorOperator</code></td></tr>
+<tr><td><code>source</code></td><td><code>SingleVectorSource</code></td></tr>
 </tbody></table>
 <h2 id="errors"><a class="header" href="#errors">Errors</a></h2>
-<p>The operator returns an error if the target projection is unknown or if the input data cannot be reprojected.</p>
+<p>The operator returns an error if one of the selected columns does not exist or is not numeric.</p>
+<h2 id="notes"><a class="header" href="#notes">Notes</a></h2>
+<p>If your dataset contains <code>infinite</code> or <code>NAN</code> values, they are ignored for the computation. Moreover, if 
+your dataset contains more than <code>10.000</code> values, the buckets of the histogram are generated based on
+those <code>10.000</code>values. Later values outside those bounds are ignored. </p>
 <h2 id="example-json"><a class="header" href="#example-json">Example JSON</a></h2>
 <pre><code class="language-json">{
-  &quot;type&quot;: &quot;Reprojection&quot;,
+  &quot;type&quot;: &quot;ScatterPlot&quot;,
   &quot;params&quot;: {
-    &quot;targetSpatialReference&quot;: &quot;EPSG:4326&quot;
+    &quot;columnX&quot;: &quot;width&quot;,
+    &quot;columnY&quot;: &quot;height&quot;
   },
   &quot;sources&quot;: {
-    &quot;source&quot;: {
-      &quot;type&quot;: &quot;GdalSource&quot;,
+    &quot;vector&quot;: {
+      &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
         &quot;dataset&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
@@ -203,13 +195,10 @@ If the input raster stream has no <em>no data</em> value defined, the value <em>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                                                    <a rel="prev" href="../operators/gdalsource.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                                    <a rel="prev" href="../operators/boxplot.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
-                                                    <a rel="next" href="../operators/temporalrasteraggregation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         
                         <div style="clear: both"></div>
                     </nav>
@@ -217,13 +206,10 @@ If the input raster stream has no <em>no data</em> value defined, the value <em>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                                    <a rel="prev" href="../operators/gdalsource.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                    <a rel="prev" href="../operators/boxplot.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
-                                    <a rel="next" href="../operators/temporalrasteraggregation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                             </nav>
 
         </div>
