@@ -1,13 +1,14 @@
 # Raster Expression
 
-The `Expression` operator performs pixel-wise expression on one or more raster sources.
+The `Expression` operator performs a pixel-wise mathematical expression on one or more raster sources.
 The expression is specified as a user-defined script in a very simple language.
 The output is a raster time series with the result of the expression and with time intervals that are the same as for the inputs.
-Users can specify an output data type. Internally, the expression is evaluated as a floating-point number.
+Users can specify an output data type.
+Internally, the expression is evaluated using floating-point numbers.
 
 An example usage scenario is to calculate NDVI for a red and a near-infrared raster channel.
 The expression uses two raster sources, referred to as A and B, and calculates the formula `(A - B) / (A + B)`.
-When the temporal resolution is monthly, our output NDVI will also be a monthly time series.
+When the temporal resolution is months, our output NDVI will also be a monthly time series.
 
 ## Parameters
 
