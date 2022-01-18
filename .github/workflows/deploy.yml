@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -11,37 +11,36 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Setup mdBook
-      uses: peaceiris/actions-mdbook@v1
-      with:
-        mdbook-version: '0.4.12'
-      
-    - name: Build
-      run: mdbook build
-      
-    - name: Checkout Python Repo
-      uses: actions/checkout@v2
-      with:
-        repository: geo-engine/geoengine-python
-        path: geoengine-python
-        
-    # TODO: get fixed version from repo
-    - name: Install Python Doc Builder
-      run: pip install pdoc3
-      
-    - name: Generate Python Docs
-      run: pdoc --html --output-dir ./book/python $GITHUB_WORKSPACE/geoengine-python/geoengine      
-      
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      if: ${{ github.ref == 'refs/heads/main' }}
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./book
-        cname: docs.geoengine.io
+      - uses: actions/checkout@v2
+
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@v1
+        with:
+          mdbook-version: "0.4.12"
+
+      - name: Build
+        run: mdbook build
+
+      - name: Checkout Python Repo
+        uses: actions/checkout@v2
+        with:
+          repository: geo-engine/geoengine-python
+          path: geoengine-python
+
+      # TODO: get fixed version from repo
+      - name: Install Python Doc Builder
+        run: pip install pdoc3 dotenv
+
+      - name: Generate Python Docs
+        run: pdoc --html --output-dir ./book/python $GITHUB_WORKSPACE/geoengine-python/geoengine
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./book
+          cname: docs.geoengine.io
