@@ -32,7 +32,7 @@ jobs:
 
       # TODO: get fixed version from repo
       - name: Install Python Doc Builder
-        run: pip install pdoc3 dotenv
+        run: pip install pdoc3 python-dotenv
 
       - name: Generate Python Docs
         run: pdoc --html --output-dir ./book/python $GITHUB_WORKSPACE/geoengine-python/geoengine
