@@ -25,6 +25,19 @@ jobs:
     - name: Build
       run: mdbook build
       
+    - name: Checkout Python Repo
+      uses: actions/checkout@v2
+      with:
+        repository: geo-engine/geoengine-python
+        path: geoengine-python
+        
+    # TODO: get fixed version from repo
+    - name: Install Python Doc Builder
+      run: pip install pdoc3
+      
+    - name: Generate Python Docs
+      run: pdoc --html --output-dir ./book/python $GITHUB_WORKSPACE/geoengine-python/geoengine      
+      
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       if: ${{ github.ref == 'refs/heads/main' }}
