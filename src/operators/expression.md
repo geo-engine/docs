@@ -28,7 +28,7 @@ The following describes the types used in the parameters.
 
 Expressions are simple scripts to perform pixel-wise computations.
 One can refer to the raster inputs as `A` for the first raster, `B` for the second, and so on.
-Furthermore, expressions can use the variables `is_A_nodata`, `is_A_nodata`, etc. to check for NO DATA values.
+Furthermore, expressions can check with `A IS NODATA`, `B IS NODATA`, etc for NO DATA values.
 This is important if `mapNoData` is set to true.
 Otherwise, NO DATA values are mapped automatically to the output NO DATA value.
 Finally, the value `out_nodata` can be used to output NO DATA.
@@ -36,7 +36,7 @@ Finally, the value `out_nodata` can be used to output NO DATA.
 Users can basically think of this implicit function signature for, e.g., two inputs:
 
 ```Rust
-fn (A: f64, is_A_nodata: bool, B: f64, is_B_nodata: bool, out_nodata: f64) -> f64
+fn (A: f64, B: f64, out_nodata: f64) -> f64
 ```
 
 As a start, expressions contain algebraic operations and mathematical functions.
@@ -48,7 +48,7 @@ As a start, expressions contain algebraic operations and mathematical functions.
 In addition, branches can be used to check for conditions.
 
 ```Rust
-if is_A_nodata {
+if A IS NODATA {
     B
 } else {
     A
