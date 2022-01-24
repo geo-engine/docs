@@ -19,12 +19,6 @@
 
   - [WMS]()
 
-- [API]()
-
-- [Python Library]()
-
-  - [Workflows]()
-
 - [Solutions]()
 
   - [Geo Engine Pro]()
