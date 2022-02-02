@@ -61,6 +61,20 @@ Function calls can be used to access utility functions.
 max(A, 0)
 ```
 
+Currently, the following functions are available:
+
+- `abs(a)`: absolute value
+- `min(a, b)`, `min(a, b, c)`: minimum value
+- `max(a, b)`, `max(a, b, c)`: maximum value
+- `sqrt(a)`: square root
+- `ln(a)`: natural logarithm
+- `log10(a)`: base 10 logarithm
+- `cos(a)`, `sin(a)`, `tan(a)`, `acos(a)`, `asin(a)`, `atan(a)`: trigonometric functions
+- `pi()`, `e()`: mathematical constants
+- `round(a)`, `ceil(a)`, `floor(a)`: rounding functions
+- `mod(a, b)`: division remainder
+- `to_degrees(a)`, `to_radians(a)`: conversion to degrees or radians
+
 To generate more complex expressions, it is possible to have variable assignments.
 
 ```Rust
