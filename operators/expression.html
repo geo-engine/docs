@@ -199,6 +199,20 @@ Finally, the value <code>out_nodata</code> can be used to output NO DATA.</p>
 <p>Function calls can be used to access utility functions.</p>
 <pre><code class="language-Rust">max(A, 0)
 </code></pre>
+<p>Currently, the following functions are available:</p>
+<ul>
+<li><code>abs(a)</code>: absolute value</li>
+<li><code>min(a, b)</code>, <code>min(a, b, c)</code>: minimum value</li>
+<li><code>max(a, b)</code>, <code>max(a, b, c)</code>: maximum value</li>
+<li><code>sqrt(a)</code>: square root</li>
+<li><code>ln(a)</code>: natural logarithm</li>
+<li><code>log10(a)</code>: base 10 logarithm</li>
+<li><code>cos(a)</code>, <code>sin(a)</code>, <code>tan(a)</code>, <code>acos(a)</code>, <code>asin(a)</code>, <code>atan(a)</code>: trigonometric functions</li>
+<li><code>pi()</code>, <code>e()</code>: mathematical constants</li>
+<li><code>round(a)</code>, <code>ceil(a)</code>, <code>floor(a)</code>: rounding functions</li>
+<li><code>mod(a, b)</code>: division remainder</li>
+<li><code>to_degrees(a)</code>, <code>to_radians(a)</code>: conversion to degrees or radians</li>
+</ul>
 <p>To generate more complex expressions, it is possible to have variable assignments.</p>
 <pre><code class="language-Rust">let mean = (A + B) / 2;
 let coefficient = 0.357;
