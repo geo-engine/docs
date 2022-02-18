@@ -18,7 +18,7 @@ When the temporal resolution is months, our output NDVI will also be a monthly t
 | `outputType`        | [`RasterDataType`](/datatypes/rasterdatatype.md) | A raster data type for the output                                                                           | <pre><code>U8</code></pre>                                                                               |
 | `outputNoDataValue` | `Number`                                         | NO DATA value for the output                                                                                | <pre><code>-2</code></pre>                                                                               |
 | `outputMeasurement` | [`Measurement`](/datatypes/measurement.md)       | Description about the output                                                                                | <pre><code>{<br>&nbsp;&nbsp;"type": "continuous",<br>&nbsp;&nbsp;"measurement": "NDVI"<br>}</code></pre> |
-| `mapNoData`         | `Boolean`                                        | Should NO DATA values be mapped with the `expression`? Otherwise, they are mapped automatically to NO DATA. | <pre><code>false</code></pre>                                                                            |
+| `mapNoData`         | `bool`                                        | Should NO DATA values be mapped with the `expression`? Otherwise, they are mapped automatically to NO DATA. | <pre><code>false</code></pre>                                                                            |
 
 ## Types
 
