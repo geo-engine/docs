@@ -11,6 +11,8 @@
 
   - [Measurement](./datatypes/measurement.md)
   - [RasterDataType](./datatypes/rasterdatatype.md)
+  - [TimeInstance](./datatypes/timeinstance.md)
+  - [TimeStep](./datatypes/timestep.md)
 
 - [Operators](./operators/intro.md)
 
@@ -20,6 +22,7 @@
   - [Reprojection](./operators/reprojection.md)
   - [ScatterPlot](./operators/scatterplot.md)
   - [TemporalRasterAggregation](./operators/temporalrasteraggregation.md)
+  - [TimeProjection](./operators/timeprojection.md)
 
 - [OGC Access]()
 
