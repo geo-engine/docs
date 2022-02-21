@@ -11,8 +11,8 @@ Specifying in ISO 8601:
 "2010-01-01T00:00:00Z"
 ```
 
-Using a UNIX timestamp:
+Using the same date as a UNIX timestamp in milliseconds:
 
 ```json
-0
+1262304000000
 ```
