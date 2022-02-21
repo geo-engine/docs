@@ -14,10 +14,10 @@ If we perform a query with an instant like [2021-01-01, 2021-01-1), we will get 
 
 ## Parameters
 
-| Parameter     | Type          | Description                   | Example Value                                                                                     |
-| ------------- | ------------- | ----------------------------- | ------------------------------------------------------------------------------------------------- |
-| `aggregation` | `Aggregation` | method for aggregating pixels | <pre><code>{<br>&nbsp;&nbsp;"type": "max",<br>&nbsp;&nbsp;"ignoreNoData": false<br>}</code></pre> |
-| `window`      | `TimeStep`    | length of time steps          | <pre><code>{<br>&nbsp;&nbsp;"granularity": "Months",<br>&nbsp;&nbsp;"step": 1<br>}</code></pre>   |
+| Parameter     | Type                                 | Description                   | Example Value                                                                                     |
+| ------------- | ------------------------------------ | ----------------------------- | ------------------------------------------------------------------------------------------------- |
+| `aggregation` | `Aggregation`                        | method for aggregating pixels | <pre><code>{<br>&nbsp;&nbsp;"type": "max",<br>&nbsp;&nbsp;"ignoreNoData": false<br>}</code></pre> |
+| `window`      | [`TimeStep`](/datatypes/timestep.md) | length of time steps          | <pre><code>{<br>&nbsp;&nbsp;"granularity": "Months",<br>&nbsp;&nbsp;"step": 1<br>}</code></pre>   |
 
 ## Types
 
@@ -35,29 +35,6 @@ Encountering a _no data_ value makes the aggregation value of a pixel also _no d
 | `first` | `ignoreNoData`: `bool` | first encountered value |
 | `last`  | `ignoreNoData`: `bool` | last encountered value  |
 | `mean`  | `ignoreNoData`: `bool` | mean value              |
-
-### TimeStep
-
-The length of the time intervals that are produced by the `TemporalRasterAggregation` operator are defined by the `TimeStep` type.
-
-| Parameter     | Type              | Description                   | Example Value |
-| ------------- | ----------------- | ----------------------------- | ------------- |
-| `granularity` | `TimeGranularity` | granularity of the time steps | `Months`      |
-| `step`        | `i32`             | number of time steps          | 1             |
-
-### TimeGranularity
-
-The granularity of the time steps can take one of the following values.
-
-| Variant   | Description  |
-| --------- | ------------ |
-| `Millis`  | milliseconds |
-| `Seconds` | seconds      |
-| `Minutes` | minutes      |
-| `Hours`   | hours        |
-| `Days`    | days         |
-| `Months`  | months       |
-| `Years`   | years        |
 
 ## Inputs
 
