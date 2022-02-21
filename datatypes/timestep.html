@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>ScatterPlot - Geo Engine Docs</title>
+        <title>TimeStep - Geo Engine Docs</title>
                 
 
         <!-- Custom HTML head -->
@@ -87,7 +87,7 @@
                 <div class="sidebar-book-logo">
                     <img src="../images/geoengine-web.svg" alt="Geo Engine">
                 </div>
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome to Geo Engine Docs</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> The Geo Engine</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Engine</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><a href="../datatypes/intro.html"><strong aria-hidden="true">3.</strong> Datatypes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../datatypes/measurement.html"><strong aria-hidden="true">3.1.</strong> Measurement</a></li><li class="chapter-item expanded "><a href="../datatypes/rasterdatatype.html"><strong aria-hidden="true">3.2.</strong> RasterDataType</a></li><li class="chapter-item expanded "><a href="../datatypes/timeinstance.html"><strong aria-hidden="true">3.3.</strong> TimeInstance</a></li><li class="chapter-item expanded "><a href="../datatypes/timestep.html"><strong aria-hidden="true">3.4.</strong> TimeStep</a></li></ol></li><li class="chapter-item expanded "><a href="../operators/intro.html"><strong aria-hidden="true">4.</strong> Operators</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../operators/boxplot.html"><strong aria-hidden="true">4.1.</strong> BoxPlot</a></li><li class="chapter-item expanded "><a href="../operators/expression.html"><strong aria-hidden="true">4.2.</strong> Expression</a></li><li class="chapter-item expanded "><a href="../operators/gdalsource.html"><strong aria-hidden="true">4.3.</strong> GdalSource</a></li><li class="chapter-item expanded "><a href="../operators/reprojection.html"><strong aria-hidden="true">4.4.</strong> Reprojection</a></li><li class="chapter-item expanded "><a href="../operators/scatterplot.html" class="active"><strong aria-hidden="true">4.5.</strong> ScatterPlot</a></li><li class="chapter-item expanded "><a href="../operators/temporalrasteraggregation.html"><strong aria-hidden="true">4.6.</strong> TemporalRasterAggregation</a></li><li class="chapter-item expanded "><a href="../operators/timeprojection.html"><strong aria-hidden="true">4.7.</strong> TimeProjection</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> OGC Access</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> WMS</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Solutions</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Geo Engine Pro</div></li></ol></li></ol>                <ol class="chapter">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome to Geo Engine Docs</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> The Geo Engine</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Engine</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><a href="../datatypes/intro.html"><strong aria-hidden="true">3.</strong> Datatypes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../datatypes/measurement.html"><strong aria-hidden="true">3.1.</strong> Measurement</a></li><li class="chapter-item expanded "><a href="../datatypes/rasterdatatype.html"><strong aria-hidden="true">3.2.</strong> RasterDataType</a></li><li class="chapter-item expanded "><a href="../datatypes/timeinstance.html"><strong aria-hidden="true">3.3.</strong> TimeInstance</a></li><li class="chapter-item expanded "><a href="../datatypes/timestep.html" class="active"><strong aria-hidden="true">3.4.</strong> TimeStep</a></li></ol></li><li class="chapter-item expanded "><a href="../operators/intro.html"><strong aria-hidden="true">4.</strong> Operators</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../operators/boxplot.html"><strong aria-hidden="true">4.1.</strong> BoxPlot</a></li><li class="chapter-item expanded "><a href="../operators/expression.html"><strong aria-hidden="true">4.2.</strong> Expression</a></li><li class="chapter-item expanded "><a href="../operators/gdalsource.html"><strong aria-hidden="true">4.3.</strong> GdalSource</a></li><li class="chapter-item expanded "><a href="../operators/reprojection.html"><strong aria-hidden="true">4.4.</strong> Reprojection</a></li><li class="chapter-item expanded "><a href="../operators/scatterplot.html"><strong aria-hidden="true">4.5.</strong> ScatterPlot</a></li><li class="chapter-item expanded "><a href="../operators/temporalrasteraggregation.html"><strong aria-hidden="true">4.6.</strong> TemporalRasterAggregation</a></li><li class="chapter-item expanded "><a href="../operators/timeprojection.html"><strong aria-hidden="true">4.7.</strong> TimeProjection</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> OGC Access</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> WMS</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Solutions</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Geo Engine Pro</div></li></ol></li></ol>                <ol class="chapter">
                     <li class="part-title">API Reference</li>
                     <li class="chapter-item">
                         <a href="https://python.docs.geoengine.io" style="width: 100%; display: flex; flex-direction: row;">
@@ -157,45 +157,29 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="scatterplot"><a class="header" href="#scatterplot">ScatterPlot</a></h1>
-<p>The <code>ScatterPlot</code> is a <em>plot operator</em> that computes a scatter plot over two attributes of a vector dataset. 
-Thereby, the operator considers all data in the given query rectangle.</p>
-<p>In case of more than <code>500</code> points to plot, the representation changes from a regular scatter plot
-to a 2D Histogram with buckets determined from the underlying data.</p>
-<h2 id="parameter"><a class="header" href="#parameter">Parameter</a></h2>
+                        <h1 id="time-step"><a class="header" href="#time-step">Time Step</a></h1>
+<p>A time step consists of a granularity and a number of steps.
+For instance, you can specify yearly steps by settings the granularity to <code>Years</code> and the number of steps to 1.
+Half-yearly steps can be specified by setting the granularity to <code>Months</code> and the number of steps to 6.</p>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>columnX</code></td><td><code>String</code></td><td>The name of the attribute making up the x-axis of the plot.</td><td><code>&quot;width&quot;</code></td></tr>
-<tr><td><code>columnY</code></td><td><code>String</code></td><td>The name of the attribute making up the y-axis of the plot.</td><td><code>&quot;height&quot;</code></td></tr>
+<tr><td><code>granularity</code></td><td><code>TimeGranularity</code></td><td>granularity of the time steps</td><td><code>Months</code></td></tr>
+<tr><td><code>step</code></td><td><code>i32</code></td><td>number of time steps</td><td>1</td></tr>
 </tbody></table>
-<h2 id="inputs"><a class="header" href="#inputs">Inputs</a></h2>
-<p>The operator consumes exactly one <em>vector</em> operator.</p>
-<table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
-<tr><td><code>source</code></td><td><code>SingleVectorSource</code></td></tr>
+<h2 id="timegranularity"><a class="header" href="#timegranularity">TimeGranularity</a></h2>
+<p>The granularity of the time steps can take one of the following values.</p>
+<table><thead><tr><th>Variant</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>Millis</code></td><td>milliseconds</td></tr>
+<tr><td><code>Seconds</code></td><td>seconds</td></tr>
+<tr><td><code>Minutes</code></td><td>minutes</td></tr>
+<tr><td><code>Hours</code></td><td>hours</td></tr>
+<tr><td><code>Days</code></td><td>days</td></tr>
+<tr><td><code>Months</code></td><td>months</td></tr>
+<tr><td><code>Years</code></td><td>years</td></tr>
 </tbody></table>
-<h2 id="errors"><a class="header" href="#errors">Errors</a></h2>
-<p>The operator returns an error if one of the selected columns does not exist or is not numeric.</p>
-<h2 id="notes"><a class="header" href="#notes">Notes</a></h2>
-<p>If your dataset contains <code>infinite</code> or <code>NAN</code> values, they are ignored for the computation. Moreover, if 
-your dataset contains more than <code>10.000</code> values, the buckets of the histogram are generated based on
-those <code>10.000</code>values. Later values outside those bounds are ignored. </p>
-<h2 id="example-json"><a class="header" href="#example-json">Example JSON</a></h2>
+<h1 id="example-json"><a class="header" href="#example-json">Example JSON</a></h1>
 <pre><code class="language-json">{
-  &quot;type&quot;: &quot;ScatterPlot&quot;,
-  &quot;params&quot;: {
-    &quot;columnX&quot;: &quot;width&quot;,
-    &quot;columnY&quot;: &quot;height&quot;
-  },
-  &quot;sources&quot;: {
-    &quot;vector&quot;: {
-      &quot;type&quot;: &quot;OgrSource&quot;,
-      &quot;params&quot;: {
-        &quot;dataset&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
-        }
-      }
-    }
-  }
+  &quot;granularity&quot;: &quot;Months&quot;,
+  &quot;step&quot;: 1
 }
 </code></pre>
 
@@ -203,11 +187,11 @@ those <code>10.000</code>values. Later values outside those bounds are ignored. 
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                                                    <a rel="prev" href="../operators/reprojection.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                                    <a rel="prev" href="../datatypes/timeinstance.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
-                                                    <a rel="next" href="../operators/temporalrasteraggregation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                                    <a rel="next" href="../operators/intro.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -217,11 +201,11 @@ those <code>10.000</code>values. Later values outside those bounds are ignored. 
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                                    <a rel="prev" href="../operators/reprojection.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                    <a rel="prev" href="../datatypes/timeinstance.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
-                                    <a rel="next" href="../operators/temporalrasteraggregation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                    <a rel="next" href="../operators/intro.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                             </nav>

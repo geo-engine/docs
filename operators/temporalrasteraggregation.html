@@ -87,7 +87,7 @@
                 <div class="sidebar-book-logo">
                     <img src="../images/geoengine-web.svg" alt="Geo Engine">
                 </div>
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome to Geo Engine Docs</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> The Geo Engine</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Engine</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><a href="../datatypes/intro.html"><strong aria-hidden="true">3.</strong> Datatypes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../datatypes/measurement.html"><strong aria-hidden="true">3.1.</strong> Measurement</a></li><li class="chapter-item expanded "><a href="../datatypes/rasterdatatype.html"><strong aria-hidden="true">3.2.</strong> RasterDataType</a></li></ol></li><li class="chapter-item expanded "><a href="../operators/intro.html"><strong aria-hidden="true">4.</strong> Operators</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../operators/boxplot.html"><strong aria-hidden="true">4.1.</strong> BoxPlot</a></li><li class="chapter-item expanded "><a href="../operators/expression.html"><strong aria-hidden="true">4.2.</strong> Expression</a></li><li class="chapter-item expanded "><a href="../operators/gdalsource.html"><strong aria-hidden="true">4.3.</strong> GdalSource</a></li><li class="chapter-item expanded "><a href="../operators/reprojection.html"><strong aria-hidden="true">4.4.</strong> Reprojection</a></li><li class="chapter-item expanded "><a href="../operators/scatterplot.html"><strong aria-hidden="true">4.5.</strong> ScatterPlot</a></li><li class="chapter-item expanded "><a href="../operators/temporalrasteraggregation.html" class="active"><strong aria-hidden="true">4.6.</strong> TemporalRasterAggregation</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> OGC Access</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> WMS</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Solutions</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Geo Engine Pro</div></li></ol></li></ol>                <ol class="chapter">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome to Geo Engine Docs</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> The Geo Engine</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Engine</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><a href="../datatypes/intro.html"><strong aria-hidden="true">3.</strong> Datatypes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../datatypes/measurement.html"><strong aria-hidden="true">3.1.</strong> Measurement</a></li><li class="chapter-item expanded "><a href="../datatypes/rasterdatatype.html"><strong aria-hidden="true">3.2.</strong> RasterDataType</a></li><li class="chapter-item expanded "><a href="../datatypes/timeinstance.html"><strong aria-hidden="true">3.3.</strong> TimeInstance</a></li><li class="chapter-item expanded "><a href="../datatypes/timestep.html"><strong aria-hidden="true">3.4.</strong> TimeStep</a></li></ol></li><li class="chapter-item expanded "><a href="../operators/intro.html"><strong aria-hidden="true">4.</strong> Operators</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../operators/boxplot.html"><strong aria-hidden="true">4.1.</strong> BoxPlot</a></li><li class="chapter-item expanded "><a href="../operators/expression.html"><strong aria-hidden="true">4.2.</strong> Expression</a></li><li class="chapter-item expanded "><a href="../operators/gdalsource.html"><strong aria-hidden="true">4.3.</strong> GdalSource</a></li><li class="chapter-item expanded "><a href="../operators/reprojection.html"><strong aria-hidden="true">4.4.</strong> Reprojection</a></li><li class="chapter-item expanded "><a href="../operators/scatterplot.html"><strong aria-hidden="true">4.5.</strong> ScatterPlot</a></li><li class="chapter-item expanded "><a href="../operators/temporalrasteraggregation.html" class="active"><strong aria-hidden="true">4.6.</strong> TemporalRasterAggregation</a></li><li class="chapter-item expanded "><a href="../operators/timeprojection.html"><strong aria-hidden="true">4.7.</strong> TimeProjection</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> OGC Access</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> WMS</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Solutions</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Geo Engine Pro</div></li></ol></li></ol>                <ol class="chapter">
                     <li class="part-title">API Reference</li>
                     <li class="chapter-item">
                         <a href="https://python.docs.geoengine.io" style="width: 100%; display: flex; flex-direction: row;">
@@ -171,7 +171,7 @@ If we perform a query with an instant like [2021-01-01, 2021-01-1), we will get 
 <h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
 <tr><td><code>aggregation</code></td><td><code>Aggregation</code></td><td>method for aggregating pixels</td><td><pre><code>{<br>  &quot;type&quot;: &quot;max&quot;,<br>  &quot;ignoreNoData&quot;: false<br>}</code></pre></td></tr>
-<tr><td><code>window</code></td><td><code>TimeStep</code></td><td>length of time steps</td><td><pre><code>{<br>  &quot;granularity&quot;: &quot;Months&quot;,<br>  &quot;step&quot;: 1<br>}</code></pre></td></tr>
+<tr><td><code>window</code></td><td><a href="/datatypes/timestep.html"><code>TimeStep</code></a></td><td>length of time steps</td><td><pre><code>{<br>  &quot;granularity&quot;: &quot;Months&quot;,<br>  &quot;step&quot;: 1<br>}</code></pre></td></tr>
 </tbody></table>
 <h2 id="types"><a class="header" href="#types">Types</a></h2>
 <p>The following describes the types used in the parameters.</p>
@@ -184,23 +184,6 @@ Encountering a <em>no data</em> value makes the aggregation value of a pixel als
 <tr><td><code>first</code></td><td><code>ignoreNoData</code>: <code>bool</code></td><td>first encountered value</td></tr>
 <tr><td><code>last</code></td><td><code>ignoreNoData</code>: <code>bool</code></td><td>last encountered value</td></tr>
 <tr><td><code>mean</code></td><td><code>ignoreNoData</code>: <code>bool</code></td><td>mean value</td></tr>
-</tbody></table>
-<h3 id="timestep"><a class="header" href="#timestep">TimeStep</a></h3>
-<p>The length of the time intervals that are produced by the <code>TemporalRasterAggregation</code> operator are defined by the <code>TimeStep</code> type.</p>
-<table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>granularity</code></td><td><code>TimeGranularity</code></td><td>granularity of the time steps</td><td><code>Months</code></td></tr>
-<tr><td><code>step</code></td><td><code>i32</code></td><td>number of time steps</td><td>1</td></tr>
-</tbody></table>
-<h3 id="timegranularity"><a class="header" href="#timegranularity">TimeGranularity</a></h3>
-<p>The granularity of the time steps can take one of the following values.</p>
-<table><thead><tr><th>Variant</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>Millis</code></td><td>milliseconds</td></tr>
-<tr><td><code>Seconds</code></td><td>seconds</td></tr>
-<tr><td><code>Minutes</code></td><td>minutes</td></tr>
-<tr><td><code>Hours</code></td><td>hours</td></tr>
-<tr><td><code>Days</code></td><td>days</td></tr>
-<tr><td><code>Months</code></td><td>months</td></tr>
-<tr><td><code>Years</code></td><td>years</td></tr>
 </tbody></table>
 <h2 id="inputs"><a class="header" href="#inputs">Inputs</a></h2>
 <p>The <code>TemporalRasterAggregation</code> operator expects exactly one <em>raster</em> input.</p>
@@ -244,6 +227,9 @@ Encountering a <em>no data</em> value makes the aggregation value of a pixel als
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
+                                                    <a rel="next" href="../operators/timeprojection.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
                         <div style="clear: both"></div>
                     </nav>
@@ -255,6 +241,9 @@ Encountering a <em>no data</em> value makes the aggregation value of a pixel als
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
+                                    <a rel="next" href="../operators/timeprojection.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                             </nav>
 
         </div>

@@ -88,7 +88,7 @@
                 <div class="sidebar-book-logo">
                     <img src="images/geoengine-web.svg" alt="Geo Engine">
                 </div>
-                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> Welcome to Geo Engine Docs</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> The Geo Engine</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Engine</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><a href="datatypes/intro.html"><strong aria-hidden="true">3.</strong> Datatypes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="datatypes/measurement.html"><strong aria-hidden="true">3.1.</strong> Measurement</a></li><li class="chapter-item expanded "><a href="datatypes/rasterdatatype.html"><strong aria-hidden="true">3.2.</strong> RasterDataType</a></li></ol></li><li class="chapter-item expanded "><a href="operators/intro.html"><strong aria-hidden="true">4.</strong> Operators</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="operators/boxplot.html"><strong aria-hidden="true">4.1.</strong> BoxPlot</a></li><li class="chapter-item expanded "><a href="operators/expression.html"><strong aria-hidden="true">4.2.</strong> Expression</a></li><li class="chapter-item expanded "><a href="operators/gdalsource.html"><strong aria-hidden="true">4.3.</strong> GdalSource</a></li><li class="chapter-item expanded "><a href="operators/reprojection.html"><strong aria-hidden="true">4.4.</strong> Reprojection</a></li><li class="chapter-item expanded "><a href="operators/scatterplot.html"><strong aria-hidden="true">4.5.</strong> ScatterPlot</a></li><li class="chapter-item expanded "><a href="operators/temporalrasteraggregation.html"><strong aria-hidden="true">4.6.</strong> TemporalRasterAggregation</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> OGC Access</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> WMS</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Solutions</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Geo Engine Pro</div></li></ol></li></ol>                <ol class="chapter">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> Welcome to Geo Engine Docs</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> The Geo Engine</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.1.</strong> Engine</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><a href="datatypes/intro.html"><strong aria-hidden="true">3.</strong> Datatypes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="datatypes/measurement.html"><strong aria-hidden="true">3.1.</strong> Measurement</a></li><li class="chapter-item expanded "><a href="datatypes/rasterdatatype.html"><strong aria-hidden="true">3.2.</strong> RasterDataType</a></li><li class="chapter-item expanded "><a href="datatypes/timeinstance.html"><strong aria-hidden="true">3.3.</strong> TimeInstance</a></li><li class="chapter-item expanded "><a href="datatypes/timestep.html"><strong aria-hidden="true">3.4.</strong> TimeStep</a></li></ol></li><li class="chapter-item expanded "><a href="operators/intro.html"><strong aria-hidden="true">4.</strong> Operators</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="operators/boxplot.html"><strong aria-hidden="true">4.1.</strong> BoxPlot</a></li><li class="chapter-item expanded "><a href="operators/expression.html"><strong aria-hidden="true">4.2.</strong> Expression</a></li><li class="chapter-item expanded "><a href="operators/gdalsource.html"><strong aria-hidden="true">4.3.</strong> GdalSource</a></li><li class="chapter-item expanded "><a href="operators/reprojection.html"><strong aria-hidden="true">4.4.</strong> Reprojection</a></li><li class="chapter-item expanded "><a href="operators/scatterplot.html"><strong aria-hidden="true">4.5.</strong> ScatterPlot</a></li><li class="chapter-item expanded "><a href="operators/temporalrasteraggregation.html"><strong aria-hidden="true">4.6.</strong> TemporalRasterAggregation</a></li><li class="chapter-item expanded "><a href="operators/timeprojection.html"><strong aria-hidden="true">4.7.</strong> TimeProjection</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> OGC Access</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> WMS</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Solutions</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Geo Engine Pro</div></li></ol></li></ol>                <ol class="chapter">
                     <li class="part-title">API Reference</li>
                     <li class="chapter-item">
                         <a href="https://python.docs.geoengine.io" style="width: 100%; display: flex; flex-direction: row;">
@@ -211,6 +211,41 @@ This documentation presents the foundations of the system and how to use it.</p>
 <h1 id="example-json-3"><a class="header" href="#example-json-3">Example JSON</a></h1>
 <pre><code class="language-json">&quot;U8&quot;
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="time-instance"><a class="header" href="#time-instance">Time Instance</a></h1>
+<p>A time instance is a single point in time.
+It is specified in UTC time zone 0 and has a maximum resolution of milliseconds.</p>
+<h1 id="example-json-4"><a class="header" href="#example-json-4">Example JSON</a></h1>
+<p>Specifying in ISO 8601:</p>
+<pre><code class="language-json">&quot;2010-01-01T00:00:00Z&quot;
+</code></pre>
+<p>Using the same date as a UNIX timestamp in milliseconds:</p>
+<pre><code class="language-json">1262304000000
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="time-step"><a class="header" href="#time-step">Time Step</a></h1>
+<p>A time step consists of a granularity and a number of steps.
+For instance, you can specify yearly steps by settings the granularity to <code>Years</code> and the number of steps to 1.
+Half-yearly steps can be specified by setting the granularity to <code>Months</code> and the number of steps to 6.</p>
+<table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<tr><td><code>granularity</code></td><td><code>TimeGranularity</code></td><td>granularity of the time steps</td><td><code>Months</code></td></tr>
+<tr><td><code>step</code></td><td><code>i32</code></td><td>number of time steps</td><td>1</td></tr>
+</tbody></table>
+<h2 id="timegranularity"><a class="header" href="#timegranularity">TimeGranularity</a></h2>
+<p>The granularity of the time steps can take one of the following values.</p>
+<table><thead><tr><th>Variant</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>Millis</code></td><td>milliseconds</td></tr>
+<tr><td><code>Seconds</code></td><td>seconds</td></tr>
+<tr><td><code>Minutes</code></td><td>minutes</td></tr>
+<tr><td><code>Hours</code></td><td>hours</td></tr>
+<tr><td><code>Days</code></td><td>days</td></tr>
+<tr><td><code>Months</code></td><td>months</td></tr>
+<tr><td><code>Years</code></td><td>years</td></tr>
+</tbody></table>
+<h1 id="example-json-5"><a class="header" href="#example-json-5">Example JSON</a></h1>
+<pre><code class="language-json">{
+  &quot;granularity&quot;: &quot;Months&quot;,
+  &quot;step&quot;: 1
+}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="operators"><a class="header" href="#operators">Operators</a></h1>
 <p>This chapter introduces the operators of Geo Engine.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="boxplot"><a class="header" href="#boxplot">BoxPlot</a></h1>
@@ -253,7 +288,7 @@ the median and quartiles are estimated using the P^2 algorithm described in:</p>
 histograms without storing observations, Communications of the ACM,
 Volume 28 (October), Number 10, 1985, p. 1076-1085.
 <a href="https://www.cse.wustl.edu/%7Ejain/papers/ftp/psqr.pdf">https://www.cse.wustl.edu/~jain/papers/ftp/psqr.pdf</a></p>
-<h2 id="example-json-4"><a class="header" href="#example-json-4">Example JSON</a></h2>
+<h2 id="example-json-6"><a class="header" href="#example-json-6">Example JSON</a></h2>
 <h3 id="vector"><a class="header" href="#vector">Vector</a></h3>
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;BoxPlot&quot;,
@@ -383,7 +418,7 @@ However, the last expression must be without semicolon.</p>
 </tbody></table>
 <h2 id="errors-1"><a class="header" href="#errors-1">Errors</a></h2>
 <p>The parsing of the expression can fail if there are, e.g., syntax errors.</p>
-<h2 id="example-json-5"><a class="header" href="#example-json-5">Example JSON</a></h2>
+<h2 id="example-json-7"><a class="header" href="#example-json-7">Example JSON</a></h2>
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;Expression&quot;,
   &quot;params&quot;: {
@@ -425,7 +460,7 @@ The counter part for vector data is the <a href="operators/"><code>OgrSource</co
 <p>None</p>
 <h2 id="errors-2"><a class="header" href="#errors-2">Errors</a></h2>
 <p>If the given dataset does not exist or is not readable, an error is thrown.</p>
-<h2 id="example-json-6"><a class="header" href="#example-json-6">Example JSON</a></h2>
+<h2 id="example-json-8"><a class="header" href="#example-json-8">Example JSON</a></h2>
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;GdalSource&quot;,
   &quot;params&quot;: {
@@ -466,7 +501,7 @@ If the input raster stream has no <em>no data</em> value defined, the value <em>
 </tbody></table>
 <h2 id="errors-3"><a class="header" href="#errors-3">Errors</a></h2>
 <p>The operator returns an error if the target projection is unknown or if the input data cannot be reprojected.</p>
-<h2 id="example-json-7"><a class="header" href="#example-json-7">Example JSON</a></h2>
+<h2 id="example-json-9"><a class="header" href="#example-json-9">Example JSON</a></h2>
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;Reprojection&quot;,
   &quot;params&quot;: {
@@ -506,7 +541,7 @@ to a 2D Histogram with buckets determined from the underlying data.</p>
 <p>If your dataset contains <code>infinite</code> or <code>NAN</code> values, they are ignored for the computation. Moreover, if 
 your dataset contains more than <code>10.000</code> values, the buckets of the histogram are generated based on
 those <code>10.000</code>values. Later values outside those bounds are ignored. </p>
-<h2 id="example-json-8"><a class="header" href="#example-json-8">Example JSON</a></h2>
+<h2 id="example-json-10"><a class="header" href="#example-json-10">Example JSON</a></h2>
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;ScatterPlot&quot;,
   &quot;params&quot;: {
@@ -540,7 +575,7 @@ If we perform a query with an instant like [2021-01-01, 2021-01-1), we will get 
 <h2 id="parameters-3"><a class="header" href="#parameters-3">Parameters</a></h2>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
 <tr><td><code>aggregation</code></td><td><code>Aggregation</code></td><td>method for aggregating pixels</td><td><pre><code>{<br>  &quot;type&quot;: &quot;max&quot;,<br>  &quot;ignoreNoData&quot;: false<br>}</code></pre></td></tr>
-<tr><td><code>window</code></td><td><code>TimeStep</code></td><td>length of time steps</td><td><pre><code>{<br>  &quot;granularity&quot;: &quot;Months&quot;,<br>  &quot;step&quot;: 1<br>}</code></pre></td></tr>
+<tr><td><code>window</code></td><td><a href="operators//datatypes/timestep.html"><code>TimeStep</code></a></td><td>length of time steps</td><td><pre><code>{<br>  &quot;granularity&quot;: &quot;Months&quot;,<br>  &quot;step&quot;: 1<br>}</code></pre></td></tr>
 </tbody></table>
 <h2 id="types-1"><a class="header" href="#types-1">Types</a></h2>
 <p>The following describes the types used in the parameters.</p>
@@ -554,23 +589,6 @@ Encountering a <em>no data</em> value makes the aggregation value of a pixel als
 <tr><td><code>last</code></td><td><code>ignoreNoData</code>: <code>bool</code></td><td>last encountered value</td></tr>
 <tr><td><code>mean</code></td><td><code>ignoreNoData</code>: <code>bool</code></td><td>mean value</td></tr>
 </tbody></table>
-<h3 id="timestep"><a class="header" href="#timestep">TimeStep</a></h3>
-<p>The length of the time intervals that are produced by the <code>TemporalRasterAggregation</code> operator are defined by the <code>TimeStep</code> type.</p>
-<table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>granularity</code></td><td><code>TimeGranularity</code></td><td>granularity of the time steps</td><td><code>Months</code></td></tr>
-<tr><td><code>step</code></td><td><code>i32</code></td><td>number of time steps</td><td>1</td></tr>
-</tbody></table>
-<h3 id="timegranularity"><a class="header" href="#timegranularity">TimeGranularity</a></h3>
-<p>The granularity of the time steps can take one of the following values.</p>
-<table><thead><tr><th>Variant</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>Millis</code></td><td>milliseconds</td></tr>
-<tr><td><code>Seconds</code></td><td>seconds</td></tr>
-<tr><td><code>Minutes</code></td><td>minutes</td></tr>
-<tr><td><code>Hours</code></td><td>hours</td></tr>
-<tr><td><code>Days</code></td><td>days</td></tr>
-<tr><td><code>Months</code></td><td>months</td></tr>
-<tr><td><code>Years</code></td><td>years</td></tr>
-</tbody></table>
 <h2 id="inputs-5"><a class="header" href="#inputs-5">Inputs</a></h2>
 <p>The <code>TemporalRasterAggregation</code> operator expects exactly one <em>raster</em> input.</p>
 <table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
@@ -578,7 +596,7 @@ Encountering a <em>no data</em> value makes the aggregation value of a pixel als
 </tbody></table>
 <h2 id="errors-5"><a class="header" href="#errors-5">Errors</a></h2>
 <p>If the aggregation method is <code>first</code>, <code>last</code> or <code>mean</code> and the input raster has no <em>no data</em> value, an error is thrown.</p>
-<h2 id="example-json-9"><a class="header" href="#example-json-9">Example JSON</a></h2>
+<h2 id="example-json-11"><a class="header" href="#example-json-11">Example JSON</a></h2>
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;TemporalRasterAggregation&quot;,
   &quot;params&quot;: {
@@ -598,6 +616,50 @@ Encountering a <em>no data</em> value makes the aggregation value of a pixel als
             &quot;type&quot;: &quot;internal&quot;,
             &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
           }
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="timeprojection"><a class="header" href="#timeprojection">TimeProjection</a></h1>
+<p>The <code>TimeProjection</code> projects vector dataset timestamps to new granularities and ranges.
+The output is a new vector dataset with the same geometry and attributes as the input.
+However, each time step is projected to a new time range.
+Moreover, the query rectangle's temporal extent is enlarged as well to include the projected time range.</p>
+<p>An example usage scenario is to transform snapshot observations into yearly time slices.
+For instance, animal occurrences are observed at a daily granularity.
+If you want to aggregate the data to a yearly granularity, you can use the <code>TimeProjection</code> operator.
+This will change the validity of each element in the dataset to the full year where it was observed.
+This is, for instance, useful when you want to combine it with raster time series and use different temporal semantics than the originally recorded validities.</p>
+<h2 id="parameters-4"><a class="header" href="#parameters-4">Parameters</a></h2>
+<table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<tr><td><code>step</code></td><td><a href="operators//datatypes/timestep.html"><code>TimeStep</code></a></td><td>time granularity and size for the projection</td><td><pre><code>{<br>  &quot;granularity&quot;: &quot;Years&quot;,<br>  &quot;step&quot;: 1<br>}</code></pre></td></tr>
+<tr><td><code>stepReference</code></td><td><a href="operators//datatypes/timeinstance.html"><code>TimeInstance</code></a></td><td>an anchor point for the time <code>step</code></td><td><pre>&quot;2010-01-01T00:00:00Z&quot;</pre></td></tr>
+</tbody></table>
+<h2 id="inputs-6"><a class="header" href="#inputs-6">Inputs</a></h2>
+<p>The <code>TemporalRasterAggregation</code> operator expects exactly one <em>vector</em> input.</p>
+<table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<tr><td><code>vector</code></td><td><code>SingleVectorSource</code></td></tr>
+</tbody></table>
+<h2 id="errors-6"><a class="header" href="#errors-6">Errors</a></h2>
+<p>If the <code>step</code> is negative, an error is thrown.</p>
+<h2 id="example-json-12"><a class="header" href="#example-json-12">Example JSON</a></h2>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;TimeProjection&quot;,
+  &quot;params&quot;: {
+    &quot;step&quot;: {
+      &quot;granularity&quot;: &quot;Years&quot;,
+      &quot;step&quot;: 1
+    }
+  },
+  &quot;sources&quot;: {
+    &quot;vector&quot;: {
+      &quot;type&quot;: &quot;OgrSource&quot;,
+      &quot;params&quot;: {
+        &quot;dataset&quot;: {
+          &quot;type&quot;: &quot;internal&quot;,
+          &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
         }
       }
     }
