@@ -1,7 +1,7 @@
 # GdalSource
 
 The `GdalSource` is a _source operator_ that reads raster data using GDAL.
-The counter part for vector data is the [`OgrSource`]() (TODO: link).
+The counter part for vector data is the [`OgrSource`](./ogrsource.md).
 
 ## Parameters
 
