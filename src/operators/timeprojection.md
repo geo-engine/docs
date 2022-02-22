@@ -16,7 +16,7 @@ This is, for instance, useful when you want to combine it with raster time serie
 | Parameter       | Type                                         | Description                                  | Example Value                                                                                  |
 | --------------- | -------------------------------------------- | -------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `step`          | [`TimeStep`](/datatypes/timestep.md)         | time granularity and size for the projection | <pre><code>{<br>&nbsp;&nbsp;"granularity": "Years",<br>&nbsp;&nbsp;"step": 1<br>}</code></pre> |
-| `stepReference` | [`TimeInstance`](/datatypes/timeinstance.md) | an anchor point for the time `step`          | <pre>"2010-01-01T00:00:00Z"</pre>                                                              |
+| `stepReference` | [`TimeInstance`](/datatypes/timeinstance.md) | (Optional) an anchor point for the time `step`          | <pre>"2010-01-01T00:00:00Z"</pre>                                                              |
 
 ## Inputs
 
