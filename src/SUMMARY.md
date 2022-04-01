@@ -2,7 +2,7 @@
 
 - [Welcome to Geo Engine Docs](./welcome.md)
 
-- [The Geo Engine]()
+- [The Geo Engine](./geoengine/intro.md)
 
   - [Engine]()
   - [Workflows]()
@@ -19,7 +19,7 @@
   - [BoxPlot](./operators/boxplot.md)
   - [Expression](./operators/expression.md)
   - [GdalSource](./operators/gdalsource.md)
-  - [OgrSource](./operators/ogrsource.md) 
+  - [OgrSource](./operators/ogrsource.md)
   - [Reprojection](./operators/reprojection.md)
   - [ScatterPlot](./operators/scatterplot.md)
   - [TemporalRasterAggregation](./operators/temporalrasteraggregation.md)
