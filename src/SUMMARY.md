@@ -28,6 +28,7 @@
   - [TemporalRasterAggregation](./operators/temporalrasteraggregation.md)
   - [TimeProjection](./operators/timeprojection.md)
   - [TimeShift](./operators/timeshift.md)
+  - [VectorJoin](./operators/vectorjoin.md)
 
 - [OGC Access]()
 
