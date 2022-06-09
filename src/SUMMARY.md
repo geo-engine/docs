@@ -27,6 +27,7 @@
   - [ScatterPlot](./operators/scatterplot.md)
   - [TemporalRasterAggregation](./operators/temporalrasteraggregation.md)
   - [TimeProjection](./operators/timeprojection.md)
+  - [TimeShift](./operators/timeshift.md)
 
 - [OGC Access]()
 
