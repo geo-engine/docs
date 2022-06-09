@@ -18,7 +18,7 @@
 
 - [Operators](./operators/intro.md)
 
-  - [BoxPlot](./operators/boxplot.md)
+  - [ColumnRangeFilter](./operators/columnrangefilter.md)
   - [Expression](./operators/expression.md)
   - [GdalSource](./operators/gdalsource.md)
   - [OgrSource](./operators/ogrsource.md)
