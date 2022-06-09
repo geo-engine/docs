@@ -37,6 +37,7 @@
   - [FeatureAttributeValuesOverTime](./plots/featureattributevaluesoverTtime.md)
   - [Histogram](./plots/histogram.md)
   - [MeanRasterPixelValuesOverTime](./plots/meanrasterpixelvaluesovertime.md)
+  - [ScatterPlot](./plots/scatterplot.md)
 - [OGC Access]()
 
   - [WMS]()
