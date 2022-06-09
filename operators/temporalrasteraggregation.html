@@ -158,20 +158,24 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="temporalrasteraggregation"><a class="header" href="#temporalrasteraggregation">TemporalRasterAggregation</a></h1>
-<p>The <code>TemporalRasterAggregation</code> aggregates a raster time series into uniform time intervals.
-The output is a time series that begins at the <code>start</code> of the query time.
+<p>The <code>TemporalRasterAggregation</code> aggregates a raster time series into uniform time intervals (windows).
+The output is a time series that begins with the first window that contains the <code>start</code> of the query time.
 Each time slice has the same length, defined by the <code>window</code> parameter.
 The pixel values are computed by aggregating all rasters contained in the input that are valid in the current window using the defined <code>aggregation</code> method.
-All output slices that are contained in the query time interval are produced by the operator.</p>
+All output slices that are contained in the query time interval are produced by the operator.
+The optional <code>windowReference</code> parameter allows specifying a custom anchor point for the windows.
+This is the imagined start from which on the timeline is divided into uniform aggregation windows.
+By default it is <code>1970-01-01T00:00:00Z</code> which means that windows of, e.g., 1 hour or 1 month will begin at the full hour or the start of the month.</p>
 <p>An example usage scenario is to transform a daily raster time series into monthly aggregates.
-Here, the query should start at the beginning of the month and the window should be 1 month.
+Here, the query should start at the beginning of the month and the <code>window</code> should be 1 month.
 The aggregation method allows calculating, e.g., the maximum or mean value for each pixel.
 If we perform a query with time [2021-01-01, 2021-04-1), we would get a time series with three time steps.
 If we perform a query with an instant like [2021-01-01, 2021-01-1), we will get a single time step containing the aggregated values for January 2021.</p>
 <h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>aggregation</code></td><td><code>Aggregation</code></td><td>method for aggregating pixels</td><td><pre><code>{<br>  &quot;type&quot;: &quot;max&quot;,<br>  &quot;ignoreNoData&quot;: false<br>}</code></pre></td></tr>
+<tr><td><code>aggregation</code></td><td><a href="#aggregation"><code>Aggregation</code></a></td><td>method for aggregating pixels</td><td><pre><code>{<br>  &quot;type&quot;: &quot;max&quot;,<br>  &quot;ignoreNoData&quot;: false<br>}</code></pre></td></tr>
 <tr><td><code>window</code></td><td><a href="/datatypes/timestep.html"><code>TimeStep</code></a></td><td>length of time steps</td><td><pre><code>{<br>  &quot;granularity&quot;: &quot;Months&quot;,<br>  &quot;step&quot;: 1<br>}</code></pre></td></tr>
+<tr><td><code>windowReference</code></td><td><a href="/datatypes/timeinstance.html"><code>TimeInstance</code></a></td><td>(Optional) anchor point for the aggregation windows. Default value is <code>1970-01-01T00:00:00Z</code></td><td><code>1970-01-01T00:00:00Z</code></td></tr>
 </tbody></table>
 <h2 id="types"><a class="header" href="#types">Types</a></h2>
 <p>The following describes the types used in the parameters.</p>
@@ -204,6 +208,7 @@ Encountering a <em>no data</em> value makes the aggregation value of a pixel als
       &quot;granularity&quot;: &quot;Months&quot;,
       &quot;step&quot;: 1
     },
+    &quot;windowReference&quot;: &quot;1970-01-01T00:00:00Z&quot;,
     &quot;sources&quot;: {
       &quot;raster&quot;: {
         &quot;type&quot;: &quot;GdalSource&quot;,
