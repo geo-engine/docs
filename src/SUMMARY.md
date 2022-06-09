@@ -22,6 +22,7 @@
   - [Expression](./operators/expression.md)
   - [GdalSource](./operators/gdalsource.md)
   - [OgrSource](./operators/ogrsource.md)
+  - [PointInPolygon](./operators/pointinpolygon.md)
   - [Reprojection](./operators/reprojection.md)
   - [ScatterPlot](./operators/scatterplot.md)
   - [TemporalRasterAggregation](./operators/temporalrasteraggregation.md)
