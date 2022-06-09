@@ -24,7 +24,6 @@
   - [OgrSource](./operators/ogrsource.md)
   - [PointInPolygon](./operators/pointinpolygon.md)
   - [Reprojection](./operators/reprojection.md)
-  - [ScatterPlot](./operators/scatterplot.md)
   - [TemporalRasterAggregation](./operators/temporalrasteraggregation.md)
   - [TimeProjection](./operators/timeprojection.md)
   - [TimeShift](./operators/timeshift.md)
@@ -38,6 +37,8 @@
   - [Histogram](./plots/histogram.md)
   - [MeanRasterPixelValuesOverTime](./plots/meanrasterpixelvaluesovertime.md)
   - [ScatterPlot](./plots/scatterplot.md)
+  - [Statistics](./plots/statistics.md)
+
 - [OGC Access]()
 
   - [WMS]()
