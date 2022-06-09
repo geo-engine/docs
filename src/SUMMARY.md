@@ -33,7 +33,9 @@
 
 - [Plots](./plots/intro.md)
 
+  - [BoxPlot](./plots/boxplot.md)
   - [FeatureAttributeValuesOverTime](./plots/featureattributevaluesoverTtime.md)
+  - [Histogram](./plots/histogram.md)
   - [MeanRasterPixelValuesOverTime](./plots/meanrasterpixelvaluesovertime.md)
 - [OGC Access]()
 
