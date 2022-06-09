@@ -29,6 +29,7 @@
   - [TimeProjection](./operators/timeprojection.md)
   - [TimeShift](./operators/timeshift.md)
   - [VectorJoin](./operators/vectorjoin.md)
+  - [VisualPointClustering](./operators/visualpointclustering.md)
 
 - [OGC Access]()
 
