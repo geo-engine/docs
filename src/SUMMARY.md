@@ -12,6 +12,7 @@
   - [Measurement](./datatypes/measurement.md)
   - [RasterDataType](./datatypes/rasterdatatype.md)
   - [TimeInstance](./datatypes/timeinstance.md)
+  - [TimeInterval](./datatypes/timeinterval.md)
   - [TimeStep](./datatypes/timestep.md)
 
 - [Operators](./operators/intro.md)
