@@ -33,6 +33,7 @@
 
 - [Plots](./plots/intro.md)
 
+  - [MeanRasterPixelValuesOverTime](./plots/meanrasterpixelvaluesovertime.md)
 - [OGC Access]()
 
   - [WMS]()
