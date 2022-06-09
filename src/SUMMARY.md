@@ -31,6 +31,8 @@
   - [VectorJoin](./operators/vectorjoin.md)
   - [VisualPointClustering](./operators/visualpointclustering.md)
 
+- [Plots](./plots/intro.md)
+
 - [OGC Access]()
 
   - [WMS]()
