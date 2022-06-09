@@ -10,6 +10,7 @@
 - [Datatypes](./datatypes/intro.md)
 
   - [Measurement](./datatypes/measurement.md)
+  - [QueryRectangle](./datatypes/queryrectangle.md)
   - [RasterDataType](./datatypes/rasterdatatype.md)
   - [TimeInstance](./datatypes/timeinstance.md)
   - [TimeInterval](./datatypes/timeinterval.md)
