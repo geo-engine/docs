@@ -1,23 +1,23 @@
 # Histogram
 
 The `Histogram` is a _plot operator_ that computes a histogram plot either over attributes of a vector dataset or values of a raster source.
-The output is a plot in Vega-Lite specification.
+The output is a plot in [Vega-Lite](https://vega.github.io/vega-lite/) specification.
 
 For instance, you want to plot the data distribution of numeric attributes of a feature collection.
-Then, you can use a histogram with a suitable number of buckets to visualize and assess this.
+Then you can use a histogram with a suitable number of buckets to visualize and assess this.
 
 ## Parameters
 
 | Parameter     | Type                                                    | Description                                                                                           | Example Value                                                                                 |
 | ------------- | ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `columnName`  | `string`, ignored for raster input                      | The name of the attribute making up the x-axis of the histogram.                                      | `"temperature"`                                                                               |
-| `bounds`      | `HistogramBounds` (either `Data` or specified `Values`) | If `Data`, it computes the bounds of the underlying data. If `Values`, one can specify custom bounds. | <pre><code>{<br>&nbsp;&nbsp;"min": 0.0,<br>&nbsp;&nbsp;"max": 20.0<br>}</code></pre> `"data"` |
-| `buckets`     | (Optional) number                                       | The number of buckets.                                                                                | `20`                                                                                          |
-| `interactive` | (Optional) `boolean`                                    | Flag, if the histogram should have user interactions for a range selection.                           | `true`                                                                                        |
+| `bounds`      | `HistogramBounds` (either `data` or specified `values`) | If `data`, it computes the bounds of the underlying data. If `values`, one can specify custom bounds. | <pre><code>{<br>&nbsp;&nbsp;"min": 0.0,<br>&nbsp;&nbsp;"max": 20.0<br>}</code></pre> `"data"` |
+| `buckets`     | (Optional) number                                       | The number of buckets. The value is calculated, if not specified.                                     | `20`                                                                                          |
+| `interactive` | (Optional) `boolean`                                    | Flag, if the histogram should have user interactions for a range selection. It is `false` by default. | `true`                                                                                        |
 
 ## Inputs
 
-The operator consumes exactly one _vector_ operator.
+The operator consumes either one _vector_ or one _raster_ operator.
 
 | Parameter | Type                         |
 | --------- | ---------------------------- |
@@ -29,7 +29,7 @@ The operator returns an error if the selected column (`columnName`) does not exi
 
 ## Notes
 
-If `bounds` or `buckets` are unset, the operator needs to process the data twice to compute these values.
+If `bounds` or `buckets` are not defined, the operator will determine these values by itself which requires processing the data twice.
 
 If the `buckets` parameter is unset, the operator estimates it using the square root of the number of elements in the data.
 
