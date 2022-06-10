@@ -3,7 +3,7 @@
 The `VectorJoin` operator allows combining multiple vector inputs into a single feature collection.
 There are multiple join variants defined, which are described below.
 
-For instance, you want to join an attribute data table to a point collection of buildings.
+For instance, you want to join tabular data to a point collection of buildings.
 The point collection contains the geolocation of the buildings and their id.
 The attribute data collection has the building id and the height information.
 Combining the two feature collections leads to a single point collection with geolocation and height information.
