@@ -7,7 +7,7 @@ Half-yearly steps can be specified by setting the granularity to `Months` and th
 | Parameter     | Type              | Description                   | Example Value |
 | ------------- | ----------------- | ----------------------------- | ------------- |
 | `granularity` | `TimeGranularity` | granularity of the time steps | `months`      |
-| `step`        | `i32`             | number of time steps          | 1             |
+| `step`        | `integer`         | number of time steps          | 1             |
 
 ## TimeGranularity
 
