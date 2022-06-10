@@ -32,6 +32,8 @@ The `VisualPointClustering` operator expects exactly one _vector_ input that mus
 
 If the source value `vector` is not a point collection, an error is thrown.
 
+If multiple columns in `columnAggregates` have the same names, an error is thrown.
+
 ## Example JSON
 
 ```json
