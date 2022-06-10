@@ -4,6 +4,8 @@ The `FeatureAttributeValuesOverTime` is a _plot operator_ that computes a multi-
 For distinguishing features, the data requires an id column.
 The output is a plot in Vega-Lite specification.
 
+![Feature Attribute Values Over Time](../images/feature_attribute_values_over_time_example.png)
+
 For instance, you want to plot the NDVI values of a feature collection of trees.
 Then, you can use a multi-line plot to visualize the trees by their id.
 
