@@ -35,7 +35,11 @@ Call `/workflow/{workflowId}/metadata` to get the result descriptor of the workf
   "type": "vector",
   "dataType": "MultiPoint",
   "spatialReference": "EPSG:4326",
-  "columns": {},
+  "columns": {
+    "id": "int",
+    "name": "text",
+    "value": "float"
+  },
   "time": {
     "start": "2014-04-01T00:00:00.000Z",
     "end": "2014-07-01T00:00:00.000Z"
