@@ -4,7 +4,7 @@ Measurements describe stored data, i.e. what is measured and in which unit.
 
 ## Unitless
 
-Some values do not have a associated measurement or no information is present.
+Some values do not have an associated measurement or no information is present.
 
 ### Example JSON
 
@@ -16,7 +16,7 @@ Some values do not have a associated measurement or no information is present.
 
 ## Continuous
 
-A contiuous variable that is measured in a certain unit.
+The type `continuous` specifies a continuous variable that is measured in a certain unit.
 
 ### Example JSON
 

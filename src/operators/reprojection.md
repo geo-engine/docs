@@ -16,11 +16,11 @@ If not all coordinates of the vector data stream could be projected, the operato
 
 ### Raster data
 
-To creates tiles in the target projection, the operator first loads the corresponding tiles in the source projection.
+To create tiles in the target projection, the operator first loads the corresponding tiles in the source projection.
 Note, that in order to create one reprojected output tile, it may be necessary to load multiple source tiles.
 For each output pixel, the operator takes the value of the input pixel nearest to its upper left corner.
 
-In order to obtain precise results but avoid loading too much data, the operators estimates the resolution in which it loads the input raster stream.
+In order to obtain precise results but avoid loading too much data, the operators estimate the resolution in which it loads the input raster stream.
 The estimate is based on the target resolution defined by the query rectangle and the relationship between the length of the diagonal of the query rectangle in both projections.
 Please refer to the source code for details.
 

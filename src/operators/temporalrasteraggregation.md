@@ -3,7 +3,7 @@
 The `TemporalRasterAggregation` aggregates a raster time series into uniform time intervals (windows).
 The output is a time series that begins with the first window that contains the `start` of the query time.
 Each time slice has the same length, defined by the `window` parameter.
-The pixel values are computed by aggregating all rasters contained in the input that are valid in the current window using the defined `aggregation` method.
+The pixel values are computed by aggregating all rasters that are contained in the input and that are valid in the current window using the defined `aggregation` method.
 All output slices that are contained in the query time interval are produced by the operator.
 The optional `windowReference` parameter allows specifying a custom anchor point for the windows.
 This is the imagined start from which on the timeline is divided into uniform aggregation windows.
@@ -30,7 +30,7 @@ The following describes the types used in the parameters.
 ### Aggregation
 
 There are different methods that can be used to aggregate the raster time series.
-Encountering a _no data_ value makes the aggregation value of a pixel also _no data_, unless the `ignoreNoData` parameter is set to `true`.
+Encountering a _no data_ value makes the aggregation value of a pixel also _no data_ unless the `ignoreNoData` parameter is set to `true`.
 
 | Variant | Parameters             | Description             |
 | ------- | ---------------------- | ----------------------- |
@@ -50,7 +50,7 @@ The `TemporalRasterAggregation` operator expects exactly one _raster_ input.
 
 ## Errors
 
-If the aggregation method is `first`, `last` or `mean` and the input raster has no _no data_ value, an error is thrown.
+If the aggregation method is `first, `last`, or `mean` and the input raster has no _no data_ value, an error is thrown.
 
 ## Example JSON
 

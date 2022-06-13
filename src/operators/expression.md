@@ -18,7 +18,7 @@ When the temporal resolution is months, our output NDVI will also be a monthly t
 | `outputType`        | [`RasterDataType`](/datatypes/rasterdatatype.md) | A raster data type for the output                                                                           | <pre><code>U8</code></pre>                                                                               |
 | `outputNoDataValue` | `Number`                                         | NO DATA value for the output                                                                                | <pre><code>-2</code></pre>                                                                               |
 | `outputMeasurement` | [`Measurement`](/datatypes/measurement.md)       | Description about the output                                                                                | <pre><code>{<br>&nbsp;&nbsp;"type": "continuous",<br>&nbsp;&nbsp;"measurement": "NDVI"<br>}</code></pre> |
-| `mapNoData`         | `bool`                                        | Should NO DATA values be mapped with the `expression`? Otherwise, they are mapped automatically to NO DATA. | <pre><code>false</code></pre>                                                                            |
+| `mapNoData`         | `bool`                                           | Should NO DATA values be mapped with the `expression`? Otherwise, they are mapped automatically to NO DATA. | <pre><code>false</code></pre>                                                                            |
 
 ## Types
 
@@ -33,7 +33,7 @@ This is important if `mapNoData` is set to true.
 Otherwise, NO DATA values are mapped automatically to the output NO DATA value.
 Finally, the value `out_nodata` can be used to output NO DATA.
 
-Users can basically think of this implicit function signature for, e.g., two inputs:
+Users can think of this implicit function signature for, e.g., two inputs:
 
 ```Rust
 fn (A: f64, B: f64, out_nodata: f64) -> f64
@@ -84,7 +84,7 @@ mean * coefficient
 ```
 
 Note, that all assignments are separated by semicolons.
-However, the last expression must be without semicolon.
+However, the last expression must be without a semicolon.
 
 ## Inputs
 

@@ -10,20 +10,34 @@
 - [Datatypes](./datatypes/intro.md)
 
   - [Measurement](./datatypes/measurement.md)
+  - [QueryRectangle](./datatypes/queryrectangle.md)
   - [RasterDataType](./datatypes/rasterdatatype.md)
   - [TimeInstance](./datatypes/timeinstance.md)
+  - [TimeInterval](./datatypes/timeinterval.md)
   - [TimeStep](./datatypes/timestep.md)
 
 - [Operators](./operators/intro.md)
 
-  - [BoxPlot](./operators/boxplot.md)
+  - [ColumnRangeFilter](./operators/columnrangefilter.md)
   - [Expression](./operators/expression.md)
   - [GdalSource](./operators/gdalsource.md)
   - [OgrSource](./operators/ogrsource.md)
+  - [PointInPolygon](./operators/pointinpolygon.md)
   - [Reprojection](./operators/reprojection.md)
-  - [ScatterPlot](./operators/scatterplot.md)
   - [TemporalRasterAggregation](./operators/temporalrasteraggregation.md)
   - [TimeProjection](./operators/timeprojection.md)
+  - [TimeShift](./operators/timeshift.md)
+  - [VectorJoin](./operators/vectorjoin.md)
+  - [VisualPointClustering](./operators/visualpointclustering.md)
+
+- [Plots](./plots/intro.md)
+
+  - [BoxPlot](./plots/boxplot.md)
+  - [FeatureAttributeValuesOverTime](./plots/featureattributevaluesoverTtime.md)
+  - [Histogram](./plots/histogram.md)
+  - [MeanRasterPixelValuesOverTime](./plots/meanrasterpixelvaluesovertime.md)
+  - [ScatterPlot](./plots/scatterplot.md)
+  - [Statistics](./plots/statistics.md)
 
 - [OGC Access]()
 

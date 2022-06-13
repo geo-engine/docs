@@ -3,7 +3,7 @@
 The `TimeProjection` projects vector dataset timestamps to new granularities and ranges.
 The output is a new vector dataset with the same geometry and attributes as the input.
 However, each time step is projected to a new time range.
-Moreover, the query rectangle's temporal extent is enlarged as well to include the projected time range.
+Moreover, the [`QueryRectangle`'s](./../datatypes/queryrectangle.md) temporal extent is enlarged as well to include the projected time range.
 
 An example usage scenario is to transform snapshot observations into yearly time slices.
 For instance, animal occurrences are observed at a daily granularity.
@@ -13,14 +13,14 @@ This is, for instance, useful when you want to combine it with raster time serie
 
 ## Parameters
 
-| Parameter       | Type                                         | Description                                  | Example Value                                                                                  |
-| --------------- | -------------------------------------------- | -------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `step`          | [`TimeStep`](/datatypes/timestep.md)         | time granularity and size for the projection | <pre><code>{<br>&nbsp;&nbsp;"granularity": "Years",<br>&nbsp;&nbsp;"step": 1<br>}</code></pre> |
-| `stepReference` | [`TimeInstance`](/datatypes/timeinstance.md) | (Optional) an anchor point for the time `step`          | <pre>"2010-01-01T00:00:00Z"</pre>                                                              |
+| Parameter       | Type                                         | Description                                    | Example Value                                                                                  |
+| --------------- | -------------------------------------------- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `step`          | [`TimeStep`](/datatypes/timestep.md)         | time granularity and size for the projection   | <pre><code>{<br>&nbsp;&nbsp;"granularity": "years",<br>&nbsp;&nbsp;"step": 1<br>}</code></pre> |
+| `stepReference` | [`TimeInstance`](/datatypes/timeinstance.md) | (Optional) an anchor point for the time `step` | <pre>"2010-01-01T00:00:00Z"</pre>                                                              |
 
 ## Inputs
 
-The `TemporalRasterAggregation` operator expects exactly one _vector_ input.
+The `TimeProjection` operator expects exactly one _vector_ input.
 
 | Parameter | Type                 |
 | --------- | -------------------- |
@@ -37,7 +37,7 @@ If the `step` is negative, an error is thrown.
   "type": "TimeProjection",
   "params": {
     "step": {
-      "granularity": "Years",
+      "granularity": "years",
       "step": 1
     }
   },
