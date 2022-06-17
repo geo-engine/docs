@@ -7,6 +7,13 @@
   - [Engine]()
   - [Workflows]()
 
+- [API](./api/intro.md)
+
+  - [Datasets]()
+  - [Projects]()
+  - [Upload]()
+  - [Workflows](./api/workflows.md)
+
 - [Datatypes](./datatypes/intro.md)
 
   - [Measurement](./datatypes/measurement.md)
