@@ -19,10 +19,10 @@ The following describes the types used in the parameters.
 
 The `AttributeFilter` defines one or more ranges on the values of an attribute. The ranges include the lower and upper bounds of the range.
 
-| Field       | Type                             | Description                                                                     |
+| Field       | Type                             | Description                                                                     |     |
 | ----------- | -------------------------------- | ------------------------------------------------------------------------------- | --- |
-| `attribute` | `String`                         | The name of the attribute to filter.                                            |
-| `ranges`    | `Array<Array<String \| Number>>` | The list of ranges to filter.                                                   |
+| `attribute` | `String`                         | The name of the attribute to filter.                                            |     |
+| `ranges`    | `Array<Array<String \| Number>>` | The list of ranges to filter.                                                   |     |
 | `keepNulls` | `bool`                           | (Optional) Specifies whether to keep null/no data entries, defaults to `false`. |     |
 
 ## Inputs
