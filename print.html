@@ -576,11 +576,11 @@ The counterpart for raster data is the <a href="operators/./gdalsource.html"><co
 <p>The following describes the types used in the parameters.</p>
 <h3 id="attributefilter"><a class="header" href="#attributefilter">AttributeFilter</a></h3>
 <p>The <code>AttributeFilter</code> defines one or more ranges on the values of an attribute. The ranges include the lower and upper bounds of the range.</p>
-<p>| Field       | Type                             | Description                                                                     |
-| ----------- | -------------------------------- | ------------------------------------------------------------------------------- | --- |
-| <code>attribute</code> | <code>String</code>                         | The name of the attribute to filter.                                            |
-| <code>ranges</code>    | <code>Array&lt;Array&lt;String \| Number&gt;&gt;</code> | The list of ranges to filter.                                                   |
-| <code>keepNulls</code> | <code>bool</code>                           | (Optional) Specifies whether to keep null/no data entries, defaults to <code>false</code>. |     |</p>
+<table><thead><tr><th>Field</th><th>Type</th><th>Description</th><th></th></tr></thead><tbody>
+<tr><td><code>attribute</code></td><td><code>String</code></td><td>The name of the attribute to filter.</td><td></td></tr>
+<tr><td><code>ranges</code></td><td><code>Array&lt;Array&lt;String \| Number&gt;&gt;</code></td><td>The list of ranges to filter.</td><td></td></tr>
+<tr><td><code>keepNulls</code></td><td><code>bool</code></td><td>(Optional) Specifies whether to keep null/no data entries, defaults to <code>false</code>.</td><td></td></tr>
+</tbody></table>
 <h2 id="inputs-3"><a class="header" href="#inputs-3">Inputs</a></h2>
 <p>None</p>
 <h2 id="errors-3"><a class="header" href="#errors-3">Errors</a></h2>
@@ -972,7 +972,7 @@ These circles then pose a decluttered view of the data, e.g., via a WFS endpoint
 <tr><td><code>deltaPx</code></td><td>number</td><td>Minimum circle to circle distance in screen pixels input</td><td><pre>1</pre></td></tr>
 <tr><td><code>radiusColumn</code></td><td>string</td><td>The new column name to store radius information in screen pixels</td><td><pre>&quot;__radius&quot;</pre></td></tr>
 <tr><td><code>countColumn</code></td><td>string</td><td>The new column name to store the number of points represented by each circle</td><td><pre>&quot;__count&quot;</pre></td></tr>
-<tr><td><code>columnAggregates</code></td><td>Map from string to aggregate definition (one of <code>MeanNumber</code>, <code>StringSample</code> or <code>Null</code>)</td><td>Specify how miscellaneous columns should be aggregated</td><td><pre><code>{<br>  &quot;foo&quot;: {<br>    &quot;columnName&quot;: &quot;numericColumn&quot;,<br>    &quot;aggregateType&quot;: &quot;MeanNumber&quot;<br>  },<br>  &quot;bar&quot;: {<br>    &quot;columnName&quot;: &quot;textColumn&quot;,<br>    &quot;aggregateType&quot;: &quot;StringSample&quot;<br>  }<br>}</code></pre></td></tr>
+<tr><td><code>columnAggregates</code></td><td>Map from string to aggregate definition (one of <code>MeanNumber</code>, <code>StringSample</code> or <code>Null</code>)</td><td>Specify how miscellaneous columns should be aggregated. You can optionally set a new <a href="operators/../datatypes/measurement.html"><code>Measurement</code></a>. Otherwise, the <a href="operators/../datatypes/measurement.html"><code>Measurement</code></a> is taken from the source column.</td><td><pre><code>{<br>  &quot;foo&quot;: {<br>    &quot;columnName&quot;: &quot;numericColumn&quot;,<br>    &quot;aggregateType&quot;: &quot;MeanNumber&quot;,<br>    &quot;measurement&quot;: { &quot;type&quot;: &quot;unitless&quot; }<br>  },<br>  &quot;bar&quot;: {<br>    &quot;columnName&quot;: &quot;textColumn&quot;,<br>    &quot;aggregateType&quot;: &quot;StringSample&quot;<br>  }<br>}</code></pre></td></tr>
 </tbody></table>
 <h2 id="inputs-10"><a class="header" href="#inputs-10">Inputs</a></h2>
 <p>The <code>VisualPointClustering</code> operator expects exactly one <em>vector</em> input that must be a point collection.</p>
@@ -993,7 +993,8 @@ These circles then pose a decluttered view of the data, e.g., via a WFS endpoint
     &quot;columnAggregates&quot;: {
       &quot;mean_population&quot;: {
         &quot;columnName&quot;: &quot;population&quot;,
-        &quot;aggregateType&quot;: &quot;MeanNumber&quot;
+        &quot;aggregateType&quot;: &quot;MeanNumber&quot;,
+        &quot;measurement&quot;: { &quot;type&quot;: &quot;unitless&quot; }
       },
       &quot;sample_names&quot;: {
         &quot;columnName&quot;: &quot;name&quot;,
