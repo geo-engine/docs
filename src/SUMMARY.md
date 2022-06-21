@@ -41,7 +41,7 @@
 
   - [BoxPlot](./plots/boxplot.md)
   - [ClassHistogram](./plots/classHistogram.md)
-  - [FeatureAttributeValuesOverTime](./plots/featureattributevaluesoverTtime.md)
+  - [FeatureAttributeValuesOverTime](./plots/featureattributevaluesoverTime.md)
   - [Histogram](./plots/histogram.md)
   - [MeanRasterPixelValuesOverTime](./plots/meanrasterpixelvaluesovertime.md)
   - [ScatterPlot](./plots/scatterplot.md)
