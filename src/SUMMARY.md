@@ -16,6 +16,7 @@
 
 - [Datatypes](./datatypes/intro.md)
 
+  - [Colorizer](./datatypes/colorizer.md)
   - [Measurement](./datatypes/measurement.md)
   - [QueryRectangle](./datatypes/queryrectangle.md)
   - [RasterDataType](./datatypes/rasterdatatype.md)
