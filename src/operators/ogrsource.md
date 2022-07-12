@@ -7,7 +7,7 @@ The counterpart for raster data is the [`GdalSource`](./gdalsource.md).
 
 | Parameter             | Type                     | Description                                                                                                                            | Example Value                                                                                                                        | Default Value |
 | --------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------- |
-| `dataset`             | `DatasetId`              | The id of the dataset to be loaded                                                                                                     | <pre><code>{<br>&nbsp;&nbsp;"type": "internal",<br>&nbsp;&nbsp;"datasetId": "e977b123-ca47-4c5b-aace-481119826aaf"<br>}</code></pre> |               |
+| `data`                | `DataId`                 | The id of the data to be loaded                                                                                                        | <pre><code>{<br>&nbsp;&nbsp;"type": "internal",<br>&nbsp;&nbsp;"datasetId": "e977b123-ca47-4c5b-aace-481119826aaf"<br>}</code></pre> |               |
 | `attributeProjection` | `Array<String>`          | (Optional) The list of attributes to load. If nothing is specified, all attributes will be loaded.                                     | <code>["name", "population"]</code>                                                                                                  |               |
 | `attributeFilters`    | `Array<AttributeFilter>` | (Optional) The list of filters to apply on the attributes of features. Only the features that match all of the filters will be loaded. | <pre><code>[{"attribute": "populuation",<br> "ranges": [[1000, 10000]]<br>}]</code></pre>                                            |               |
 
@@ -39,7 +39,7 @@ If the given dataset does not exist or is not readable, an error is thrown.
 {
   "type": "OgrSource",
   "params": {
-    "dataset": {
+    "data": {
       "type": "internal",
       "datasetId": "e977b123-ca47-4c5b-aace-481119826aaf"
     },

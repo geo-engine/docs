@@ -71,7 +71,7 @@ If the aggregation method is `first, `last`, or `mean` and the input raster has 
       "raster": {
         "type": "GdalSource",
         "params": {
-          "dataset": {
+          "data": {
             "type": "internal",
             "datasetId": "a626c880-1c41-489b-9e19-9596d129859c"
           }

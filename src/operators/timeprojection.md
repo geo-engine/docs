@@ -45,7 +45,7 @@ If the `step` is negative, an error is thrown.
     "vector": {
       "type": "OgrSource",
       "params": {
-        "dataset": {
+        "data": {
           "type": "internal",
           "datasetId": "a626c880-1c41-489b-9e19-9596d129859c"
         }
