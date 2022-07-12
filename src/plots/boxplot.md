@@ -29,7 +29,6 @@ For raster data, the operator generates one box for each input raster.
 | Parameter       | Type          | Description                                                                                                                                                                                                                                                            | Example Value |
 | --------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | `columnNames`   | `Vec<String>` | _Optional_: An alias for each input source. The operator will automatically name the boxes `Raster-1`, `Raster-2`, ... if this parameter is empty. If aliases are given, the number of aliases must match the number of input rasters. Otherwise an error is returned. | `["A","B"]`.  |
-| `includeNoData` | `bool`        | Flag whether to include _no data_ values.                                                                                                                                                                                                                              | `true`        |
 
 ## Inputs
 
