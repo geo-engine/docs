@@ -86,8 +86,7 @@ Volume 28 (October), Number 10, 1985, p. 1076-1085.
 {
   "type": "BoxPlot",
   "params": {
-    "columnNames": ["A", "B"],
-    "includeNoData": true
+    "columnNames": ["A", "B"]
   },
   "sources": {
     "source": [
