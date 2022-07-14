@@ -466,7 +466,7 @@ Moreover, you can specify the range <code>a</code> to <code>k</code> to dismiss 
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;dataset&quot;: {
+        &quot;data&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
           &quot;datasetId&quot;: &quot;e977b123-ca47-4c5b-aace-481119826aaf&quot;
         },
@@ -490,7 +490,7 @@ Moreover, you can specify the range <code>a</code> to <code>k</code> to dismiss 
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;dataset&quot;: {
+        &quot;data&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
           &quot;datasetId&quot;: &quot;e977b123-ca47-4c5b-aace-481119826aaf&quot;
         },
@@ -586,7 +586,7 @@ However, the last expression must be without a semicolon.</p>
     &quot;A&quot;: {
       &quot;type&quot;: &quot;GdalSource&quot;,
       &quot;params&quot;: {
-        &quot;dataset&quot;: {
+        &quot;data&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
           &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
         }
@@ -595,7 +595,7 @@ However, the last expression must be without a semicolon.</p>
     &quot;B&quot;: {
       &quot;type&quot;: &quot;GdalSource&quot;,
       &quot;params&quot;: {
-        &quot;dataset&quot;: {
+        &quot;data&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
           &quot;datasetId&quot;: &quot;699b9e14-4bd6-4d57-889a-58f60288b19c&quot;
         }
@@ -609,7 +609,7 @@ However, the last expression must be without a semicolon.</p>
 The counterpart for vector data is the <a href="operators/./ogrsource.html"><code>OgrSource</code></a>.</p>
 <h2 id="parameters-2"><a class="header" href="#parameters-2">Parameters</a></h2>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th><th>Default Value</th></tr></thead><tbody>
-<tr><td><code>dataset</code></td><td><code>DatasetId</code></td><td>The id of the dataset to be loaded</td><td><pre><code>{<br>  &quot;type&quot;: &quot;internal&quot;,<br>  &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;<br>}</code></pre></td><td></td></tr>
+<tr><td><code>data</code></td><td><code>DataId</code></td><td>The id of the data to be loaded</td><td><pre><code>{<br>  &quot;type&quot;: &quot;internal&quot;,<br>  &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;<br>}</code></pre></td><td></td></tr>
 </tbody></table>
 <h2 id="inputs-2"><a class="header" href="#inputs-2">Inputs</a></h2>
 <p>None</p>
@@ -619,7 +619,7 @@ The counterpart for vector data is the <a href="operators/./ogrsource.html"><cod
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;GdalSource&quot;,
   &quot;params&quot;: {
-    &quot;dataset&quot;: {
+    &quot;data&quot;: {
       &quot;type&quot;: &quot;internal&quot;,
       &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
     }
@@ -631,7 +631,7 @@ The counterpart for vector data is the <a href="operators/./ogrsource.html"><cod
 The counterpart for raster data is the <a href="operators/./gdalsource.html"><code>GdalSource</code></a>.</p>
 <h2 id="parameters-3"><a class="header" href="#parameters-3">Parameters</a></h2>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th><th>Default Value</th></tr></thead><tbody>
-<tr><td><code>dataset</code></td><td><code>DatasetId</code></td><td>The id of the dataset to be loaded</td><td><pre><code>{<br>  &quot;type&quot;: &quot;internal&quot;,<br>  &quot;datasetId&quot;: &quot;e977b123-ca47-4c5b-aace-481119826aaf&quot;<br>}</code></pre></td><td></td></tr>
+<tr><td><code>data</code></td><td><code>DataId</code></td><td>The id of the data to be loaded</td><td><pre><code>{<br>  &quot;type&quot;: &quot;internal&quot;,<br>  &quot;datasetId&quot;: &quot;e977b123-ca47-4c5b-aace-481119826aaf&quot;<br>}</code></pre></td><td></td></tr>
 <tr><td><code>attributeProjection</code></td><td><code>Array&lt;String&gt;</code></td><td>(Optional) The list of attributes to load. If nothing is specified, all attributes will be loaded.</td><td><code>[&quot;name&quot;, &quot;population&quot;]</code></td><td></td></tr>
 <tr><td><code>attributeFilters</code></td><td><code>Array&lt;AttributeFilter&gt;</code></td><td>(Optional) The list of filters to apply on the attributes of features. Only the features that match all of the filters will be loaded.</td><td><pre><code>[{&quot;attribute&quot;: &quot;populuation&quot;,<br> &quot;ranges&quot;: [[1000, 10000]]<br>}]</code></pre></td><td></td></tr>
 </tbody></table>
@@ -652,7 +652,7 @@ The counterpart for raster data is the <a href="operators/./gdalsource.html"><co
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;OgrSource&quot;,
   &quot;params&quot;: {
-    &quot;dataset&quot;: {
+    &quot;data&quot;: {
       &quot;type&quot;: &quot;internal&quot;,
       &quot;datasetId&quot;: &quot;e977b123-ca47-4c5b-aace-481119826aaf&quot;
     },
@@ -692,7 +692,7 @@ All features, that weren't inside any forest polygon, are considered either part
     &quot;points&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;dataset&quot;: {
+        &quot;data&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
           &quot;datasetId&quot;: &quot;e977b123-ca47-4c5b-aace-481119826aaf&quot;
         },
@@ -702,7 +702,7 @@ All features, that weren't inside any forest polygon, are considered either part
     &quot;polygons&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;dataset&quot;: {
+        &quot;data&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
           &quot;datasetId&quot;: &quot;b6191257-6d61-4c6b-90a4-ebfb1b23899d&quot;
         }
@@ -751,7 +751,7 @@ If the input raster stream has no <em>no data</em> value defined, the value <em>
     &quot;source&quot;: {
       &quot;type&quot;: &quot;GdalSource&quot;,
       &quot;params&quot;: {
-        &quot;dataset&quot;: {
+        &quot;data&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
           &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
         }
@@ -816,7 +816,7 @@ Encountering a <em>no data</em> value makes the aggregation value of a pixel als
       &quot;raster&quot;: {
         &quot;type&quot;: &quot;GdalSource&quot;,
         &quot;params&quot;: {
-          &quot;dataset&quot;: {
+          &quot;data&quot;: {
             &quot;type&quot;: &quot;internal&quot;,
             &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
           }
@@ -861,7 +861,7 @@ This is, for instance, useful when you want to combine it with raster time serie
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;dataset&quot;: {
+        &quot;data&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
           &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
         }
@@ -928,7 +928,7 @@ The data, originally valid for January, is shifted forward to February again, to
     &quot;source&quot;: {
       &quot;type&quot;: &quot;GdalSource&quot;,
       &quot;params&quot;: {
-        &quot;dataset&quot;: {
+        &quot;data&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
           &quot;datasetId&quot;: &quot;00000000-0000-0000-0000-000000000539&quot;
         }
@@ -950,7 +950,7 @@ The data, originally valid for January, is shifted forward to February again, to
     &quot;source&quot;: {
       &quot;type&quot;: &quot;GdalSource&quot;,
       &quot;params&quot;: {
-        &quot;dataset&quot;: {
+        &quot;data&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
           &quot;datasetId&quot;: &quot;00000000-0000-0000-0000-000000000539&quot;
         }
@@ -1001,7 +1001,7 @@ Combining the two feature collections leads to a single point collection with ge
     &quot;points&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;dataset&quot;: {
+        &quot;data&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
           &quot;datasetId&quot;: &quot;e977b123-ca47-4c5b-aace-481119826aaf&quot;
         },
@@ -1011,7 +1011,7 @@ Combining the two feature collections leads to a single point collection with ge
     &quot;polygons&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;dataset&quot;: {
+        &quot;data&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
           &quot;datasetId&quot;: &quot;b6191257-6d61-4c6b-90a4-ebfb1b23899d&quot;
         }
@@ -1069,7 +1069,7 @@ These circles then pose a decluttered view of the data, e.g., via a WFS endpoint
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;dataset&quot;: {
+        &quot;data&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
           &quot;datasetId&quot;: &quot;e977b123-ca47-4c5b-aace-481119826aaf&quot;
         },
@@ -1140,7 +1140,7 @@ Volume 28 (October), Number 10, 1985, p. 1076-1085.
     &quot;source&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;dataset&quot;: {
+        &quot;data&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
           &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
         }
@@ -1161,7 +1161,7 @@ Volume 28 (October), Number 10, 1985, p. 1076-1085.
       {
         &quot;type&quot;: &quot;GdalSource&quot;,
         &quot;params&quot;: {
-          &quot;dataset&quot;: {
+          &quot;data&quot;: {
             &quot;type&quot;: &quot;internal&quot;,
             &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
           }
@@ -1170,7 +1170,7 @@ Volume 28 (October), Number 10, 1985, p. 1076-1085.
       {
         &quot;type&quot;: &quot;GdalSource&quot;,
         &quot;params&quot;: {
-          &quot;dataset&quot;: {
+          &quot;data&quot;: {
             &quot;type&quot;: &quot;internal&quot;,
             &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
           }
@@ -1215,7 +1215,7 @@ It ignores missing or no-data values and values that are not covered by the <a h
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;dataset&quot;: {
+        &quot;data&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
           &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
         }
@@ -1257,7 +1257,7 @@ After recognizing more than <code>20</code> different ids, the operator ignores 
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;dataset&quot;: {
+        &quot;data&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
           &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
         }
@@ -1304,7 +1304,7 @@ Then you can use a histogram with a suitable number of buckets to visualize and 
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;dataset&quot;: {
+        &quot;data&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
           &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
         }
@@ -1340,7 +1340,7 @@ Then, you can use this operator to generate a time series plot.</p>
     &quot;raster&quot;: {
       &quot;type&quot;: &quot;GdalSource&quot;,
       &quot;params&quot;: {
-        &quot;dataset&quot;: {
+        &quot;data&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
           &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
         }
@@ -1381,7 +1381,7 @@ those <code>10.000</code>values. Later values outside those bounds are ignored.<
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;dataset&quot;: {
+        &quot;data&quot;: {
           &quot;type&quot;: &quot;internal&quot;,
           &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
         }
@@ -1411,7 +1411,7 @@ Then, you can use this operator to get basic count statistics.</p>
       {
         &quot;type&quot;: &quot;GdalSource&quot;,
         &quot;params&quot;: {
-          &quot;dataset&quot;: {
+          &quot;data&quot;: {
             &quot;type&quot;: &quot;internal&quot;,
             &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
           }
