@@ -42,7 +42,7 @@ If the value in the `column` parameter is not a column of the feature collection
     "vector": {
       "type": "OgrSource",
       "params": {
-        "dataset": {
+        "data": {
           "type": "internal",
           "datasetId": "e977b123-ca47-4c5b-aace-481119826aaf"
         },
@@ -68,7 +68,7 @@ If the value in the `column` parameter is not a column of the feature collection
     "vector": {
       "type": "OgrSource",
       "params": {
-        "dataset": {
+        "data": {
           "type": "internal",
           "datasetId": "e977b123-ca47-4c5b-aace-481119826aaf"
         },

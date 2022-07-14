@@ -60,7 +60,7 @@ If multiple columns in `columnAggregates` have the same names, an error is throw
     "vector": {
       "type": "OgrSource",
       "params": {
-        "dataset": {
+        "data": {
           "type": "internal",
           "datasetId": "e977b123-ca47-4c5b-aace-481119826aaf"
         },

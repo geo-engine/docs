@@ -29,7 +29,7 @@ The operator consumes one or more _raster_ operators.
       {
         "type": "GdalSource",
         "params": {
-          "dataset": {
+          "data": {
             "type": "internal",
             "datasetId": "a626c880-1c41-489b-9e19-9596d129859c"
           }
