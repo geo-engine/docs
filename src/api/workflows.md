@@ -16,7 +16,6 @@ Call `/workflow/{workflowId}/metadata` to get the result descriptor of the workf
   "measurement": {
     "type": "unitless"
   },
-  "noDataValue": 0.0,
   "time": {
     "start": "2014-01-01T00:00:00.000Z",
     "end": "2014-07-01T00:00:00.000Z"
