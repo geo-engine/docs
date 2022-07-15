@@ -177,7 +177,6 @@ The operator returns an error if one of the selected attributes is not numeric.<
 <h3 id="parameter-1"><a class="header" href="#parameter-1">Parameter</a></h3>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
 <tr><td><code>columnNames</code></td><td><code>Vec&lt;String&gt;</code></td><td><em>Optional</em>: An alias for each input source. The operator will automatically name the boxes <code>Raster-1</code>, <code>Raster-2</code>, ... if this parameter is empty. If aliases are given, the number of aliases must match the number of input rasters. Otherwise an error is returned.</td><td><code>[&quot;A&quot;,&quot;B&quot;]</code>.</td></tr>
-<tr><td><code>includeNoData</code></td><td><code>bool</code></td><td>Flag whether to include <em>no data</em> values.</td><td><code>true</code></td></tr>
 </tbody></table>
 <h2 id="inputs"><a class="header" href="#inputs">Inputs</a></h2>
 <p>The operator consumes exactly one <em>vector</em> or multiple <em>raster</em> operators.</p>
@@ -222,8 +221,7 @@ Volume 28 (October), Number 10, 1985, p. 1076-1085.
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;BoxPlot&quot;,
   &quot;params&quot;: {
-    &quot;columnNames&quot;: [&quot;A&quot;, &quot;B&quot;],
-    &quot;includeNoData&quot;: true
+    &quot;columnNames&quot;: [&quot;A&quot;, &quot;B&quot;]
   },
   &quot;sources&quot;: {
     &quot;source&quot;: [
