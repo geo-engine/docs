@@ -16,7 +16,6 @@ When the temporal resolution is months, our output NDVI will also be a monthly t
 | ------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `expression`        | `Expression`                                     | Expression script                                                                                           | <pre><code>(A - B) / (A + B)</code></pre>                                                                |
 | `outputType`        | [`RasterDataType`](/datatypes/rasterdatatype.md) | A raster data type for the output                                                                           | <pre><code>U8</code></pre>                                                                               |
-| `outputNoDataValue` | `Number`                                         | NO DATA value for the output                                                                                | <pre><code>-2</code></pre>                                                                               |
 | `outputMeasurement` | [`Measurement`](/datatypes/measurement.md)       | Description about the output                                                                                | <pre><code>{<br>&nbsp;&nbsp;"type": "continuous",<br>&nbsp;&nbsp;"measurement": "NDVI"<br>}</code></pre> |
 | `mapNoData`         | `bool`                                           | Should NO DATA values be mapped with the `expression`? Otherwise, they are mapped automatically to NO DATA. | <pre><code>false</code></pre>                                                                            |
 
@@ -31,12 +30,12 @@ One can refer to the raster inputs as `A` for the first raster, `B` for the seco
 Furthermore, expressions can check with `A IS NODATA`, `B IS NODATA`, etc for NO DATA values.
 This is important if `mapNoData` is set to true.
 Otherwise, NO DATA values are mapped automatically to the output NO DATA value.
-Finally, the value `out_nodata` can be used to output NO DATA.
+Finally, the value `NODATA` can be used to output NO DATA.
 
 Users can think of this implicit function signature for, e.g., two inputs:
 
 ```Rust
-fn (A: f64, B: f64, out_nodata: f64) -> f64
+fn (A: f64, B: f64) -> f64
 ```
 
 As a start, expressions contain algebraic operations and mathematical functions.
@@ -109,7 +108,6 @@ The parsing of the expression can fail if there are, e.g., syntax errors.
   "params": {
     "expression": "(A - B) / (A + B)",
     "outputType": "F32",
-    "outputNoDataValue": "NAN",
     "mapNoData": false
   },
   "sources": {
