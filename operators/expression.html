@@ -170,7 +170,6 @@ When the temporal resolution is months, our output NDVI will also be a monthly t
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
 <tr><td><code>expression</code></td><td><code>Expression</code></td><td>Expression script</td><td><pre><code>(A - B) / (A + B)</code></pre></td></tr>
 <tr><td><code>outputType</code></td><td><a href="/datatypes/rasterdatatype.html"><code>RasterDataType</code></a></td><td>A raster data type for the output</td><td><pre><code>U8</code></pre></td></tr>
-<tr><td><code>outputNoDataValue</code></td><td><code>Number</code></td><td>NO DATA value for the output</td><td><pre><code>-2</code></pre></td></tr>
 <tr><td><code>outputMeasurement</code></td><td><a href="/datatypes/measurement.html"><code>Measurement</code></a></td><td>Description about the output</td><td><pre><code>{<br>  &quot;type&quot;: &quot;continuous&quot;,<br>  &quot;measurement&quot;: &quot;NDVI&quot;<br>}</code></pre></td></tr>
 <tr><td><code>mapNoData</code></td><td><code>bool</code></td><td>Should NO DATA values be mapped with the <code>expression</code>? Otherwise, they are mapped automatically to NO DATA.</td><td><pre><code>false</code></pre></td></tr>
 </tbody></table>
@@ -182,9 +181,9 @@ One can refer to the raster inputs as <code>A</code> for the first raster, <code
 Furthermore, expressions can check with <code>A IS NODATA</code>, <code>B IS NODATA</code>, etc for NO DATA values.
 This is important if <code>mapNoData</code> is set to true.
 Otherwise, NO DATA values are mapped automatically to the output NO DATA value.
-Finally, the value <code>out_nodata</code> can be used to output NO DATA.</p>
+Finally, the value <code>NODATA</code> can be used to output NO DATA.</p>
 <p>Users can think of this implicit function signature for, e.g., two inputs:</p>
-<pre><code class="language-Rust">fn (A: f64, B: f64, out_nodata: f64) -&gt; f64
+<pre><code class="language-Rust">fn (A: f64, B: f64) -&gt; f64
 </code></pre>
 <p>As a start, expressions contain algebraic operations and mathematical functions.</p>
 <pre><code class="language-Rust">(A + B) / 2
@@ -236,7 +235,6 @@ However, the last expression must be without a semicolon.</p>
   &quot;params&quot;: {
     &quot;expression&quot;: &quot;(A - B) / (A + B)&quot;,
     &quot;outputType&quot;: &quot;F32&quot;,
-    &quot;outputNoDataValue&quot;: &quot;NAN&quot;,
     &quot;mapNoData&quot;: false
   },
   &quot;sources&quot;: {
