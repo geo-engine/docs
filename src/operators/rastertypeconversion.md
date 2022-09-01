@@ -1,22 +1,22 @@
 # RasterTypeConversion
 
-The `RasterTypeConversion` operator allows change the data type of raster data.
+The `RasterTypeConversion` operator allows changing the data type of raster data.
 It transforms all pixels into the new data type.
 
-1. The operator allows loss of precision e.g. converting a `f32` value of "3.1" to a `u8` will return a value of "3".
+1. Applying the operator could lead to a loss of precision, e.g., converting a `F32` value of `3.1` to a `U8` will return a value of `3`.
 
-2. If the old value is not valid in the new type it will clip at the value range of the new type.
+2. If the old value is not valid in the new type it will clip at the value range of the new type. E.g., converting a `F32` value of `300.0` to a `U8` will return a value of `255`.
 
 ## Parameters
 
-| Parameter | Type                     | Description                  | Example Value         |
-| --------- | ------------------------ | ---------------------------- | --------------------- |
-| `outputDataType` | [`RasterDataType`]| the output type              | "U8"                  |
+| Parameter        | Type               | Description     | Example Value |
+| ---------------- | ------------------ | --------------- | ------------- |
+| `outputDataType` | [`RasterDataType`] | the output type | "U8"          |
 
-The `RasterTypeConversion` operator expects either one _raster_ input.
+The `RasterTypeConversion` operator expects exactly one _raster_ input.
 
-| Parameter | Type                         |
-| --------- | ---------------------------- |
+| Parameter | Type                 |
+| --------- | -------------------- |
 | `source`  | `SingleRasterSource` |
 
 ## Example JSON
