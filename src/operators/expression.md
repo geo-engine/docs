@@ -27,7 +27,7 @@ The following describes the types used in the parameters.
 
 Expressions are simple scripts to perform pixel-wise computations.
 One can refer to the raster inputs as `A` for the first raster, `B` for the second, and so on.
-Furthermore, expressions can check with `A IS NODATA`, `B IS NODATA`, etc for NO DATA values.
+Furthermore, expressions can check with `A IS NODATA`, `B IS NODATA`, etc. for NO DATA values.
 This is important if `mapNoData` is set to true.
 Otherwise, NO DATA values are mapped automatically to the output NO DATA value.
 Finally, the value `NODATA` can be used to output NO DATA.
