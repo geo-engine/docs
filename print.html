@@ -1424,23 +1424,47 @@ those <code>10.000</code>values. Later values outside those bounds are ignored.<
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="statistics"><a class="header" href="#statistics">Statistics</a></h1>
-<p>The <code>Statistics</code> operator is a <em>plot operator</em> that computes count statistics of a <em>raster</em> source.
-The output is a JSON description.</p>
-<p>For instance, you want to get an overview of the raster data source.
+<p>The <code>Statistics</code> operator is a <em>plot operator</em> that computes count statistics over</p>
+<ul>
+<li>a selection of numerical columns of a single vector dataset, or</li>
+<li>multiple raster datasets.</li>
+</ul>
+<p>The output is a JSON description.</p>
+<p>For instance, you want to get an overview of a raster data source.
 Then, you can use this operator to get basic count statistics.</p>
-<h2 id="parameters-17"><a class="header" href="#parameters-17">Parameters</a></h2>
-<p>This operator is parameterless.</p>
-<h2 id="inputs-17"><a class="header" href="#inputs-17">Inputs</a></h2>
-<p>The operator consumes one or more <em>raster</em> operators.</p>
-<table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
-<tr><td><code>rasters</code></td><td><code>MultipleRasterSources</code></td></tr>
+<h2 id="vector-data-2"><a class="header" href="#vector-data-2">Vector Data</a></h2>
+<p>In the case of vector data, the operator generates one statistic for each of the selected numerical attributes.
+The operator returns an error if one of the selected attributes is not numeric.</p>
+<h3 id="parameter-2"><a class="header" href="#parameter-2">Parameter</a></h3>
+<table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<tr><td><code>columnNames</code></td><td><code>Vec&lt;String&gt;</code></td><td>The names of the attributes to generate statistics for.</td><td><code>[&quot;x&quot;,&quot;y&quot;]</code></td></tr>
 </tbody></table>
+<h2 id="raster-data-2"><a class="header" href="#raster-data-2">Raster Data</a></h2>
+<p>For raster data, the operator generates one statistic for each input raster.</p>
+<h3 id="parameter-3"><a class="header" href="#parameter-3">Parameter</a></h3>
+<table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<tr><td><code>columnNames</code></td><td><code>Vec&lt;String&gt;</code></td><td><em>Optional</em>: An alias for each input source. The operator will automatically name the rasters <code>Raster-1</code>, <code>Raster-2</code>, ... if this parameter is empty. If aliases are given, the number of aliases must match the number of input rasters. Otherwise an error is returned.</td><td><code>[&quot;A&quot;,&quot;B&quot;]</code>.</td></tr>
+</tbody></table>
+<h2 id="inputs-17"><a class="header" href="#inputs-17">Inputs</a></h2>
+<p>The operator consumes exactly one <em>vector</em> or multiple <em>raster</em> operators.</p>
+<table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<tr><td><code>source</code></td><td><code>MultipleRasterOrSingleVectorSource</code></td></tr>
+</tbody></table>
+<h2 id="errors-16"><a class="header" href="#errors-16">Errors</a></h2>
+<p>The operator returns an error in the following cases.</p>
+<ul>
+<li>Vector data: The <code>attribute</code> for one of the given <code>columnNames</code> is not numeric.</li>
+<li>Vector data: The <code>attribute</code> for one of the given <code>columnNames</code> does not exist.</li>
+<li>Raster data: The length of the <code>columnNames</code> parameter does not match the number of input rasters.</li>
+</ul>
 <h2 id="example-json-29"><a class="header" href="#example-json-29">Example JSON</a></h2>
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;Statistics&quot;,
-  &quot;params&quot;: {},
+  &quot;params&quot;: {
+    &quot;columnNames&quot;: [&quot;A&quot;]
+  },
   &quot;sources&quot;: {
-    &quot;rasters&quot;: [
+    &quot;source&quot;: [
       {
         &quot;type&quot;: &quot;GdalSource&quot;,
         &quot;params&quot;: {
@@ -1455,16 +1479,16 @@ Then, you can use this operator to get basic count statistics.</p>
 }
 </code></pre>
 <h3 id="example-output"><a class="header" href="#example-output">Example Output</a></h3>
-<pre><code class="language-json">[
-  {
-    &quot;pixelCount&quot;: 6,
-    &quot;nanCount&quot;: 0,
+<pre><code class="language-json">{
+  &quot;A&quot;: {
+    &quot;valueCount&quot;: 6,
+    &quot;validCount&quot;: 6,
     &quot;min&quot;: 1.0,
     &quot;max&quot;: 6.0,
     &quot;mean&quot;: 3.5,
     &quot;stddev&quot;: 1.707
   }
-]
+}
 </code></pre>
 
                     </main>
