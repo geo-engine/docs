@@ -9,7 +9,7 @@ Unless a particular input resolution is specified, the resolution of the input r
 | Parameter         | Type                  | Description                                  | Example Value     |
 | ----------------- | --------------------- | -------------------------------------------- | ----------------- |
 | `interpolation`   | `InterpolationMethod` | the interpolation method to be used          | "nearestNeighbor" |
-| `inputResolution` | `InputResolution`     | the query resolution for the source operator | "native"          |
+| `inputResolution` | `InputResolution`     | the query resolution for the source operator | "source"          |
 
 ## Types
 
@@ -30,7 +30,7 @@ The operator supports the following input resolutions:
 
 | Value                                   | Description                                 |
 | --------------------------------------- | ------------------------------------------- |
-| `{"type": "native}`                     | The resolution of the input raster is used. |
+| `{"type": "source"}`                    | The resolution of the input raster is used. |
 | `{"type": "value", "x": 0.1, "y": 0.1}` | The resolution is specified explicitly.     |
 
 ## Inputs
@@ -43,7 +43,7 @@ The `Interpolation` operator expects exactly one _raster_ input.
 
 ## Errors
 
-If the input resolution is set as "native" but the resolution of the input raster is not known, an error will be thrown.
+If the input resolution is set as "source" but the resolution of the input raster is not known, an error will be thrown.
 
 ## Example JSON
 
@@ -55,7 +55,7 @@ If the input resolution is set as "native" but the resolution of the input raste
     "params": {
       "interpolation": "biLinear",
       "inputResolution": {
-        "type": "native"
+        "type": "source"
       }
     },
     "sources": {
