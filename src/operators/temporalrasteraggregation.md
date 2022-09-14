@@ -7,13 +7,13 @@ The pixel values are computed by aggregating all rasters that are contained in t
 All output slices that are contained in the query time interval are produced by the operator.
 The optional `windowReference` parameter allows specifying a custom anchor point for the windows.
 This is the imagined start from which on the timeline is divided into uniform aggregation windows.
-By default it is `1970-01-01T00:00:00Z` which means that windows of, e.g., 1 hour or 1 month will begin at the full hour or the start of the month.
+By default, it is `1970-01-01T00:00:00Z` which means that windows of, e.g., 1 hour or 1 month will begin at the full hour or the start of the month.
 
 An example usage scenario is to transform a daily raster time series into monthly aggregates.
 Here, the query should start at the beginning of the month and the `window` should be 1 month.
 The aggregation method allows calculating, e.g., the maximum or mean value for each pixel.
-If we perform a query with time [2021-01-01, 2021-04-1), we would get a time series with three time steps.
-If we perform a query with an instant like [2021-01-01, 2021-01-1), we will get a single time step containing the aggregated values for January 2021.
+If we perform a query with time [2021-01-01, 2021-04-01), we would get a time series with three time steps.
+If we perform a query with an instant like [2021-01-01, 2021-01-01), we will get a single time step containing the aggregated values for January 2021.
 
 ## Parameters
 
@@ -50,7 +50,7 @@ The `TemporalRasterAggregation` operator expects exactly one _raster_ input.
 
 ## Errors
 
-If the aggregation method is `first, `last`, or `mean` and the input raster has no _no data_ value, an error is thrown.
+If the aggregation method is `first`, `last`, or `mean` and the input raster has no _no data_ value, an error is thrown.
 
 ## Example JSON
 

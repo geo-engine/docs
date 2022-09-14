@@ -29,7 +29,7 @@ The operator returns an error if one of the selected columns does not exist or i
 
 If your dataset contains `infinite` or `NAN` values, they are ignored for the computation. Moreover, if
 your dataset contains more than `10.000` values, the buckets of the histogram are generated based on
-those `10.000`values. Later values outside those bounds are ignored.
+those `10.000` values. Later values outside those bounds are ignored.
 
 ## Example JSON
 
