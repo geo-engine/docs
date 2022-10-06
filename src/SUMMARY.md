@@ -28,10 +28,11 @@
 
   - [ColumnRangeFilter](./operators/columnrangefilter.md)
   - [Expression](./operators/expression.md)
-  - [Interpolation](./operators/interpolation.md)
   - [GdalSource](./operators/gdalsource.md)
+  - [Interpolation](./operators/interpolation.md)
   - [OgrSource](./operators/ogrsource.md)
   - [PointInPolygon](./operators/pointinpolygon.md)
+  - [RasterKernel](./operators/rasterkernel.md)
   - [RasterTypeConversion](./operators/rastertypeconversion.md)
   - [Reprojection](./operators/reprojection.md)
   - [TemporalRasterAggregation](./operators/temporalrasteraggregation.md)
