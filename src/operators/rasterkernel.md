@@ -67,7 +67,7 @@ The `RasterKernel` operator expects exactly one _raster_ input.
 
 ## Errors
 
-If the number of rows or columns in the kernel matrix is not odd, an error will be thrown.
+If the number of rows or columns in the kernel matrix are not odd or zero, an error will be thrown.
 
 ## Example JSON
 
