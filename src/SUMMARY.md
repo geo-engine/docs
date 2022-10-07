@@ -28,8 +28,9 @@
 
   - [ColumnRangeFilter](./operators/columnrangefilter.md)
   - [Expression](./operators/expression.md)
-  - [Interpolation](./operators/interpolation.md)
   - [GdalSource](./operators/gdalsource.md)
+  - [Interpolation](./operators/interpolation.md)
+  - [NeighborhoodAggregate](./operators/neighborhoodaggregate.md)
   - [OgrSource](./operators/ogrsource.md)
   - [PointInPolygon](./operators/pointinpolygon.md)
   - [RasterTypeConversion](./operators/rastertypeconversion.md)

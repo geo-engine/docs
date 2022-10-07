@@ -12,3 +12,4 @@ edition = "2018" # TODO: use 2021
 theme = "theme"
 default-theme = "geo-engine"
 preferred-dark-theme = "geo-engine"
+mathjax-support = true
