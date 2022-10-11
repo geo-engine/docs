@@ -1,9 +1,14 @@
 # RasterScaling
 
-The raster scaling operator scales/unscales the values of a raster by a given scale factor and offset.
-This allows to shrink and expand the value range of the pixel values needed to store a raster. It also allows to shift values to all-positive values and back. Keep in mind that scaling reduces the precision of the pixel values. We use the [GDAL](https://gdal.org/index.html) terms of [scale](https://gdal.org/programs/gdal_translate.html#cmdoption-gdal_translate-scale) and [unscale](https://gdal.org/programs/gdal_translate.html#cmdoption-gdal_translate-unscale). Scaling is often used to reduce memory consumption of rasters. Unscaling calculates the "real" value of each stored pixel.
+The raster scaling operator scales/unscales the values of a raster by a given slope factor and offset.
+This allows to shrink and expand the value range of the pixel values needed to store a raster. It also allows to shift values to all-positive values and back.
+We use the [GDAL](https://gdal.org/index.html) terms of [scale](https://gdal.org/programs/gdal_translate.html#cmdoption-gdal_translate-scale) and [unscale](https://gdal.org/programs/gdal_translate.html#cmdoption-gdal_translate-unscale).
+Raster data is often scaled to reduce memory/storage consumption.
+To get the "real" raster values the unscale operation is applied.
+Keep in mind that scaling might reduce the precision of the pixel values.
+(To actually reduce the size of the raster, use the [raster type conversion operator](./rastertypeconversion.md) and transform to a smaller datatype after scaling.)
 
-This is done by applying the following formulas to every pixel.
+The operator applies the following formulas to every pixel.
 
 For _unscaling_ the formula is: `p_new = p_old * slope + offset`.
 
@@ -18,12 +23,14 @@ An example for Meteosat Second Generation properties is:
 
 ## Parameters
 
-| Parameter           | Type                                                  | Description                                          | Example Value |
-| ------------------- | ----------------------------------------------------- | ---------------------------------------------------- | ------------- |
-| `scaleWith`         | `MetadataKeyOrConstant`                               | the                                                  | "U8"          |
-| `offsetBy`          | `MetadataKeyOrConstant`                               | the output type                                      | "U8"          |
-| `scalingMode`       | `scale` OR `unscale`                                  | select scale or unscale mode                         | "U8"          |
-| `outputMeasurement` | (optional) [`Measurement`](/datatypes/measurement.md) | the measurement of the data produced by the operator | "U8"          |
+| Parameter             | Type                                                  | Description                                          | Example Value                                                        |
+| --------------------- | ----------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------------------------------- |
+| `scaleWith`           | `MetadataKeyOrConstant`                               | the key or value to use for `slope`                  | "`{"type": "metadataKey" "domain": "", "key": "scale" }`"            |
+| `offsetBy`            | `MetadataKeyOrConstant`                               | the key or value to use for `offset`                 | "`{"type": "constant" "value": 0.1 }`"                               |
+| `scalingMode`         | `scale` OR `unscale`                                  | select scale or unscale mode                         | "scale"                                                              |
+| `outputMeasurement`\* | (optional) [`Measurement`](/datatypes/measurement.md) | the measurement of the data produced by the operator | "`{"type": "continuous", "measurement": "Reflectance","unit": "%"}`" |
+
+\* if no `outputMeasurement` is given, the measurement of the input raster is used.
 
 The `RasterScaling` operator expects exactly one _raster_ input.
 
