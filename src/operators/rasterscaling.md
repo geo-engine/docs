@@ -25,8 +25,8 @@ An example for Meteosat Second Generation properties is:
 
 | Parameter             | Type                                                  | Description                                          | Example Value                                                        |
 | --------------------- | ----------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------------------------------- |
-| `scaleWith`           | `MetadataKeyOrConstant`                               | the key or value to use for `slope`                  | "`{"type": "metadataKey" "domain": "", "key": "scale" }`"            |
-| `offsetBy`            | `MetadataKeyOrConstant`                               | the key or value to use for `offset`                 | "`{"type": "constant" "value": 0.1 }`"                               |
+| `slope`               | `MetadataKeyOrConstant`                               | the key or value to use for `slope`                  | "`{"type": "metadataKey" "domain": "", "key": "scale" }`"            |
+| `offset`              | `MetadataKeyOrConstant`                               | the key or value to use for `offset`                 | "`{"type": "constant" "value": 0.1 }`"                               |
 | `scalingMode`         | `scale` OR `unscale`                                  | select scale or unscale mode                         | "scale"                                                              |
 | `outputMeasurement`\* | (optional) [`Measurement`](/datatypes/measurement.md) | the measurement of the data produced by the operator | "`{"type": "continuous", "measurement": "Reflectance","unit": "%"}`" |
 
@@ -57,12 +57,12 @@ The `MetadataKeyOrConstant` type is used to specify a metadata key or a constant
 {
   "type": "RasterScaling",
   "params": {
-    "scaleWith": {
+    "slope": {
       "type": "metadataKey",
       "domain": "",
       "key": "scale"
     },
-    "offsetBy": {
+    "offset": {
       "type": "value",
       "value": 1.0
     },
