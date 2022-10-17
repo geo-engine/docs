@@ -34,6 +34,7 @@
   - [OgrSource](./operators/ogrsource.md)
   - [PointInPolygon](./operators/pointinpolygon.md)
   - [RasterTypeConversion](./operators/rastertypeconversion.md)
+  - [RasterScaling](./operators/rasterscaling.md)
   - [Reprojection](./operators/reprojection.md)
   - [TemporalRasterAggregation](./operators/temporalrasteraggregation.md)
   - [TimeProjection](./operators/timeprojection.md)
