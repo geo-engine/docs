@@ -8,7 +8,7 @@ It offers two options for rasterization: A grid rasterization and a (gaussian) d
 The `Rasterization` operator expects exactly one _vector_ input.
 
 | Parameter | Type                 |
-| --------- |----------------------|
+|-----------|----------------------|
 | `source`  | `SingleVectorSource` |
 
 ## Parameters
