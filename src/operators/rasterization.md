@@ -37,6 +37,9 @@ For `gridSizeMode` the two options `fixed` and `relative` are available.
 | `radius`       | `number` | Limits the distance (in coordinate units) to which a point is taken into account for an output pixel density value. | `1.0`         |
 | `stddev`       | `number` | The standard deviation parameter for the gaussian function.                                                         | `1.0`         |
 
+The `radius` is treated as a hard cutoff point. A smaller `radius` leads to faster processing, however it also introduces inaccuracies in the result since points further than `radius` away from a pixel do not influence its value.
+It is meant to be set such that the ignored density values are small enough to not make a visible difference in the resulting raster.
+
 #### Errors
 
 If the `radius` is not strictly positive or the `stddev` is negative, an error will be thrown.
