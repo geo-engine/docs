@@ -12,6 +12,14 @@ The `Rasterization` operator expects exactly one _vector_ input.
 | `source`  | `SingleVectorSource` |
 
 ## Parameters
+| Parameter          | Type                  | Description                                               | Example Value           |
+|--------------------|-----------------------|-----------------------------------------------------------|-------------------------|
+| `gridOrDensity`    | `GridOrDensity`       | The type and parameters for the rasterization to perform. | `{"type": "grid", ...}` |
+
+`GridOrDensity` contains a field `type` which can have the value `grid` or `density` for a grid rasterization or density rasterization, respectively.
+
+`GridOrDensity` has additional fields which are parameters specific to the type of the rasterization. These are described below separately.
+
 ### Grid Rasterization
 
 | Parameter           | Type                  | Description                                                | Example Value            |
