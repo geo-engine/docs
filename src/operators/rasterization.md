@@ -14,11 +14,11 @@ The `Rasterization` operator expects exactly one _vector_ input.
 ## Parameters
 ### Grid Rasterization
 
-| Parameter           | Type                | Description                                                | Example Value            |
-|---------------------|---------------------|------------------------------------------------------------|--------------------------|
-| `spatialResolution` | `SpatialResolution` | The spatial resolution of the grid/size of the grid cells. | `{"x": 10.0, "y": 10.0}` |
-| `originCoordinate`  | `Coordinate2D`      | The origin coordinate to which the grid is aligned.        | `{"x": 0.0, "y": 0.0}`   |
-| `gridSizeMode`      | `String`            | The mode how the grid resolution is interpreted.           | `"fixed"`                |
+| Parameter           | Type                  | Description                                                | Example Value            |
+|---------------------|-----------------------|------------------------------------------------------------|--------------------------|
+| `spatialResolution` | `SpatialResolution`   | The spatial resolution of the grid/size of the grid cells. | `{"x": 10.0, "y": 10.0}` |
+| `originCoordinate`  | `Coordinate2D`        | The origin coordinate to which the grid is aligned.        | `{"x": 0.0, "y": 0.0}`   |
+| `gridSizeMode`      | `fixed` or `relative` | The mode how the grid resolution is interpreted.           | `"fixed"`                |
 
 #### Types
 
