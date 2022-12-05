@@ -17,11 +17,12 @@ If we perform a query with an instant like [2021-01-01, 2021-01-01), we will get
 
 ## Parameters
 
-| Parameter         | Type                                         | Description                                                                                  | Example Value                                                                                     |
-| ----------------- | -------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `aggregation`     | [`Aggregation`](#aggregation)                | method for aggregating pixels                                                                | <pre><code>{<br>&nbsp;&nbsp;"type": "max",<br>&nbsp;&nbsp;"ignoreNoData": false<br>}</code></pre> |
-| `window`          | [`TimeStep`](/datatypes/timestep.md)         | length of time steps                                                                         | <pre><code>{<br>&nbsp;&nbsp;"granularity": "Months",<br>&nbsp;&nbsp;"step": 1<br>}</code></pre>   |
-| `windowReference` | [`TimeInstance`](/datatypes/timeinstance.md) | (Optional) anchor point for the aggregation windows. Default value is `1970-01-01T00:00:00Z` | `1970-01-01T00:00:00Z`                                                                            |
+| Parameter         | Type                                             | Description                                                                                  | Example Value                                                                                     |
+| ----------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `aggregation`     | [`Aggregation`](#aggregation)                    | method for aggregating pixels                                                                | <pre><code>{<br>&nbsp;&nbsp;"type": "max",<br>&nbsp;&nbsp;"ignoreNoData": false<br>}</code></pre> |
+| `window`          | [`TimeStep`](/datatypes/timestep.md)             | length of time steps                                                                         | <pre><code>{<br>&nbsp;&nbsp;"granularity": "Months",<br>&nbsp;&nbsp;"step": 1<br>}</code></pre>   |
+| `windowReference` | [`TimeInstance`](/datatypes/timeinstance.md)     | (Optional) anchor point for the aggregation windows. Default value is `1970-01-01T00:00:00Z` | `1970-01-01T00:00:00Z`                                                                            |
+| `outputType`      | [`RasterDataType`](/datatypes/rasterdatatype.md) | (Optional) A raster data type for the output. Same as input, if not specified.               | <pre><code>U8</code><pre>                                                                         |
 
 ## Types
 
@@ -32,13 +33,19 @@ The following describes the types used in the parameters.
 There are different methods that can be used to aggregate the raster time series.
 Encountering a _no data_ value makes the aggregation value of a pixel also _no data_ unless the `ignoreNoData` parameter is set to `true`.
 
-| Variant | Parameters             | Description             |
-| ------- | ---------------------- | ----------------------- |
-| `min`   | `ignoreNoData`: `bool` | minimum value           |
-| `max`   | `ignoreNoData`: `bool` | maximum value           |
-| `first` | `ignoreNoData`: `bool` | first encountered value |
-| `last`  | `ignoreNoData`: `bool` | last encountered value  |
-| `mean`  | `ignoreNoData`: `bool` | mean value              |
+| Variant | Parameters             | Description                |
+| ------- | ---------------------- | -------------------------- |
+| `min`   | `ignoreNoData`: `bool` | minimum value              |
+| `max`   | `ignoreNoData`: `bool` | maximum value              |
+| `first` | `ignoreNoData`: `bool` | first encountered value    |
+| `last`  | `ignoreNoData`: `bool` | last encountered value     |
+| `mean`  | `ignoreNoData`: `bool` | mean value                 |
+| `sum`   | `ignoreNoData`: `bool` | sum of the values          |
+| `count` | `ignoreNoData`: `bool` | count the number of values |
+
+**Attention:** For the variants `sum` and `count`, a saturating addition is used.
+This means, that if the sum of two values exceeds the maximum value of the data type, the result will be the maximum value of the data type.
+Thus, users must be aware to choose a data type that is large enough to hold the result of the aggregation.
 
 ## Inputs
 
