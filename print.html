@@ -1019,6 +1019,7 @@ If we perform a query with an instant like [2021-01-01, 2021-01-01), we will get
 <tr><td><code>aggregation</code></td><td><a href="operators/temporalrasteraggregation.html#aggregation"><code>Aggregation</code></a></td><td>method for aggregating pixels</td><td><pre><code>{<br>  &quot;type&quot;: &quot;max&quot;,<br>  &quot;ignoreNoData&quot;: false<br>}</code></pre></td></tr>
 <tr><td><code>window</code></td><td><a href="operators//datatypes/timestep.html"><code>TimeStep</code></a></td><td>length of time steps</td><td><pre><code>{<br>  &quot;granularity&quot;: &quot;Months&quot;,<br>  &quot;step&quot;: 1<br>}</code></pre></td></tr>
 <tr><td><code>windowReference</code></td><td><a href="operators//datatypes/timeinstance.html"><code>TimeInstance</code></a></td><td>(Optional) anchor point for the aggregation windows. Default value is <code>1970-01-01T00:00:00Z</code></td><td><code>1970-01-01T00:00:00Z</code></td></tr>
+<tr><td><code>outputType</code></td><td><a href="operators//datatypes/rasterdatatype.html"><code>RasterDataType</code></a></td><td>(Optional) A raster data type for the output. Same as input, if not specified.</td><td><pre><code>U8</code><pre></td></tr>
 </tbody></table>
 <h2 id="types-5"><a class="header" href="#types-5">Types</a></h2>
 <p>The following describes the types used in the parameters.</p>
@@ -1031,7 +1032,12 @@ Encountering a <em>no data</em> value makes the aggregation value of a pixel als
 <tr><td><code>first</code></td><td><code>ignoreNoData</code>: <code>bool</code></td><td>first encountered value</td></tr>
 <tr><td><code>last</code></td><td><code>ignoreNoData</code>: <code>bool</code></td><td>last encountered value</td></tr>
 <tr><td><code>mean</code></td><td><code>ignoreNoData</code>: <code>bool</code></td><td>mean value</td></tr>
+<tr><td><code>sum</code></td><td><code>ignoreNoData</code>: <code>bool</code></td><td>sum of the values</td></tr>
+<tr><td><code>count</code></td><td><code>ignoreNoData</code>: <code>bool</code></td><td>count the number of values</td></tr>
 </tbody></table>
+<p><strong>Attention:</strong> For the variants <code>sum</code> and <code>count</code>, a saturating addition is used.
+This means, that if the sum of two values exceeds the maximum value of the data type, the result will be the maximum value of the data type.
+Thus, users must be aware to choose a data type that is large enough to hold the result of the aggregation.</p>
 <h2 id="inputs-8"><a class="header" href="#inputs-8">Inputs</a></h2>
 <p>The <code>TemporalRasterAggregation</code> operator expects exactly one <em>raster</em> input.</p>
 <table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
