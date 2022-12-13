@@ -40,17 +40,17 @@ For `gridSizeMode` the two options `fixed` and `relative` are available.
 
 ### Density Rasterization
 
-| Parameter      | Type     | Description                                                                                                         | Example Value |
-|----------------|----------|---------------------------------------------------------------------------------------------------------------------|---------------|
-| `radius`       | `number` | Limits the distance (in coordinate units) to which a point is taken into account for an output pixel density value. | `1.0`         |
-| `stddev`       | `number` | The standard deviation parameter for the gaussian function.                                                         | `1.0`         |
+| Parameter | Type     | Description                                                                                                                         | Example Value |
+|-----------|----------|-------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| `cutoff`  | `number` | Defines the cutoff (as percentage of maximum density) down to which a point is taken into account for an output pixel density value | `0.01`        |
+| `stddev`  | `number` | The standard deviation parameter for the gaussian function.                                                                         | `1.0`         |
 
-The `radius` is treated as a hard cutoff point. A smaller `radius` leads to faster processing, however it also introduces inaccuracies in the result since points further than `radius` away from a pixel do not influence its value.
+The `cutoff` percentage (must be in [0, 1)) is treated as a hard cutoff point. A larger `cutoff` percentage leads to faster processing, however it also introduces inaccuracies in the result since points further than the derived radius away from a pixel do not influence its value.
 It is meant to be set such that the ignored density values are small enough to not make a visible difference in the resulting raster.
 
 #### Errors
 
-If the `radius` is not strictly positive or the `stddev` is negative, an error will be thrown.
+If the `cutoff` is not in [0, 1) or the `stddev` is negative, an error will be thrown.
 
 ## Example JSON
 ### Grid Rasterization
@@ -101,7 +101,7 @@ If the `radius` is not strictly positive or the `stddev` is negative, an error w
     "params": {
       "gridOrDensity": {
         "type": "density",
-        "radius": 10,
+        "cutoff": 0.01,
         "stddev": 1
       }
     },
