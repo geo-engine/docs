@@ -49,6 +49,7 @@
   - [FeatureAttributeValuesOverTime](./plots/featureattributevaluesoverTime.md)
   - [Histogram](./plots/histogram.md)
   - [MeanRasterPixelValuesOverTime](./plots/meanrasterpixelvaluesovertime.md)
+  - [PieChart](./plots/piechart.md)
   - [ScatterPlot](./plots/scatterplot.md)
   - [Statistics](./plots/statistics.md)
 
