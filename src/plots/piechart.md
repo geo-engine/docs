@@ -3,22 +3,22 @@
 The `PieChart` is a _plot operator_ that computes a pie chart for a given vector dataset.
 Moreover, the operator considers all data in the given query rectangle.
 
-There are multiple variants on how to compute the pies.
+There are multiple variants on how to compute the slices of the pie chart.
 In addition, it is possible to compute a donut chart instead of a standard pie chart.
 
-### Parameter
+## Parameters
 
-| Parameter    | Type           | Description                                              | Example Value |
-| ------------ | -------------- | -------------------------------------------------------- | ------------- |
-| `type`       | One of `count` | The type of aggregation that is used to create the pies. | `"count"`     |
-| `columnName` | `String`       | The names of the attribute to generate pies for.         | `"name"`      |
+| Parameter    | Type           | Description                                                                 | Example Value |
+| ------------ | -------------- | --------------------------------------------------------------------------- | ------------- |
+| `type`       | Pie Chart Type | The type of aggregation that is used to create the slices of the pie chart. | `"count"`     |
+| `columnName` | `String`       | The names of the attribute to generate pies for.                            | `"name"`      |
 
-### Type
+### Pie Chart Type
 
 The `type` parameter can be one of the following values:
 
-- `count`: Creates one pie for each distinct value in the given column `columnName`.
-  Then, it counts the number of values.
+- `count`: Creates one slice for each distinct value in the given column `columnName`.
+  Then, it counts the number of occurrences.
 
 ## Inputs
 
@@ -33,7 +33,7 @@ The operator consumes exactly one _vector_ operator.
 The operator returns an error in the following cases.
 
 - The `attribute` for the given `columnName` does not exist.
-- Number of pies: If the number of pies is greater than `32`, the operator returns an error.
+- The number of slices is too large: If the number of slices is greater than `32`, the operator returns an error.
 
 ## Notes
 
