@@ -12,9 +12,9 @@ The `Rasterization` operator expects exactly one _vector_ input.
 | `source`  | `SingleVectorSource` |
 
 ## Parameters
-| Parameter          | Type                  | Description                                               | Example Value           |
-|--------------------|-----------------------|-----------------------------------------------------------|-------------------------|
-| `gridOrDensity`    | `GridOrDensity`       | The type and parameters for the rasterization to perform. | `{"type": "grid", ...}` |
+| Parameter | Type                  | Description                                               | Example Value           |
+|-----------|-----------------------|-----------------------------------------------------------|-------------------------|
+| `params`  | `GridOrDensity`       | The type and parameters for the rasterization to perform. | `{"type": "grid", ...}` |
 
 `GridOrDensity` contains a field `type` which can have the value `grid` or `density` for a grid rasterization or density rasterization, respectively.
 
@@ -61,17 +61,15 @@ If the `cutoff` is not in [0, 1) or the `stddev` is negative, an error will be t
   "operator": {
     "type": "Rasterization",
     "params": {
-      "gridOrDensity": {
-        "type": "grid",
-        "spatialResolution": {
-          "x": 10,
-          "y": 10
-        },
-        "gridSizeMode": "fixed",
-        "originCoordinate": {
-          "x": 0,
-          "y": 0
-        }
+      "type": "grid",
+      "spatialResolution": {
+        "x": 10,
+        "y": 10
+      },
+      "gridSizeMode": "fixed",
+      "originCoordinate": {
+        "x": 0, 
+        "y": 0
       }
     },
     "sources": {
@@ -99,11 +97,9 @@ If the `cutoff` is not in [0, 1) or the `stddev` is negative, an error will be t
   "operator": {
     "type": "Rasterization",
     "params": {
-      "gridOrDensity": {
-        "type": "density",
-        "cutoff": 0.01,
-        "stddev": 1
-      }
+      "type": "density",
+      "cutoff": 0.01,
+      "stddev": 1
     },
     "sources": {
       "vector": {
