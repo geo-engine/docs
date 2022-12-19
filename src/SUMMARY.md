@@ -33,6 +33,7 @@
   - [NeighborhoodAggregate](./operators/neighborhoodaggregate.md)
   - [OgrSource](./operators/ogrsource.md)
   - [PointInPolygon](./operators/pointinpolygon.md)
+  - [Rasterization](./operators/rasterization.md)
   - [RasterTypeConversion](./operators/rastertypeconversion.md)
   - [RasterScaling](./operators/rasterscaling.md)
   - [Reprojection](./operators/reprojection.md)
