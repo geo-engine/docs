@@ -3,9 +3,11 @@
 A colorizer specifies a mapping between values and pixels/objects of an output image.
 Different variants of colorizers perform different kinds of mapping.
 
-Usually, there are two miscellaneous fields in each colorizer, namely `noDataColor` and `defaultColor`.
+Usually, there are three miscellaneous fields in each colorizer, namely `noDataColor`, `overColor` and `underColor`.
 The field `noDataColor` is used for all missing, `NaN` or no data values.
-The `defaultColor` is used for all overflowing values, for instance, if there are breakpoints defined from `0` to `10`, but a value of `-5` or `11` is mapped to a color.
+The fields `overColor` and `underColor` are used for all overflowing values.
+For instance, if there are breakpoints defined from `0` to `10`, but a value of `-5` or `11` is mapped to a color, the respective field will be chosen instead.
+This way, you can specifically highlight values that lie outside of a given range.
 
 Colors are defined as RGBA arrays, where the first three values refer to red, green and blue and the fourth one to alpha, which means transparency.
 The values range from `0` to `255`.
@@ -31,7 +33,8 @@ A linear gradient linearly interpolates values within breakpoints of a color tab
     }
   ],
   "noDataColor": [0, 0, 0, 0],
-  "defaultColor": [0, 0, 0, 0]
+  "overColor": [255, 0, 0, 255],
+  "underColor": [0, 0, 255, 255]
 }
 ```
 
@@ -59,7 +62,8 @@ Services report errors that try to use a logarithmic gradient specification with
     }
   ],
   "noDataColor": [0, 0, 0, 0],
-  "defaultColor": [0, 0, 0, 0]
+  "overColor": [255, 0, 0, 255],
+  "underColor": [0, 0, 255, 255]
 }
 ```
 
