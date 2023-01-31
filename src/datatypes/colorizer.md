@@ -73,8 +73,8 @@ Services report errors that try to use a logarithmic gradient specification with
     }
   ],
   "noDataColor": [0, 0, 0, 0],
-  "overColor": [255, 255, 255, 255],
-  "underColor": [0, 0, 0, 255]
+  "overColor": [0, 0, 0, 255],
+  "underColor": [255, 255, 255, 255]
 }
 ```
 
