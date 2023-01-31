@@ -236,34 +236,49 @@ Geo Engine builds upon several technologies, including GDAL, arrow, Angular, and
 <p>This chapter introduces the datatypes of Geo Engine.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="colorizer"><a class="header" href="#colorizer">Colorizer</a></h1>
 <p>A colorizer specifies a mapping between values and pixels/objects of an output image.
-Different variants of colorizers perform different kinds of mapping.</p>
-<p>Usually, there are two miscellaneous fields in each colorizer, namely <code>noDataColor</code> and <code>defaultColor</code>.
+Different variants of colorizers perform different kinds of mapping.
+In general, there are two families of colorizers: <strong><em>gradient</em></strong> and <strong><em>palette</em></strong>.
+<em>Gradients</em> are used to interpolate a continuous spectrum of colors between explicitly stated tuples (<code>breakpoints</code>) of a value and a color.
+A <code>palette</code> colorizer on the other hand, is used to generate a discrete set of colors, each mapped to a specific value.</p>
+<p>There are three miscellaneous fields in both of the gradient colorizers, namely <code>noDataColor</code>, <code>overColor</code> and <code>underColor</code>.
 The field <code>noDataColor</code> is used for all missing, <code>NaN</code> or no data values.
-The <code>defaultColor</code> is used for all overflowing values, for instance, if there are breakpoints defined from <code>0</code> to <code>10</code>, but a value of <code>-5</code> or <code>11</code> is mapped to a color.</p>
+The fields <code>overColor</code> and <code>underColor</code> are used for all overflowing values.
+For instance, if there are breakpoints defined from <code>0</code> to <code>10</code>, but a value of <code>-5</code> or <code>11</code> is mapped to a color, the respective field will be chosen instead.
+This way, you can specifically highlight values that lie outside of a given range.</p>
+<p>For a <code>palette</code> colorizer, there are no <code>overColor</code> and <code>underColor</code> fields.
+If a given value does not match any entry in the palette's definition, it is mapped to the <code>defaultColor</code>.
+The <code>noDataColor</code> works in the same manner as in the <em>gradiant</em> variants.</p>
 <p>Colors are defined as RGBA arrays, where the first three values refer to red, green and blue and the fourth one to alpha, which means transparency.
 The values range from <code>0</code> to <code>255</code>.
 For instance, <code>[255, 255, 255, 255]</code> is opaque white and <code>[0, 0, 0, 127]</code> is semi-transparent black.</p>
 <h2 id="linear-gradient"><a class="header" href="#linear-gradient">Linear Gradient</a></h2>
-<p>A linear gradient linearly interpolates values within breakpoints of a color table.</p>
+<p>A linear gradient linearly interpolates values within breakpoints of a color table.
+For instance, the example below is showing a gradient representing the physical conditions of water at different temperatures.
+The gradient is defined between <code>0.0</code> and <code>99.99</code>, where <code>0.0</code> is shown as a light blue and <code>99.99</code> as blue.
+Any value less than <code>0.0</code>, hence being ice, is shown as white.
+Values above <code>99.99</code> are shown as a light gray.</p>
 <h3 id="example-json"><a class="header" href="#example-json">Example JSON</a></h3>
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;linearGradient&quot;,
   &quot;breakpoints&quot;: [
     {
-      &quot;value&quot;: 1.0,
-      &quot;color&quot;: [255, 255, 255, 255]
+      &quot;value&quot;: 0.0,
+      &quot;color&quot;: [204, 229, 255, 255]
     },
     {
-      &quot;value&quot;: 2.0,
-      &quot;color&quot;: [0, 0, 0, 255]
+      &quot;value&quot;: 99.99,
+      &quot;color&quot;: [0, 0, 255, 255]
     }
   ],
   &quot;noDataColor&quot;: [0, 0, 0, 0],
-  &quot;defaultColor&quot;: [0, 0, 0, 0]
+  &quot;overColor&quot;: [224, 224, 224, 255],
+  &quot;underColor&quot;: [255, 255, 255, 255]
 }
 </code></pre>
 <h2 id="logarithmic-gradient"><a class="header" href="#logarithmic-gradient">Logarithmic Gradient</a></h2>
-<p>A logarithmic gradient logarithmically interpolates values within breakpoints of a color table and allows only positive values.</p>
+<p>A logarithmic gradient logarithmically interpolates values within breakpoints of a color table and allows only positive values.
+This colorizer is particularly useful in situations,
+where the data values increase exponentially and minor changes in the lower numbers would not be recognizable anymore.</p>
 <h3 id="errors"><a class="header" href="#errors">Errors</a></h3>
 <p>Services report errors that try to use a logarithmic gradient specification with values where <code>value &lt;= 0</code>.</p>
 <h3 id="example-json-1"><a class="header" href="#example-json-1">Example JSON</a></h3>
@@ -275,17 +290,18 @@ For instance, <code>[255, 255, 255, 255]</code> is opaque white and <code>[0, 0,
       &quot;color&quot;: [255, 255, 255, 255]
     },
     {
-      &quot;value&quot;: 2.0,
+      &quot;value&quot;: 100.0,
       &quot;color&quot;: [0, 0, 0, 255]
     }
   ],
   &quot;noDataColor&quot;: [0, 0, 0, 0],
-  &quot;defaultColor&quot;: [0, 0, 0, 0]
+  &quot;overColor&quot;: [0, 0, 0, 255],
+  &quot;underColor&quot;: [255, 255, 255, 255]
 }
 </code></pre>
 <h2 id="palette"><a class="header" href="#palette">Palette</a></h2>
 <p>A palette maps values as classes to a certain color.
-Unmapped values result in the NO DATA color.</p>
+Unmapped values result in the <code>defaultColor</code>.</p>
 <h3 id="example-json-2"><a class="header" href="#example-json-2">Example JSON</a></h3>
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;palette&quot;,
