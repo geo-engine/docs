@@ -80,7 +80,8 @@ Services report errors that try to use a logarithmic gradient specification with
 
 ## Palette
 
-A palette maps values as classes to a certain color. Unmapped values result in the `defaultColor`.
+A palette maps values as classes to a certain color.
+Unmapped values result in the `defaultColor`.
 
 ### Example JSON
 
