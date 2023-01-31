@@ -13,7 +13,9 @@ For instance, if there are breakpoints defined from `0` to `10`, but a value of 
 This way, you can specifically highlight values that lie outside of a given range.
 
 For a `palette` colorizer, there are no `overColor` and `underColor` fields.
-Instead, a `noDataColor` is used as a fallback and `defaultColor` is mapped to any value not explicitly declared in the palette's definition.
+If a given value does not match any entry in the palette's definition, it is mapped to the `defaultColor`.
+The `noDataColor` field is used for values, that cannot be mapped, for instance `NaN`.
+
 Colors are defined as RGBA arrays, where the first three values refer to red, green and blue and the fourth one to alpha, which means transparency.
 The values range from `0` to `255`.
 For instance, `[255, 255, 255, 255]` is opaque white and `[0, 0, 0, 127]` is semi-transparent black.
@@ -51,7 +53,7 @@ Values above `99.99` are shown as a light gray.
 
 A logarithmic gradient logarithmically interpolates values within breakpoints of a color table and allows only positive values.
 This colorizer is particularly useful in situations,
-where your data grows rapidly and minor changes in the lower numbers wouldn't be recognizable anymore.
+where the data values increase exponentially and minor changes in the lower numbers would not be recognizable anymore.
 
 ### Errors
 
