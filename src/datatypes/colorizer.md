@@ -14,7 +14,7 @@ This way, you can specifically highlight values that lie outside of a given rang
 
 For a `palette` colorizer, there are no `overColor` and `underColor` fields.
 If a given value does not match any entry in the palette's definition, it is mapped to the `defaultColor`.
-The `noDataColor` field is used for values, that cannot be mapped, for instance `NaN`.
+The `noDataColor` works in the same manner as in the _gradiant_ variants.
 
 Colors are defined as RGBA arrays, where the first three values refer to red, green and blue and the fourth one to alpha, which means transparency.
 The values range from `0` to `255`.
