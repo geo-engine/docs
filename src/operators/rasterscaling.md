@@ -23,14 +23,16 @@ An example for Meteosat Second Generation properties is:
 
 ## Parameters
 
-| Parameter             | Type                                                  | Description                                          | Example Value                                                      |
-| --------------------- | ----------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------ |
-| `slope`               | `MetadataKeyOrConstant`                               | the key or value to use for `slope`                  | `{"type": "metadataKey" "domain": "", "key": "scale" }`            |
-| `offset`              | `MetadataKeyOrConstant`                               | the key or value to use for `offset`                 | `{"type": "constant" "value": 0.1 }`                               |
-| `scalingMode`         | `scale` OR `unscale`                                  | select scale or unscale mode                         | "scale"                                                            |
-| `outputMeasurement`\* | (optional) [`Measurement`](/datatypes/measurement.md) | the measurement of the data produced by the operator | `{"type": "continuous", "measurement": "Reflectance","unit": "%"}` |
+| Parameter               | Type                                                  | Description                                          | Example Value                                                      |
+| ----------------------- | ----------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------ |
+| `slope` \*              | (optional) `MetadataKeyOrConstant`                    | the key or value to use for `slope`                  | `{"type": "metadataKey" "domain": "", "key": "scale" }`            |
+| `offset` \*             | (optional) `MetadataKeyOrConstant`                    | the key or value to use for `offset`                 | `{"type": "constant" "value": 0.1 }`                               |
+| `scalingMode`           | `scale` OR `unscale`                                  | select scale or unscale mode                         | "scale"                                                            |
+| `outputMeasurement`\*\* | (optional) [`Measurement`](/datatypes/measurement.md) | the measurement of the data produced by the operator | `{"type": "continuous", "measurement": "Reflectance","unit": "%"}` |
 
-\* if no `outputMeasurement` is given, the measurement of the input raster is used.
+\* if no `slope` or `offset` is given, the operator will use the _default_ values stored in the rasters properties. Usually the default values are set from the decicated GDAL raster properties for scale and offset.
+
+\*\* if no `outputMeasurement` is given, the measurement of the input raster is used.
 
 The `RasterScaling` operator expects exactly one _raster_ input.
 
