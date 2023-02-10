@@ -178,12 +178,13 @@ Keep in mind that scaling might reduce the precision of the pixel values.
 </ul>
 <h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>slope</code></td><td><code>MetadataKeyOrConstant</code></td><td>the key or value to use for <code>slope</code></td><td><code>{&quot;type&quot;: &quot;metadataKey&quot; &quot;domain&quot;: &quot;&quot;, &quot;key&quot;: &quot;scale&quot; }</code></td></tr>
-<tr><td><code>offset</code></td><td><code>MetadataKeyOrConstant</code></td><td>the key or value to use for <code>offset</code></td><td><code>{&quot;type&quot;: &quot;constant&quot; &quot;value&quot;: 0.1 }</code></td></tr>
+<tr><td><code>slope</code> *</td><td>(optional) <code>MetadataKeyOrConstant</code></td><td>the key or value to use for <code>slope</code></td><td><code>{&quot;type&quot;: &quot;metadataKey&quot; &quot;domain&quot;: &quot;&quot;, &quot;key&quot;: &quot;scale&quot; }</code></td></tr>
+<tr><td><code>offset</code> *</td><td>(optional) <code>MetadataKeyOrConstant</code></td><td>the key or value to use for <code>offset</code></td><td><code>{&quot;type&quot;: &quot;constant&quot; &quot;value&quot;: 0.1 }</code></td></tr>
 <tr><td><code>scalingMode</code></td><td><code>scale</code> OR <code>unscale</code></td><td>select scale or unscale mode</td><td>&quot;scale&quot;</td></tr>
-<tr><td><code>outputMeasurement</code>*</td><td>(optional) <a href="/datatypes/measurement.html"><code>Measurement</code></a></td><td>the measurement of the data produced by the operator</td><td><code>{&quot;type&quot;: &quot;continuous&quot;, &quot;measurement&quot;: &quot;Reflectance&quot;,&quot;unit&quot;: &quot;%&quot;}</code></td></tr>
+<tr><td><code>outputMeasurement</code>**</td><td>(optional) <a href="/datatypes/measurement.html"><code>Measurement</code></a></td><td>the measurement of the data produced by the operator</td><td><code>{&quot;type&quot;: &quot;continuous&quot;, &quot;measurement&quot;: &quot;Reflectance&quot;,&quot;unit&quot;: &quot;%&quot;}</code></td></tr>
 </tbody></table>
-<p>* if no <code>outputMeasurement</code> is given, the measurement of the input raster is used.</p>
+<p>* if no <code>slope</code> or <code>offset</code> is given, the operator will use the <em>default</em> values stored in the rasters properties. Usually the default values are set from the decicated GDAL raster properties for scale and offset.</p>
+<p>** if no <code>outputMeasurement</code> is given, the measurement of the input raster is used.</p>
 <p>The <code>RasterScaling</code> operator expects exactly one <em>raster</em> input.</p>
 <table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
 <tr><td><code>source</code></td><td><code>SingleRasterSource</code></td></tr>
