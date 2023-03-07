@@ -168,7 +168,7 @@ Then you can use a histogram with a suitable number of buckets to visualize and 
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
 <tr><td><code>columnName</code></td><td><code>string</code>, ignored for raster input</td><td>The name of the attribute making up the x-axis of the histogram.</td><td><code>&quot;temperature&quot;</code></td></tr>
 <tr><td><code>bounds</code></td><td><code>HistogramBounds</code> (either <code>data</code> or specified <code>values</code>)</td><td>If <code>data</code>, it computes the bounds of the underlying data. If <code>values</code>, one can specify custom bounds.</td><td><pre><code>{<br>  &quot;min&quot;: 0.0,<br>  &quot;max&quot;: 20.0<br>}</code></pre> <code>&quot;data&quot;</code></td></tr>
-<tr><td><code>buckets</code></td><td>(Optional) number</td><td>The number of buckets. The value is calculated, if not specified.</td><td><code>20</code></td></tr>
+<tr><td><code>buckets</code></td><td><code>Number</code> or <code>SquareRootChoiceRule</code></td><td>The number of buckets. The value can be specified or calculated.</td><td><pre><code>{<br>  &quot;type&quot;: &quot;number&quot;,<br>  &quot;value&quot;: 20<br>}</code></pre></td></tr>
 <tr><td><code>interactive</code></td><td>(Optional) <code>boolean</code></td><td>Flag, if the histogram should have user interactions for a range selection. It is <code>false</code> by default.</td><td><code>true</code></td></tr>
 </tbody></table>
 <h2 id="inputs"><a class="header" href="#inputs">Inputs</a></h2>
@@ -180,7 +180,7 @@ Then you can use a histogram with a suitable number of buckets to visualize and 
 <p>The operator returns an error if the selected column (<code>columnName</code>) does not exist or is not numeric.</p>
 <h2 id="notes"><a class="header" href="#notes">Notes</a></h2>
 <p>If <code>bounds</code> or <code>buckets</code> are not defined, the operator will determine these values by itself which requires processing the data twice.</p>
-<p>If the <code>buckets</code> parameter is unset, the operator estimates it using the square root of the number of elements in the data.</p>
+<p>If the <code>buckets</code> parameter is set to <code>squareRootChoiceRule</code>, the operator estimates it using the square root of the number of elements in the data.</p>
 <h2 id="example-json"><a class="header" href="#example-json">Example JSON</a></h2>
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;Histogram&quot;,
@@ -190,7 +190,10 @@ Then you can use a histogram with a suitable number of buckets to visualize and 
       &quot;min&quot;: 5.0,
       &quot;max&quot;: 10.0
     },
-    &quot;buckets&quot;: 15,
+    &quot;buckets&quot;: {
+      &quot;type&quot;: &quot;number&quot;,
+      &quot;value&quot;: 15
+    },
     &quot;interactive&quot;: false
   },
   &quot;sources&quot;: {
