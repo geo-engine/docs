@@ -12,7 +12,7 @@ Then you can use a histogram with a suitable number of buckets to visualize and 
 | ------------- | ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `columnName`  | `string`, ignored for raster input                      | The name of the attribute making up the x-axis of the histogram.                                      | `"temperature"`                                                                               |
 | `bounds`      | `HistogramBounds` (either `data` or specified `values`) | If `data`, it computes the bounds of the underlying data. If `values`, one can specify custom bounds. | <pre><code>{<br>&nbsp;&nbsp;"min": 0.0,<br>&nbsp;&nbsp;"max": 20.0<br>}</code></pre> `"data"` |
-| `buckets`     | (Optional) number                                       | The number of buckets. The value is calculated, if not specified.                                     | `20`                                                                                          |
+| `buckets`     | `Number` or `SquareRootChoiceRule`                      | The number of buckets. The value can be specified or calculated.                                      | <pre><code>{<br>&nbsp;&nbsp;"type": "number",<br>&nbsp;&nbsp;"value": 20<br>}</code></pre>    |
 | `interactive` | (Optional) `boolean`                                    | Flag, if the histogram should have user interactions for a range selection. It is `false` by default. | `true`                                                                                        |
 
 ## Inputs
@@ -31,7 +31,7 @@ The operator returns an error if the selected column (`columnName`) does not exi
 
 If `bounds` or `buckets` are not defined, the operator will determine these values by itself which requires processing the data twice.
 
-If the `buckets` parameter is unset, the operator estimates it using the square root of the number of elements in the data.
+If the `buckets` parameter is set to `squareRootChoiceRule`, the operator estimates it using the square root of the number of elements in the data.
 
 ## Example JSON
 
@@ -44,7 +44,10 @@ If the `buckets` parameter is unset, the operator estimates it using the square 
       "min": 5.0,
       "max": 10.0
     },
-    "buckets": 15,
+    "buckets": {
+      "type": "number",
+      "value": 15
+    },
     "interactive": false
   },
   "sources": {
