@@ -27,7 +27,7 @@ An example for Meteosat Second Generation properties is:
 | --------------------- | ----------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------ |
 | `slope`               | `MetadataKeyOrConstant`                               | the key or value to use for `slope`                  | `{"type": "metadataKey" "domain": "", "key": "scale" }`            |
 | `offset`              | `MetadataKeyOrConstant`                               | the key or value to use for `offset`                 | `{"type": "constant" "value": 0.1 }`                               |
-| `scalingMode`         | `checkedMulThenAdd` OR `checkedSubThenDiv`            | select scale or unscale mode                         | "checkedMulThenAdd"                                                |
+| `scalingMode`         | `MulSlopeAddOffset` OR `SubOffsetDivSlope`            | select scale or unscale mode                         | "checkedMulThenAdd"                                                |
 | `outputMeasurement`\* | (optional) [`Measurement`](/datatypes/measurement.md) | the measurement of the data produced by the operator | `{"type": "continuous", "measurement": "Reflectance","unit": "%"}` |
 
 \* if no `outputMeasurement` is given, the measurement of the input raster is used.
@@ -70,7 +70,7 @@ The `MetadataKeyOrConstant` type is used to specify a metadata key or a constant
       "value": 1.0
     },
     "outputMeasurement": null,
-    "scalingMode": "scale"
+    "scalingMode": "mulSlopeAddOffset"
   },
   "sources": {
     "source": {
