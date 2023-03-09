@@ -27,7 +27,7 @@ An example for Meteosat Second Generation properties is:
 | --------------------- | ----------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------ |
 | `slope`               | `MetadataKeyOrConstant`                               | the key or value to use for `slope`                  | `{"type": "metadataKey" "domain": "", "key": "scale" }`            |
 | `offset`              | `MetadataKeyOrConstant`                               | the key or value to use for `offset`                 | `{"type": "constant" "value": 0.1 }`                               |
-| `scalingMode`         | `MulSlopeAddOffset` OR `SubOffsetDivSlope`            | select scale or unscale mode                         | "checkedMulThenAdd"                                                |
+| `scalingMode`         | `mulSlopeAddOffset` OR `subOffsetDivSlope`            | select scale or unscale mode                         | `"mulSlopeAddOffset"`                                              |
 | `outputMeasurement`\* | (optional) [`Measurement`](/datatypes/measurement.md) | the measurement of the data produced by the operator | `{"type": "continuous", "measurement": "Reflectance","unit": "%"}` |
 
 \* if no `outputMeasurement` is given, the measurement of the input raster is used.
@@ -48,11 +48,11 @@ The `MetadataKeyOrConstant` type is used to specify a metadata key or a constant
 
 | Value                                                      | Description                                                            |
 | ---------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `{"type": "deriveFromData"}` \*                            | Use slope and offset from the tiles properties                         |
+| `{"type": "auto"}` \*                                      | Use slope and offset from the tiles properties                         |
 | `{"type": "constant", "value": number}`                    | A constant value.                                                      |
 | `{"type": "metadataKey", "domain": string, "key": string}` | A metadata key to lookup dynamic values from raster (tile) properties. |
 
-\* if set to `deriveFromData`, the operator will use the values from the decicated GDAL raster properties for scale and offset.
+\* if set to `"auto"`, the operator will use the values from the decicated (GDAL) raster properties for scale and offset.
 
 ## Example JSON
 
