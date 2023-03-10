@@ -10,9 +10,9 @@ Keep in mind that scaling might reduce the precision of the pixel values.
 
 The operator applies the following formulas to every pixel.
 
-For _unscaling_ the formula is: `p_new = p_old * slope + offset`. The key for this mode is `checkedMulThenAdd`.
+For _unscaling_ the formula is: `p_new = p_old * slope + offset`. The key for this mode is `mulSlopeAddOffset`.
 
-For _scaling_ the formula is: `p_new = (p_old - offset) / slope`. The key for this mode is `checkedSubThenDiv`.
+For _scaling_ the formula is: `p_new = (p_old - offset) / slope`. The key for this mode is `subOffsetDivSlope`.
 
 `p_old` and `p_new` refer to the old and new pixel value. The slope and offset values are either properties attached to the input raster or a fixed value.
 
