@@ -25,8 +25,8 @@ An example for Meteosat Second Generation properties is:
 
 | Parameter             | Type                                                  | Description                                          | Example Value                                                      |
 | --------------------- | ----------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------ |
-| `slope`               | `MetadataKeyOrConstant`                               | the key or value to use for `slope`                  | `{"type": "metadataKey" "domain": "", "key": "scale" }`            |
-| `offset`              | `MetadataKeyOrConstant`                               | the key or value to use for `offset`                 | `{"type": "constant" "value": 0.1 }`                               |
+| `slope`               | `SlopeOffsetSelection`                                | the key or value to use for `slope`                  | `{"type": "metadataKey" "domain": "", "key": "scale" }`            |
+| `offset`              | `SlopeOffsetSelection`                                | the key or value to use for `offset`                 | `{"type": "constant" "value": 0.1 }`                               |
 | `scalingMode`         | `mulSlopeAddOffset` OR `subOffsetDivSlope`            | select scale or unscale mode                         | `"mulSlopeAddOffset"`                                              |
 | `outputMeasurement`\* | (optional) [`Measurement`](/datatypes/measurement.md) | the measurement of the data produced by the operator | `{"type": "continuous", "measurement": "Reflectance","unit": "%"}` |
 
@@ -42,9 +42,9 @@ The `RasterScaling` operator expects exactly one _raster_ input.
 
 The following describes the types used in the parameters.
 
-### MetadataKeyOrConstant
+### SlopeOffsetSelection
 
-The `MetadataKeyOrConstant` type is used to specify a metadata key or a constant value.
+The `SlopeOffsetSelection` type is used to specify a metadata key or a constant value.
 
 | Value                                                      | Description                                                            |
 | ---------------------------------------------------------- | ---------------------------------------------------------------------- |
@@ -66,7 +66,7 @@ The `MetadataKeyOrConstant` type is used to specify a metadata key or a constant
       "key": "scale"
     },
     "offset": {
-      "type": "value",
+      "type": "constant",
       "value": 1.0
     },
     "outputMeasurement": null,
