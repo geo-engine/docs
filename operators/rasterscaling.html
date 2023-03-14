@@ -168,8 +168,8 @@ To get the &quot;real&quot; raster values the unscale operation is applied.
 Keep in mind that scaling might reduce the precision of the pixel values.
 (To actually reduce the size of the raster, use the <a href="./rastertypeconversion.html">raster type conversion operator</a> and transform to a smaller datatype after scaling.)</p>
 <p>The operator applies the following formulas to every pixel.</p>
-<p>For <em>unscaling</em> the formula is: <code>p_new = p_old * slope + offset</code>.</p>
-<p>For <em>scaling</em> the formula is: <code>p_new = (p_old - offset) / slope</code></p>
+<p>For <em>unscaling</em> the formula is: <code>p_new = p_old * slope + offset</code>. The key for this mode is <code>mulSlopeAddOffset</code>.</p>
+<p>For <em>scaling</em> the formula is: <code>p_new = (p_old - offset) / slope</code>. The key for this mode is <code>subOffsetDivSlope</code>.</p>
 <p><code>p_old</code> and <code>p_new</code> refer to the old and new pixel value. The slope and offset values are either properties attached to the input raster or a fixed value.</p>
 <p>An example for Meteosat Second Generation properties is:</p>
 <ul>
@@ -178,25 +178,26 @@ Keep in mind that scaling might reduce the precision of the pixel values.
 </ul>
 <h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>slope</code> *</td><td>(optional) <code>MetadataKeyOrConstant</code></td><td>the key or value to use for <code>slope</code></td><td><code>{&quot;type&quot;: &quot;metadataKey&quot; &quot;domain&quot;: &quot;&quot;, &quot;key&quot;: &quot;scale&quot; }</code></td></tr>
-<tr><td><code>offset</code> *</td><td>(optional) <code>MetadataKeyOrConstant</code></td><td>the key or value to use for <code>offset</code></td><td><code>{&quot;type&quot;: &quot;constant&quot; &quot;value&quot;: 0.1 }</code></td></tr>
-<tr><td><code>scalingMode</code></td><td><code>scale</code> OR <code>unscale</code></td><td>select scale or unscale mode</td><td>&quot;scale&quot;</td></tr>
-<tr><td><code>outputMeasurement</code>**</td><td>(optional) <a href="/datatypes/measurement.html"><code>Measurement</code></a></td><td>the measurement of the data produced by the operator</td><td><code>{&quot;type&quot;: &quot;continuous&quot;, &quot;measurement&quot;: &quot;Reflectance&quot;,&quot;unit&quot;: &quot;%&quot;}</code></td></tr>
+<tr><td><code>slope</code></td><td><code>SlopeOffsetSelection</code></td><td>the key or value to use for <code>slope</code></td><td><code>{&quot;type&quot;: &quot;metadataKey&quot; &quot;domain&quot;: &quot;&quot;, &quot;key&quot;: &quot;scale&quot; }</code></td></tr>
+<tr><td><code>offset</code></td><td><code>SlopeOffsetSelection</code></td><td>the key or value to use for <code>offset</code></td><td><code>{&quot;type&quot;: &quot;constant&quot; &quot;value&quot;: 0.1 }</code></td></tr>
+<tr><td><code>scalingMode</code></td><td><code>mulSlopeAddOffset</code> OR <code>subOffsetDivSlope</code></td><td>select scale or unscale mode</td><td><code>&quot;mulSlopeAddOffset&quot;</code></td></tr>
+<tr><td><code>outputMeasurement</code>*</td><td>(optional) <a href="/datatypes/measurement.html"><code>Measurement</code></a></td><td>the measurement of the data produced by the operator</td><td><code>{&quot;type&quot;: &quot;continuous&quot;, &quot;measurement&quot;: &quot;Reflectance&quot;,&quot;unit&quot;: &quot;%&quot;}</code></td></tr>
 </tbody></table>
-<p>* if no <code>slope</code> or <code>offset</code> is given, the operator will use the <em>default</em> values stored in the rasters properties. Usually the default values are set from the decicated GDAL raster properties for scale and offset.</p>
-<p>** if no <code>outputMeasurement</code> is given, the measurement of the input raster is used.</p>
+<p>* if no <code>outputMeasurement</code> is given, the measurement of the input raster is used.</p>
 <p>The <code>RasterScaling</code> operator expects exactly one <em>raster</em> input.</p>
 <table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
 <tr><td><code>source</code></td><td><code>SingleRasterSource</code></td></tr>
 </tbody></table>
 <h2 id="types"><a class="header" href="#types">Types</a></h2>
 <p>The following describes the types used in the parameters.</p>
-<h3 id="metadatakeyorconstant"><a class="header" href="#metadatakeyorconstant">MetadataKeyOrConstant</a></h3>
-<p>The <code>MetadataKeyOrConstant</code> type is used to specify a metadata key or a constant value.</p>
+<h3 id="slopeoffsetselection"><a class="header" href="#slopeoffsetselection">SlopeOffsetSelection</a></h3>
+<p>The <code>SlopeOffsetSelection</code> type is used to specify a metadata key or a constant value.</p>
 <table><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>{&quot;type&quot;: &quot;auto&quot;}</code> *</td><td>Use slope and offset from the tiles properties</td></tr>
 <tr><td><code>{&quot;type&quot;: &quot;constant&quot;, &quot;value&quot;: number}</code></td><td>A constant value.</td></tr>
 <tr><td><code>{&quot;type&quot;: &quot;metadataKey&quot;, &quot;domain&quot;: string, &quot;key&quot;: string}</code></td><td>A metadata key to lookup dynamic values from raster (tile) properties.</td></tr>
 </tbody></table>
+<p>* if set to <code>&quot;auto&quot;</code>, the operator will use the values from the decicated (GDAL) raster properties for scale and offset.</p>
 <h2 id="example-json"><a class="header" href="#example-json">Example JSON</a></h2>
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;RasterScaling&quot;,
@@ -207,11 +208,11 @@ Keep in mind that scaling might reduce the precision of the pixel values.
       &quot;key&quot;: &quot;scale&quot;
     },
     &quot;offset&quot;: {
-      &quot;type&quot;: &quot;value&quot;,
+      &quot;type&quot;: &quot;constant&quot;,
       &quot;value&quot;: 1.0
     },
     &quot;outputMeasurement&quot;: null,
-    &quot;scalingMode&quot;: &quot;scale&quot;
+    &quot;scalingMode&quot;: &quot;mulSlopeAddOffset&quot;
   },
   &quot;sources&quot;: {
     &quot;source&quot;: {
