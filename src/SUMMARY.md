@@ -7,6 +7,10 @@
   - [Engine]()
   - [Workflows]()
 
+- [Pro Features](./pro/intro.md)
+
+  - [Users and Permissions](pro/users.md)
+
 - [API](./api/intro.md)
 
   - [Datasets]()
