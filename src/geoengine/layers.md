@@ -1,5 +1,7 @@
 # Layers
 
+<!-- TODO: Link to workflow section in `/geoengine` rather than `/api` when available -->
+
 A layer is a browsable unit in Geo Engine.
 In general, it is a named [`Workflow`](../api/workflows.md) with additional meta information like a description and a default [`Colorizer`](../datatypes/colorizer.md).
 Layers are identified by a `LayerId`, which is usually a UUID.
