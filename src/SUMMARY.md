@@ -4,7 +4,6 @@
 
 - [The Geo Engine](./geoengine/intro.md)
 
-  - [Collections](./geoengine/collections.md)
   - [Datasets](./geoengine/datasets.md)
   - [Engine]()
   - [Layers](./geoengine/layers.md)
