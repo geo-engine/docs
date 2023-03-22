@@ -4,7 +4,9 @@
 
 - [The Geo Engine](./geoengine/intro.md)
 
+  - [Datasets](./geoengine/datasets.md)
   - [Engine]()
+  - [Layers](./geoengine/layers.md)
   - [Workflows]()
 
 - [Pro Features](./pro/intro.md)
