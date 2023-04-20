@@ -28,7 +28,7 @@ The `RasterTypeConversion` operator expects exactly one _raster_ input.
     "outputDataType": "U8"
   },
   "sources": {
-    "source": {
+    "raster": {
       "type": "GdalSource",
       "params": {
         "data": {
