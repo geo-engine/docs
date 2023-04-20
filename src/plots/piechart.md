@@ -50,7 +50,7 @@ If the attribute has a [`Measurement`](/datatypes/measurement.html#classificatio
     "donut": false
   },
   "sources": {
-    "source": {
+    "vector": {
       "type": "OgrSource",
       "params": {
         "data": {

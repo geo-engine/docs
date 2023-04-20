@@ -73,7 +73,7 @@ The `SlopeOffsetSelection` type is used to specify a metadata key or a constant 
     "scalingMode": "mulSlopeAddOffset"
   },
   "sources": {
-    "source": {
+    "raster": {
       "type": "GdalSource",
       "params": {
         "data": {
