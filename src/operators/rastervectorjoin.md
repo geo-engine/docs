@@ -61,10 +61,7 @@ If the lenght of `names` is not equal to the number of raster inputs, an error i
       {
         "type": "GdalSource",
         "params": {
-          "data": {
-            "type": "internal",
-            "datasetId": "b6191257-6d61-4c6b-90a4-ebfb1b23899d"
-          }
+          "data": "ndvi"
         }
       }
     ]
