@@ -43,6 +43,7 @@
   - [Rasterization](./operators/rasterization.md)
   - [RasterScaling](./operators/rasterscaling.md)
   - [RasterTypeConversion](./operators/rastertypeconversion.md)
+  - [RasterVectorJoin](./operators/rastervectorjoin.md)
   - [Reprojection](./operators/reprojection.md)
   - [TemporalRasterAggregation](./operators/temporalrasteraggregation.md)
   - [TimeProjection](./operators/timeprojection.md)
