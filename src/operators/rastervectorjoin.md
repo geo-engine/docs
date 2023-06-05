@@ -54,10 +54,7 @@ If the lenght of `names` is not equal to the number of raster inputs, an error i
     "vector": {
       "type": "OgrSource",
       "params": {
-        "data": {
-          "type": "internal",
-          "datasetId": "e977b123-ca47-4c5b-aace-481119826aaf"
-        }
+        "data": "ne_10m_ports"
       }
     },
     "rasters": [
