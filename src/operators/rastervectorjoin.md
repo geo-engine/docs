@@ -8,7 +8,7 @@ The same is true if the temporal extend of a vector feature covers multiple rast
 More details are described below.
 
 **Example**:
-You have a collection of aggricaltural fields (`Polygons`) and a collection of raster images containing the monthly NDVI value for each pixel.
+You have a collection of agricultural fields (`Polygons`) and a collection of raster images containing each pixel's monthly NDVI value.
 The `RasterVectorJoin` operator allows you to do this.
 You now have multiple options to calculate the NDVI value for each field.
 For a quick evaluation, you can use the `first` aggregation function.
