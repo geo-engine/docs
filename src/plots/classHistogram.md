@@ -47,10 +47,7 @@ It ignores missing or no-data values and values that are not covered by the [`Me
     "vector": {
       "type": "OgrSource",
       "params": {
-        "data": {
-          "type": "internal",
-          "datasetId": "a626c880-1c41-489b-9e19-9596d129859c"
-        }
+        "data": "ndvi"
       }
     }
   }

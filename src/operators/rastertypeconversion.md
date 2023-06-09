@@ -31,10 +31,7 @@ The `RasterTypeConversion` operator expects exactly one _raster_ input.
     "raster": {
       "type": "GdalSource",
       "params": {
-        "data": {
-          "type": "internal",
-          "datasetId": "00000000-0000-0000-0000-000000000539"
-        }
+        "data": "ndvi"
       }
     }
   }

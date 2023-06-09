@@ -35,10 +35,7 @@ The operator consumes exactly one _raster_ operator.
     "raster": {
       "type": "GdalSource",
       "params": {
-        "data": {
-          "type": "internal",
-          "datasetId": "a626c880-1c41-489b-9e19-9596d129859c"
-        }
+        "data": "ndvi"
       }
     }
   }

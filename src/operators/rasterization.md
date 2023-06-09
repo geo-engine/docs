@@ -76,10 +76,7 @@ If the `cutoff` is not in [0, 1) or the `stddev` is negative, an error will be t
       "vector": {
         "type": "OgrSource",
         "params": {
-          "data": {
-            "type": "internal",
-            "datasetId": "a9623a5b-b6c5-404b-bc5a-313ff72e4e75"
-          },
+          "data": "ne_10m_ports",
           "attributeProjection": null,
           "attributeFilters": null
         }
@@ -105,10 +102,7 @@ If the `cutoff` is not in [0, 1) or the `stddev` is negative, an error will be t
       "vector": {
         "type": "OgrSource",
         "params": {
-          "data": {
-            "type": "internal",
-            "datasetId": "a9623a5b-b6c5-404b-bc5a-313ff72e4e75"
-          },
+          "data": "ne_10m_ports",
           "attributeProjection": null,
           "attributeFilters": null
         }

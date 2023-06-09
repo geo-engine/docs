@@ -39,10 +39,7 @@ If the given dataset does not exist or is not readable, an error is thrown.
 {
   "type": "OgrSource",
   "params": {
-    "data": {
-      "type": "internal",
-      "datasetId": "e977b123-ca47-4c5b-aace-481119826aaf"
-    },
+    "data": "places",
     "attributeProjection": ["name", "population"],
     "attributeFilters": [
       {

@@ -36,20 +36,14 @@ If the `polygons` vector input is not a (multi-)polygon feature collection, an e
     "points": {
       "type": "OgrSource",
       "params": {
-        "data": {
-          "type": "internal",
-          "datasetId": "e977b123-ca47-4c5b-aace-481119826aaf"
-        },
+        "data": "places",
         "attributeProjection": ["name", "population"]
       }
     },
     "polygons": {
       "type": "OgrSource",
       "params": {
-        "data": {
-          "type": "internal",
-          "datasetId": "b6191257-6d61-4c6b-90a4-ebfb1b23899d"
-        }
+        "data": "germany_outline"
       }
     }
   }

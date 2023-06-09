@@ -76,10 +76,7 @@ The `SlopeOffsetSelection` type is used to specify a metadata key or a constant 
     "raster": {
       "type": "GdalSource",
       "params": {
-        "data": {
-          "type": "internal",
-          "datasetId": "00000000-0000-0000-0000-000000000539"
-        }
+        "data": "modis-b6"
       }
     }
   }

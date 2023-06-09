@@ -73,10 +73,7 @@ The `TimeShift` operator expects either one _vector_ input or one _raster_ input
     "source": {
       "type": "GdalSource",
       "params": {
-        "data": {
-          "type": "internal",
-          "datasetId": "00000000-0000-0000-0000-000000000539"
-        }
+        "data": "ndvi"
       }
     }
   }
@@ -97,10 +94,7 @@ The `TimeShift` operator expects either one _vector_ input or one _raster_ input
     "source": {
       "type": "GdalSource",
       "params": {
-        "data": {
-          "type": "internal",
-          "datasetId": "00000000-0000-0000-0000-000000000539"
-        }
+        "data": "ndvi"
       }
     }
   }

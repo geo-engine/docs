@@ -99,10 +99,7 @@ If the neighborhood rows or columns are not positive or odd, an error will be th
     "raster": {
       "type": "GdalSource",
       "params": {
-        "data": {
-          "type": "internal",
-          "datasetId": "8d01593c-75c0-4ffa-8152-eabfe4430817"
-        }
+        "data": "ndvi"
       }
     }
   }

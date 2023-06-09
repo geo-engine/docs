@@ -40,10 +40,7 @@ The `LineSimplification` operator expects exactly one _vector_ input.
     "vector": {
       "type": "OgrSource",
       "params": {
-        "data": {
-          "type": "internal",
-          "datasetId": "b6191257-6d61-4c6b-90a4-ebfb1b23899d"
-        }
+        "data": "ne_10m_admin_0_countries"
       }
     }
   }
@@ -60,10 +57,7 @@ The `LineSimplification` operator expects exactly one _vector_ input.
     "vector": {
       "type": "OgrSource",
       "params": {
-        "data": {
-          "type": "internal",
-          "datasetId": "b6191257-6d61-4c6b-90a4-ebfb1b23899d"
-        }
+        "data": "ne_10m_admin_0_countries"
       }
     }
   }
