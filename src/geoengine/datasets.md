@@ -10,8 +10,9 @@ An internal dataset is a dataset that is stored in the Geo Engine.
 Thus, it is efficiently accessible and can be used in workflows.
 The dataset is identified by a `DatasetName` and contains a `DatasetDefinition` that describes the data.
 
-The `DatasetName` is a string that consists of a *namespace* (optional) and a *name*, separated by a colon.
+The `DatasetName` is a string that consists of a _namespace_ (optional) and a _name_, separated by a colon.
 For instance, `namespace:name` or `name` refer to datasets.
+The `name` can consist of characters (`a-Z` & `A-Z`), numbers (`0-9`), dashes (`-`) and underscores (`_`).
 
 ## External data
 
@@ -20,7 +21,7 @@ Geo Engine accesses it from a foreign location.
 The dataset is identified by an `ExternalDataId` that consists of a `DataProviderId` and a `LayerId`.
 While the `DatasetProviderId` is usually a UUID that identifies the data provider for Geo Engine itself, the `LayerId` is a string that identifies the layer in the data provider.
 
-The `ExternalDataId` is a string that consists of a *namespace*, the `DataProviderId` and a *name*, separated by a colon.
+The `ExternalDataId` is a string that consists of a _namespace_, the `DataProviderId` and a _name_, separated by a colon.
 The namespace cannot be omitted and is `_` for the global namespace.
 For instance, `_:{uuid}:name` or `namespace:{uuid}:name` refer to datasets.
-If the *name* is a complex string, it can be enclosed by backticks, e.g., ``namespace:{uuid}:`name with spaces` ``.
+If the _name_ is a complex string, it can be enclosed by backticks, e.g., `` namespace:{uuid}:`name with spaces`  ``.
