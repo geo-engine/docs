@@ -42,10 +42,7 @@ If the value in the `column` parameter is not a column of the feature collection
     "vector": {
       "type": "OgrSource",
       "params": {
-        "data": {
-          "type": "internal",
-          "datasetId": "e977b123-ca47-4c5b-aace-481119826aaf"
-        },
+        "data": "places",
         "attributeProjection": ["name", "population"]
       }
     }
@@ -68,10 +65,7 @@ If the value in the `column` parameter is not a column of the feature collection
     "vector": {
       "type": "OgrSource",
       "params": {
-        "data": {
-          "type": "internal",
-          "datasetId": "e977b123-ca47-4c5b-aace-481119826aaf"
-        },
+        "data": "places",
         "attributeProjection": ["name", "population"]
       }
     }

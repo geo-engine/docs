@@ -114,19 +114,13 @@ The parsing of the expression can fail if there are, e.g., syntax errors.
     "A": {
       "type": "GdalSource",
       "params": {
-        "data": {
-          "type": "internal",
-          "datasetId": "a626c880-1c41-489b-9e19-9596d129859c"
-        }
+        "data": "sentinel2-b8"
       }
     },
     "B": {
       "type": "GdalSource",
       "params": {
-        "data": {
-          "type": "internal",
-          "datasetId": "699b9e14-4bd6-4d57-889a-58f60288b19c"
-        }
+        "data": "sentinel2-b4"
       }
     }
   }

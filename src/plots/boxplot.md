@@ -70,10 +70,7 @@ Volume 28 (October), Number 10, 1985, p. 1076-1085.
     "source": {
       "type": "OgrSource",
       "params": {
-        "data": {
-          "type": "internal",
-          "datasetId": "a626c880-1c41-489b-9e19-9596d129859c"
-        }
+        "data": "ndvi"
       }
     }
   }
@@ -93,19 +90,13 @@ Volume 28 (October), Number 10, 1985, p. 1076-1085.
       {
         "type": "GdalSource",
         "params": {
-          "data": {
-            "type": "internal",
-            "datasetId": "a626c880-1c41-489b-9e19-9596d129859c"
-          }
+          "data": "ndvi"
         }
       },
       {
         "type": "GdalSource",
         "params": {
-          "data": {
-            "type": "internal",
-            "datasetId": "a626c880-1c41-489b-9e19-9596d129859c"
-          }
+          "data": "temperature"
         }
       }
     ]
