@@ -5,11 +5,11 @@ The counterpart for raster data is the [`GdalSource`](./gdalsource.md).
 
 ## Parameters
 
-| Parameter             | Type                     | Description                                                                                                                            | Example Value                                                                                                                       | Default Value |
-| --------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `data`                | `DataId`                 | The id of the data to be loaded                                                                                                        | <pre><code>{<br>&nbsp;&nbsp;"type": "internal",<br>&nbsp;&nbsp;"datasetId": "e977b123-ca47-4c5b-aace-481119826aaf"<br>}</code></pre> |               |
-| `attributeProjection` | `Array<String>`          | (Optional) The list of attributes to load. If nothing is specified, all attributes will be loaded.                                     | <code>["name", "population"]</code>                                                                                                 |               |
-| `attributeFilters`    | `Array<AttributeFilter>` | (Optional) The list of filters to apply on the attributes of features. Only the features that match all of the filters will be loaded. | <pre><code>[{"attribute": "population",<br> "ranges": [[1000, 10000]]<br>}]</code></pre>                                            |               |
+| Parameter             | Type                     | Description                                                                                                                            | Example Value                                                                            | Default Value |
+| --------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ------------- |
+| `data`                | `DataId`                 | The id of the data to be loaded                                                                                                        | <pre><code>"places"</code></pre>                                                         |               |
+| `attributeProjection` | `Array<String>`          | (Optional) The list of attributes to load. If nothing is specified, all attributes will be loaded.                                     | <code>["name", "population"]</code>                                                      |               |
+| `attributeFilters`    | `Array<AttributeFilter>` | (Optional) The list of filters to apply on the attributes of features. Only the features that match all of the filters will be loaded. | <pre><code>[{"attribute": "population",<br> "ranges": [[1000, 10000]]<br>}]</code></pre> |               |
 
 ## Types
 
