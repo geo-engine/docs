@@ -164,7 +164,7 @@
 For each raster input, a new column is added to the collection from the vector input.
 The new column contains the value of the raster at the location of the vector feature.
 For features covering multiple pixels like <code>MultiPoints</code> or <code>MultiPolygons</code>, the value is calculated using an aggregation function selected by the user.
-The same is true if the temporal extend of a vector feature covers multiple raster time-steps.
+The same is true if the temporal extent of a vector feature covers multiple raster time steps.
 More details are described below.</p>
 <p><strong>Example</strong>:
 You have a collection of agricultural fields (<code>Polygons</code>) and a collection of raster images containing each pixel's monthly NDVI value.
@@ -173,7 +173,7 @@ The <code>RasterVectorJoin</code> operator allows you to combine the vector and 
 For example, you can use the <code>first</code> aggregation function to get the NDVI value of the first pixel that intersects with each field.
 This is useful for exploratory analysis since the computation is very fast.
 To calculate the mean NDVI value of all pixels that intersect with the field you should use the <code>mean</code> aggregation function.
-Since the NDVI data is a monthly time-series, you have to specify the temporal aggregation function as well.
+Since the NDVI data is a monthly time series, you have to specify the temporal aggregation function as well.
 The default is <code>none</code> which will create a new feature for each month.
 Other options are <code>first</code> and <code>mean</code> which will calculate the first or mean NDVI value for each field over time.</p>
 <h2 id="inputs"><a class="header" href="#inputs">Inputs</a></h2>
@@ -186,17 +186,20 @@ Other options are <code>first</code> and <code>mean</code> which will calculate 
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
 <tr><td><code>names</code></td><td><code>Array&lt;String&gt;</code></td><td>Each name reflects the output column of the join result.</td><td><pre>&quot;[&quot;NDVI&quot;, &quot;Elevation&quot;]&quot;</pre></td></tr>
 <tr><td><code>featureAggregation</code></td><td><code>first</code> or <code>mean</code></td><td>The aggregation function to use for features covering multiple pixels.</td><td><pre>&quot;first&quot;</pre></td></tr>
+<tr><td><code>featureAggregationIgnoreNoData</code></td><td>(optional) <code>boolean</code></td><td>Whether to ignore no data values in the aggregation. Defaults to <code>false</code></td><td><pre>false</pre></td></tr>
 <tr><td><code>temporalAggregation</code></td><td><code>none</code>, <code>first</code> or <code>mean</code></td><td>The aggregation function to use for features covering multiple (raster) time steps.</td><td><pre>&quot;none&quot;</pre></td></tr>
+<tr><td><code>temporalAggregationIgnoreNoData</code></td><td>(optional) <code>boolean</code></td><td>Whether to ignore no data values in the aggregation. Defaults to <code>false</code></td><td><pre>false</pre></td></tr>
 </tbody></table>
 <h2 id="errors"><a class="header" href="#errors">Errors</a></h2>
-<p>If the lenght of <code>names</code> is not equal to the number of raster inputs, an error is thrown.</p>
+<p>If the length of <code>names</code> is not equal to the number of raster inputs, an error is thrown.</p>
 <h2 id="example-json"><a class="header" href="#example-json">Example JSON</a></h2>
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;RasterVectorJoin&quot;,
   &quot;params&quot;: {
     &quot;names&quot;: [&quot;NDVI&quot;],
     &quot;featureAggregation&quot;: &quot;first&quot;,
-    &quot;temporalAggregation&quot;: &quot;mean&quot;
+    &quot;temporalAggregation&quot;: &quot;mean&quot;,
+    &quot;temporalAggregationIgnoreNoData&quot;: true
   },
   &quot;sources&quot;: {
     &quot;vector&quot;: {
