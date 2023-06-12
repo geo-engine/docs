@@ -24,4 +24,4 @@ While the `DatasetProviderId` is usually a UUID that identifies the data provide
 The `ExternalDataId` is a string that consists of a _namespace_, the `DataProviderId` and a _name_, separated by a colon.
 The namespace cannot be omitted and is `_` for the global namespace.
 For instance, `_:{uuid}:name` or `namespace:{uuid}:name` refer to datasets.
-If the _name_ is a complex string, it can be enclosed by backticks, e.g., `` namespace:{uuid}:`name with spaces`  ``.
+If the _name_ is a complex string, it can be enclosed by backticks, e.g., <code>namespace:{uuid}:\`name with spaces\`</code>.
