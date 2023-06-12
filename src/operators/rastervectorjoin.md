@@ -4,7 +4,7 @@ The `RasterVectorJoin` operator allows combining a single vector input and multi
 For each raster input, a new column is added to the collection from the vector input.
 The new column contains the value of the raster at the location of the vector feature.
 For features covering multiple pixels like `MultiPoints` or `MultiPolygons`, the value is calculated using an aggregation function selected by the user.
-The same is true if the temporal extend of a vector feature covers multiple raster time-steps.
+The same is true if the temporal extent of a vector feature covers multiple raster time steps.
 More details are described below.
 
 **Example**:
@@ -14,7 +14,7 @@ The `RasterVectorJoin` operator allows you to combine the vector and raster data
 For example, you can use the `first` aggregation function to get the NDVI value of the first pixel that intersects with each field.
 This is useful for exploratory analysis since the computation is very fast.
 To calculate the mean NDVI value of all pixels that intersect with the field you should use the `mean` aggregation function.
-Since the NDVI data is a monthly time-series, you have to specify the temporal aggregation function as well.
+Since the NDVI data is a monthly time series, you have to specify the temporal aggregation function as well.
 The default is `none` which will create a new feature for each month.
 Other options are `first` and `mean` which will calculate the first or mean NDVI value for each field over time.
 
@@ -30,15 +30,17 @@ The `RasterVectorJoin` operator expects one _vector_ input and one or more _rast
 
 The `RasterVectorJoin` operator has the following parameters:
 
-| Parameter             | Type                      | Description                                                                         | Example Value                      |
-| --------------------- | ------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------- |
-| `names`               | `Array<String>`           | Each name reflects the output column of the join result.                            | <pre>"["NDVI", "Elevation"]"</pre> |
-| `featureAggregation`  | `first` or `mean`         | The aggregation function to use for features covering multiple pixels.              | <pre>"first"</pre>                 |
-| `temporalAggregation` | `none`, `first` or `mean` | The aggregation function to use for features covering multiple (raster) time steps. | <pre>"none"</pre>                  |
+| Parameter                         | Type                      | Description                                                                         | Example Value                      |
+| --------------------------------- | ------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------- |
+| `names`                           | `Array<String>`           | Each name reflects the output column of the join result.                            | <pre>"["NDVI", "Elevation"]"</pre> |
+| `featureAggregation`              | `first` or `mean`         | The aggregation function to use for features covering multiple pixels.              | <pre>"first"</pre>                 |
+| `featureAggregationIgnoreNoData`  | (optional) `boolean`      | Whether to ignore no data values in the aggregation. Defaults to `false`            | <pre>false</pre>                   |
+| `temporalAggregation`             | `none`, `first` or `mean` | The aggregation function to use for features covering multiple (raster) time steps. | <pre>"none"</pre>                  |
+| `temporalAggregationIgnoreNoData` | (optional) `boolean`      | Whether to ignore no data values in the aggregation. Defaults to `false`            | <pre>false</pre>                   |
 
 ## Errors
 
-If the lenght of `names` is not equal to the number of raster inputs, an error is thrown.
+If the length of `names` is not equal to the number of raster inputs, an error is thrown.
 
 ## Example JSON
 
@@ -48,7 +50,8 @@ If the lenght of `names` is not equal to the number of raster inputs, an error i
   "params": {
     "names": ["NDVI"],
     "featureAggregation": "first",
-    "temporalAggregation": "mean"
+    "temporalAggregation": "mean",
+    "temporalAggregationIgnoreNoData": true
   },
   "sources": {
     "vector": {
