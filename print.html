@@ -195,13 +195,19 @@ Geo Engine supports different types of data, reflected by a <code>DataId</code>,
 <h2 id="internal-dataset"><a class="header" href="#internal-dataset">Internal dataset</a></h2>
 <p>An internal dataset is a dataset that is stored in the Geo Engine.
 Thus, it is efficiently accessible and can be used in workflows.
-The dataset is identified by a <code>DatasetId</code> and contains a <code>DatasetDefinition</code> that describes the data.
-The <code>DatasetId</code> is always a UUID.</p>
+The dataset is identified by a <code>DatasetName</code> and contains a <code>DatasetDefinition</code> that describes the data.</p>
+<p>The <code>DatasetName</code> is a string that consists of a <em>namespace</em> (optional) and a <em>name</em>, separated by a colon.
+For instance, <code>namespace:name</code> or <code>name</code> refer to datasets.
+The <code>name</code> can consist of characters (<code>a-Z</code> &amp; <code>A-Z</code>), numbers (<code>0-9</code>), dashes (<code>-</code>) and underscores (<code>_</code>).</p>
 <h2 id="external-data"><a class="header" href="#external-data">External data</a></h2>
 <p>An external dataset is a dataset that is not stored in the Geo Engine.
 Geo Engine accesses it from a foreign location.
 The dataset is identified by an <code>ExternalDataId</code> that consists of a <code>DataProviderId</code> and a <code>LayerId</code>.
 While the <code>DatasetProviderId</code> is usually a UUID that identifies the data provider for Geo Engine itself, the <code>LayerId</code> is a string that identifies the layer in the data provider.</p>
+<p>The <code>ExternalDataId</code> is a string that consists of a <em>namespace</em>, the <code>DataProviderId</code> and a <em>name</em>, separated by a colon.
+The namespace cannot be omitted and is <code>_</code> for the global namespace.
+For instance, <code>_:{uuid}:name</code> or <code>namespace:{uuid}:name</code> refer to datasets.
+If the <em>name</em> is a complex string, it can be enclosed by backticks, e.g., <code>namespace:{uuid}:`name with spaces`</code>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="layers"><a class="header" href="#layers">Layers</a></h1>
 <!-- TODO: Link to workflow section in `/geoengine` rather than `/api` when available -->
 <p>A layer is a browsable unit in Geo Engine.
@@ -599,10 +605,7 @@ Moreover, you can specify the range <code>a</code> to <code>k</code> to dismiss 
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;e977b123-ca47-4c5b-aace-481119826aaf&quot;
-        },
+        &quot;data&quot;: &quot;places&quot;,
         &quot;attributeProjection&quot;: [&quot;name&quot;, &quot;population&quot;]
       }
     }
@@ -623,10 +626,7 @@ Moreover, you can specify the range <code>a</code> to <code>k</code> to dismiss 
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;e977b123-ca47-4c5b-aace-481119826aaf&quot;
-        },
+        &quot;data&quot;: &quot;places&quot;,
         &quot;attributeProjection&quot;: [&quot;name&quot;, &quot;population&quot;]
       }
     }
@@ -717,19 +717,13 @@ However, the last expression must be without a semicolon.</p>
     &quot;A&quot;: {
       &quot;type&quot;: &quot;GdalSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
-        }
+        &quot;data&quot;: &quot;sentinel2-b8&quot;
       }
     },
     &quot;B&quot;: {
       &quot;type&quot;: &quot;GdalSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;699b9e14-4bd6-4d57-889a-58f60288b19c&quot;
-        }
+        &quot;data&quot;: &quot;sentinel2-b4&quot;
       }
     }
   }
@@ -740,7 +734,7 @@ However, the last expression must be without a semicolon.</p>
 The counterpart for vector data is the <a href="operators/./ogrsource.html"><code>OgrSource</code></a>.</p>
 <h2 id="parameters-2"><a class="header" href="#parameters-2">Parameters</a></h2>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th><th>Default Value</th></tr></thead><tbody>
-<tr><td><code>data</code></td><td><code>DataId</code></td><td>The id of the data to be loaded</td><td><pre><code>{<br>  &quot;type&quot;: &quot;internal&quot;,<br>  &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;<br>}</code></pre></td><td></td></tr>
+<tr><td><code>data</code></td><td><code>DataId</code></td><td>The id of the data to be loaded</td><td><pre><code>&quot;ndvi&quot;</code></pre></td><td></td></tr>
 </tbody></table>
 <h2 id="inputs-2"><a class="header" href="#inputs-2">Inputs</a></h2>
 <p>None</p>
@@ -750,10 +744,7 @@ The counterpart for vector data is the <a href="operators/./ogrsource.html"><cod
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;GdalSource&quot;,
   &quot;params&quot;: {
-    &quot;data&quot;: {
-      &quot;type&quot;: &quot;internal&quot;,
-      &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
-    }
+    &quot;data&quot;: &quot;ndvi&quot;
   }
 }
 </code></pre>
@@ -802,10 +793,7 @@ Unless a particular input resolution is specified, the resolution of the input r
       &quot;raster&quot;: {
         &quot;type&quot;: &quot;GdalSource&quot;,
         &quot;params&quot;: {
-          &quot;data&quot;: {
-            &quot;type&quot;: &quot;internal&quot;,
-            &quot;datasetId&quot;: &quot;36574dc3-560a-4b09-9d22-d5945f2b8093&quot;
-          }
+          &quot;data&quot;: &quot;ndvi&quot;
         }
       }
     }
@@ -844,10 +832,7 @@ This results in a simpler polygon that is easier to draw and reduces the amount 
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;b6191257-6d61-4c6b-90a4-ebfb1b23899d&quot;
-        }
+        &quot;data&quot;: &quot;ne_10m_admin_0_countries&quot;
       }
     }
   }
@@ -862,10 +847,7 @@ This results in a simpler polygon that is easier to draw and reduces the amount 
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;b6191257-6d61-4c6b-90a4-ebfb1b23899d&quot;
-        }
+        &quot;data&quot;: &quot;ne_10m_admin_0_countries&quot;
       }
     }
   }
@@ -944,10 +926,7 @@ This ignores <code>NO DATA</code> values.</li>
     &quot;raster&quot;: {
       &quot;type&quot;: &quot;GdalSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;8d01593c-75c0-4ffa-8152-eabfe4430817&quot;
-        }
+        &quot;data&quot;: &quot;ndvi&quot;
       }
     }
   }
@@ -958,7 +937,7 @@ This ignores <code>NO DATA</code> values.</li>
 The counterpart for raster data is the <a href="operators/./gdalsource.html"><code>GdalSource</code></a>.</p>
 <h2 id="parameters-6"><a class="header" href="#parameters-6">Parameters</a></h2>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th><th>Default Value</th></tr></thead><tbody>
-<tr><td><code>data</code></td><td><code>DataId</code></td><td>The id of the data to be loaded</td><td><pre><code>{<br>  &quot;type&quot;: &quot;internal&quot;,<br>  &quot;datasetId&quot;: &quot;e977b123-ca47-4c5b-aace-481119826aaf&quot;<br>}</code></pre></td><td></td></tr>
+<tr><td><code>data</code></td><td><code>DataId</code></td><td>The id of the data to be loaded</td><td><pre><code>&quot;places&quot;</code></pre></td><td></td></tr>
 <tr><td><code>attributeProjection</code></td><td><code>Array&lt;String&gt;</code></td><td>(Optional) The list of attributes to load. If nothing is specified, all attributes will be loaded.</td><td><code>[&quot;name&quot;, &quot;population&quot;]</code></td><td></td></tr>
 <tr><td><code>attributeFilters</code></td><td><code>Array&lt;AttributeFilter&gt;</code></td><td>(Optional) The list of filters to apply on the attributes of features. Only the features that match all of the filters will be loaded.</td><td><pre><code>[{&quot;attribute&quot;: &quot;population&quot;,<br> &quot;ranges&quot;: [[1000, 10000]]<br>}]</code></pre></td><td></td></tr>
 </tbody></table>
@@ -979,10 +958,7 @@ The counterpart for raster data is the <a href="operators/./gdalsource.html"><co
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;OgrSource&quot;,
   &quot;params&quot;: {
-    &quot;data&quot;: {
-      &quot;type&quot;: &quot;internal&quot;,
-      &quot;datasetId&quot;: &quot;e977b123-ca47-4c5b-aace-481119826aaf&quot;
-    },
+    &quot;data&quot;: &quot;places&quot;,
     &quot;attributeProjection&quot;: [&quot;name&quot;, &quot;population&quot;],
     &quot;attributeFilters&quot;: [
       {
@@ -1019,20 +995,14 @@ All features, that weren't inside any forest polygon, are considered either part
     &quot;points&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;e977b123-ca47-4c5b-aace-481119826aaf&quot;
-        },
+        &quot;data&quot;: &quot;places&quot;,
         &quot;attributeProjection&quot;: [&quot;name&quot;, &quot;population&quot;]
       }
     },
     &quot;polygons&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;b6191257-6d61-4c6b-90a4-ebfb1b23899d&quot;
-        }
+        &quot;data&quot;: &quot;germany_outline&quot;
       }
     }
   }
@@ -1095,10 +1065,7 @@ It is meant to be set such that the ignored density values are small enough to n
       &quot;vector&quot;: {
         &quot;type&quot;: &quot;OgrSource&quot;,
         &quot;params&quot;: {
-          &quot;data&quot;: {
-            &quot;type&quot;: &quot;internal&quot;,
-            &quot;datasetId&quot;: &quot;a9623a5b-b6c5-404b-bc5a-313ff72e4e75&quot;
-          },
+          &quot;data&quot;: &quot;ne_10m_ports&quot;,
           &quot;attributeProjection&quot;: null,
           &quot;attributeFilters&quot;: null
         }
@@ -1121,10 +1088,7 @@ It is meant to be set such that the ignored density values are small enough to n
       &quot;vector&quot;: {
         &quot;type&quot;: &quot;OgrSource&quot;,
         &quot;params&quot;: {
-          &quot;data&quot;: {
-            &quot;type&quot;: &quot;internal&quot;,
-            &quot;datasetId&quot;: &quot;a9623a5b-b6c5-404b-bc5a-313ff72e4e75&quot;
-          },
+          &quot;data&quot;: &quot;ne_10m_ports&quot;,
           &quot;attributeProjection&quot;: null,
           &quot;attributeFilters&quot;: null
         }
@@ -1192,10 +1156,7 @@ Keep in mind that scaling might reduce the precision of the pixel values.
     &quot;raster&quot;: {
       &quot;type&quot;: &quot;GdalSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;00000000-0000-0000-0000-000000000539&quot;
-        }
+        &quot;data&quot;: &quot;modis-b6&quot;
       }
     }
   }
@@ -1230,10 +1191,7 @@ It transforms all pixels into the new data type.</p>
     &quot;raster&quot;: {
       &quot;type&quot;: &quot;GdalSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;00000000-0000-0000-0000-000000000539&quot;
-        }
+        &quot;data&quot;: &quot;ndvi&quot;
       }
     }
   }
@@ -1285,7 +1243,7 @@ Other options are <code>first</code> and <code>mean</code> which will calculate 
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: &quot;ne_10m_ports&quot;
+        &quot;data&quot;: &quot;places&quot;
       }
     },
     &quot;rasters&quot;: [
@@ -1339,10 +1297,7 @@ If the input raster stream has no <em>no data</em> value defined, the value <em>
     &quot;source&quot;: {
       &quot;type&quot;: &quot;GdalSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
-        }
+        &quot;data&quot;: &quot;ndvi&quot;
       }
     }
   }
@@ -1410,10 +1365,7 @@ Thus, users must be aware to choose a data type that is large enough to hold the
       &quot;raster&quot;: {
         &quot;type&quot;: &quot;GdalSource&quot;,
         &quot;params&quot;: {
-          &quot;data&quot;: {
-            &quot;type&quot;: &quot;internal&quot;,
-            &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
-          }
+          &quot;data&quot;: &quot;ndvi&quot;
         }
       }
     }
@@ -1455,10 +1407,7 @@ This is, for instance, useful when you want to combine it with raster time serie
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
-        }
+        &quot;data&quot;: &quot;ndvi&quot;
       }
     }
   }
@@ -1522,10 +1471,7 @@ The data, originally valid for January, is shifted forward to February again, to
     &quot;source&quot;: {
       &quot;type&quot;: &quot;GdalSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;00000000-0000-0000-0000-000000000539&quot;
-        }
+        &quot;data&quot;: &quot;ndvi&quot;
       }
     }
   }
@@ -1544,10 +1490,7 @@ The data, originally valid for January, is shifted forward to February again, to
     &quot;source&quot;: {
       &quot;type&quot;: &quot;GdalSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;00000000-0000-0000-0000-000000000539&quot;
-        }
+        &quot;data&quot;: &quot;ndvi&quot;
       }
     }
   }
@@ -1595,20 +1538,14 @@ Combining the two feature collections leads to a single point collection with ge
     &quot;points&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;e977b123-ca47-4c5b-aace-481119826aaf&quot;
-        },
+        &quot;data&quot;: &quot;places&quot;,
         &quot;attributeProjection&quot;: [&quot;name&quot;, &quot;population&quot;]
       }
     },
     &quot;polygons&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;b6191257-6d61-4c6b-90a4-ebfb1b23899d&quot;
-        }
+        &quot;data&quot;: &quot;germany_outline&quot;
       }
     }
   }
@@ -1663,10 +1600,7 @@ These circles then pose a decluttered view of the data, e.g., via a WFS endpoint
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;e977b123-ca47-4c5b-aace-481119826aaf&quot;
-        },
+        &quot;data&quot;: &quot;places&quot;,
         &quot;attributeProjection&quot;: [&quot;name&quot;, &quot;population&quot;]
       }
     }
@@ -1733,10 +1667,7 @@ Volume 28 (October), Number 10, 1985, p. 1076-1085.
     &quot;source&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
-        }
+        &quot;data&quot;: &quot;ndvi&quot;
       }
     }
   }
@@ -1753,19 +1684,13 @@ Volume 28 (October), Number 10, 1985, p. 1076-1085.
       {
         &quot;type&quot;: &quot;GdalSource&quot;,
         &quot;params&quot;: {
-          &quot;data&quot;: {
-            &quot;type&quot;: &quot;internal&quot;,
-            &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
-          }
+          &quot;data&quot;: &quot;ndvi&quot;
         }
       },
       {
         &quot;type&quot;: &quot;GdalSource&quot;,
         &quot;params&quot;: {
-          &quot;data&quot;: {
-            &quot;type&quot;: &quot;internal&quot;,
-            &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
-          }
+          &quot;data&quot;: &quot;temperature&quot;
         }
       }
     ]
@@ -1807,10 +1732,7 @@ It ignores missing or no-data values and values that are not covered by the <a h
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
-        }
+        &quot;data&quot;: &quot;ndvi&quot;
       }
     }
   }
@@ -1849,10 +1771,7 @@ After recognizing more than <code>20</code> different ids, the operator ignores 
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
-        }
+        &quot;data&quot;: &quot;ndvi&quot;
       }
     }
   }
@@ -1899,10 +1818,7 @@ Then you can use a histogram with a suitable number of buckets to visualize and 
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
-        }
+        &quot;data&quot;: &quot;ndvi&quot;
       }
     }
   }
@@ -1935,10 +1851,7 @@ Then, you can use this operator to generate a time series plot.</p>
     &quot;raster&quot;: {
       &quot;type&quot;: &quot;GdalSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
-        }
+        &quot;data&quot;: &quot;ndvi&quot;
       }
     }
   }
@@ -1985,10 +1898,7 @@ Then, it counts the number of occurrences.</li>
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
-        }
+        &quot;data&quot;: &quot;ndvi&quot;
       }
     }
   }
@@ -2026,10 +1936,7 @@ those <code>10.000</code> values. Later values outside those bounds are ignored.
     &quot;vector&quot;: {
       &quot;type&quot;: &quot;OgrSource&quot;,
       &quot;params&quot;: {
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;internal&quot;,
-          &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
-        }
+        &quot;data&quot;: &quot;ndvi&quot;
       }
     }
   }
@@ -2080,10 +1987,7 @@ The operator returns an error if one of the selected attributes is not numeric.<
       {
         &quot;type&quot;: &quot;GdalSource&quot;,
         &quot;params&quot;: {
-          &quot;data&quot;: {
-            &quot;type&quot;: &quot;internal&quot;,
-            &quot;datasetId&quot;: &quot;a626c880-1c41-489b-9e19-9596d129859c&quot;
-          }
+          &quot;data&quot;: &quot;ndvi&quot;
         }
       }
     ]
