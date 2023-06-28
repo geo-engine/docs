@@ -98,3 +98,17 @@ Unmapped values result in the `defaultColor`.
   "defaultColor": [0, 0, 0, 0]
 }
 ```
+
+## RGBA
+
+The RGBA colorizer maps `U32` values "as is" to RGBA colors.
+8 and 16 bit values are interpreted as grayscale colors.
+64 bit values are interpreted as RGBA colors (but loose precision).
+
+### Example JSON
+
+```json
+{
+  "type": "rgba"
+}
+```
