@@ -42,6 +42,7 @@
   - [PointInPolygon](./operators/pointinpolygon.md)
   - [Rasterization](./operators/rasterization.md)
   - [RasterScaling](./operators/rasterscaling.md)
+  - [RasterStacker](./operators/rasterstacker.md)
   - [RasterTypeConversion](./operators/rastertypeconversion.md)
   - [RasterVectorJoin](./operators/rastervectorjoin.md)
   - [Reprojection](./operators/reprojection.md)
