@@ -1,13 +1,13 @@
 # Raster Expression
 
-The `Expression` operator performs a pixel-wise mathematical expression on one or more raster sources.
+The `Expression` operator performs a pixel-wise mathematical expression on one or more bands of a raster source.
 The expression is specified as a user-defined script in a very simple language.
 The output is a raster time series with the result of the expression and with time intervals that are the same as for the inputs.
 Users can specify an output data type.
 Internally, the expression is evaluated using floating-point numbers.
 
 An example usage scenario is to calculate NDVI for a red and a near-infrared raster channel.
-The expression uses two raster sources, referred to as A and B, and calculates the formula `(A - B) / (A + B)`.
+The expression uses a raster source with two bands, referred to as A and B, and calculates the formula `(A - B) / (A + B)`.
 When the temporal resolution is months, our output NDVI will also be a monthly time series.
 
 ## Parameters
@@ -26,7 +26,7 @@ The following describes the types used in the parameters.
 ### Expression
 
 Expressions are simple scripts to perform pixel-wise computations.
-One can refer to the raster inputs as `A` for the first raster, `B` for the second, and so on.
+One can refer to the raster inputs as `A` for the first raster band, `B` for the second, and so on.
 Furthermore, expressions can check with `A IS NODATA`, `B IS NODATA`, etc. for NO DATA values.
 This is important if `mapNoData` is set to true.
 Otherwise, NO DATA values are mapped automatically to the output NO DATA value.
@@ -87,14 +87,11 @@ However, the last expression must be without a semicolon.
 
 ## Inputs
 
-The `Expression` operator expects one to eight _raster_ inputs.
+The `Expression` operator expects one rater input with at most 8 bands.
 
 | Parameter | Type                 |
 | --------- | -------------------- |
-| `A`       | `SingleRasterSource` |
-| `B`       | `SingleRasterSource` |
-| `C`       | `SingleRasterSource` |
-| …         | `SingleRasterSource` |
+| `source`  | `SingleRasterSource` |
 
 ## Errors
 
@@ -111,16 +108,24 @@ The parsing of the expression can fail if there are, e.g., syntax errors.
     "mapNoData": false
   },
   "sources": {
-    "A": {
-      "type": "GdalSource",
-      "params": {
-        "data": "sentinel2-b8"
-      }
-    },
-    "B": {
-      "type": "GdalSource",
-      "params": {
-        "data": "sentinel2-b4"
+    "raster": {
+      "type": "RasterStacker",
+      "params": {},
+      "sources": {
+        "rasters": [
+          {
+            "type": "GdalSource",
+            "params": {
+              "data": "sentinel2-b8"
+            }
+          },
+          {
+            "type": "GdalSource",
+            "params": {
+              "data": "sentinel2-b4"
+            }
+          }
+        ]
       }
     }
   }
