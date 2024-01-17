@@ -160,13 +160,13 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="raster-expression"><a class="header" href="#raster-expression">Raster Expression</a></h1>
-<p>The <code>Expression</code> operator performs a pixel-wise mathematical expression on one or more raster sources.
+<p>The <code>Expression</code> operator performs a pixel-wise mathematical expression on one or more bands of a raster source.
 The expression is specified as a user-defined script in a very simple language.
 The output is a raster time series with the result of the expression and with time intervals that are the same as for the inputs.
 Users can specify an output data type.
 Internally, the expression is evaluated using floating-point numbers.</p>
 <p>An example usage scenario is to calculate NDVI for a red and a near-infrared raster channel.
-The expression uses two raster sources, referred to as A and B, and calculates the formula <code>(A - B) / (A + B)</code>.
+The expression uses a raster source with two bands, referred to as A and B, and calculates the formula <code>(A - B) / (A + B)</code>.
 When the temporal resolution is months, our output NDVI will also be a monthly time series.</p>
 <h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
@@ -179,7 +179,7 @@ When the temporal resolution is months, our output NDVI will also be a monthly t
 <p>The following describes the types used in the parameters.</p>
 <h3 id="expression"><a class="header" href="#expression">Expression</a></h3>
 <p>Expressions are simple scripts to perform pixel-wise computations.
-One can refer to the raster inputs as <code>A</code> for the first raster, <code>B</code> for the second, and so on.
+One can refer to the raster inputs as <code>A</code> for the first raster band, <code>B</code> for the second, and so on.
 Furthermore, expressions can check with <code>A IS NODATA</code>, <code>B IS NODATA</code>, etc. for NO DATA values.
 This is important if <code>mapNoData</code> is set to true.
 Otherwise, NO DATA values are mapped automatically to the output NO DATA value.
@@ -222,12 +222,9 @@ mean * coefficient
 <p>Note, that all assignments are separated by semicolons.
 However, the last expression must be without a semicolon.</p>
 <h2 id="inputs"><a class="header" href="#inputs">Inputs</a></h2>
-<p>The <code>Expression</code> operator expects one to eight <em>raster</em> inputs.</p>
+<p>The <code>Expression</code> operator expects one rater input with at most 8 bands.</p>
 <table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
-<tr><td><code>A</code></td><td><code>SingleRasterSource</code></td></tr>
-<tr><td><code>B</code></td><td><code>SingleRasterSource</code></td></tr>
-<tr><td><code>C</code></td><td><code>SingleRasterSource</code></td></tr>
-<tr><td>…</td><td><code>SingleRasterSource</code></td></tr>
+<tr><td><code>source</code></td><td><code>SingleRasterSource</code></td></tr>
 </tbody></table>
 <h2 id="errors"><a class="header" href="#errors">Errors</a></h2>
 <p>The parsing of the expression can fail if there are, e.g., syntax errors.</p>
@@ -240,16 +237,24 @@ However, the last expression must be without a semicolon.</p>
     &quot;mapNoData&quot;: false
   },
   &quot;sources&quot;: {
-    &quot;A&quot;: {
-      &quot;type&quot;: &quot;GdalSource&quot;,
-      &quot;params&quot;: {
-        &quot;data&quot;: &quot;sentinel2-b8&quot;
-      }
-    },
-    &quot;B&quot;: {
-      &quot;type&quot;: &quot;GdalSource&quot;,
-      &quot;params&quot;: {
-        &quot;data&quot;: &quot;sentinel2-b4&quot;
+    &quot;raster&quot;: {
+      &quot;type&quot;: &quot;RasterStacker&quot;,
+      &quot;params&quot;: {},
+      &quot;sources&quot;: {
+        &quot;rasters&quot;: [
+          {
+            &quot;type&quot;: &quot;GdalSource&quot;,
+            &quot;params&quot;: {
+              &quot;data&quot;: &quot;sentinel2-b8&quot;
+            }
+          },
+          {
+            &quot;type&quot;: &quot;GdalSource&quot;,
+            &quot;params&quot;: {
+              &quot;data&quot;: &quot;sentinel2-b4&quot;
+            }
+          }
+        ]
       }
     }
   }
