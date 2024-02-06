@@ -61,6 +61,19 @@ if A IS NODATA {
 }
 ```
 
+To generate more complex expressions, it is possible to have variable assignments.
+
+```Rust
+let mean = (A + B) / 2;
+let coefficient = 0.357;
+mean * coefficient
+```
+
+Note, that all assignments are separated by semicolons.
+However, the last expression must be without a semicolon.
+
+#### Numbers
+
 Function calls can be used to access utility functions.
 
 ```Rust
@@ -80,17 +93,6 @@ Currently, the following functions are available:
 - `round(a)`, `ceil(a)`, `floor(a)`: rounding functions
 - `mod(a, b)`: division remainder
 - `to_degrees(a)`, `to_radians(a)`: conversion to degrees or radians
-
-To generate more complex expressions, it is possible to have variable assignments.
-
-```Rust
-let mean = (A + B) / 2;
-let coefficient = 0.357;
-mean * coefficient
-```
-
-Note, that all assignments are separated by semicolons.
-However, the last expression must be without a semicolon.
 
 #### Geometries
 
