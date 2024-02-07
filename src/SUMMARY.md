@@ -50,6 +50,7 @@
   - [TemporalRasterAggregation](./operators/temporalrasteraggregation.md)
   - [TimeProjection](./operators/timeprojection.md)
   - [TimeShift](./operators/timeshift.md)
+  - [VectorExpression](./operators/vectorexpression.md)
   - [VectorJoin](./operators/vectorjoin.md)
   - [VisualPointClustering](./operators/visualpointclustering.md)
 
