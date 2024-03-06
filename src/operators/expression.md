@@ -12,12 +12,12 @@ When the temporal resolution is months, our output NDVI will also be a monthly t
 
 ## Parameters
 
-| Parameter           | Type                                             | Description                                                                                                 | Example Value                                                                                            |
-| ------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `expression`        | `Expression`                                     | Expression script                                                                                           | <pre><code>(A - B) / (A + B)</code></pre>                                                                |
-| `outputType`        | [`RasterDataType`](/datatypes/rasterdatatype.md) | A raster data type for the output                                                                           | <pre><code>U8</code></pre>                                                                               |
-| `outputMeasurement` | [`Measurement`](/datatypes/measurement.md)       | Description about the output                                                                                | <pre><code>{<br>&nbsp;&nbsp;"type": "continuous",<br>&nbsp;&nbsp;"measurement": "NDVI"<br>}</code></pre> |
-| `mapNoData`         | `bool`                                           | Should NO DATA values be mapped with the `expression`? Otherwise, they are mapped automatically to NO DATA. | <pre><code>false</code></pre>                                                                            |
+| Parameter    | Type                                                         | Description                                                                                                 | Example Value                                                                                                                                                                                                         |
+| ------------ | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `expression` | `Expression`                                                 | Expression script                                                                                           | <pre><code>(A - B) / (A + B)</code></pre>                                                                                                                                                                             |
+| `outputType` | [`RasterDataType`](/datatypes/rasterdatatype.md)             | A raster data type for the output                                                                           | <pre><code>U8</code></pre>                                                                                                                                                                                            |
+| `outputBand` | [`RasterBandDescriptor`](/datatypes/rasterbanddescriptor.md) | Description about the output                                                                                | <pre><code>{<br>&nbsp;&nbsp;"name": "NDVI"<br>&nbsp;&nbsp;"measurement": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"type": "continuous",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"measurement": "NDVI"<br>&nbsp;&nbsp;}<br>}</code></pre> |
+| `mapNoData`  | `bool`                                                       | Should NO DATA values be mapped with the `expression`? Otherwise, they are mapped automatically to NO DATA. | <pre><code>false</code></pre>                                                                                                                                                                                         |
 
 ## Types
 
@@ -105,6 +105,13 @@ The parsing of the expression can fail if there are, e.g., syntax errors.
   "params": {
     "expression": "(A - B) / (A + B)",
     "outputType": "F32",
+    "outputBand": {
+      "name": "NDVI",
+      "measurement": {
+        "type": "continuous",
+        "unit": "NDVI"
+      }
+    },
     "mapNoData": false
   },
   "sources": {
