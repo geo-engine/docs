@@ -9,7 +9,23 @@ All inputs must have the same data type and spatial reference.
 
 ## Parameters
 
-_no parameters_
+| Parameter   | Type          | Description                                                 | Example Value                          |
+| ----------- | ------------- | ----------------------------------------------------------- | -------------------------------------- |
+| renameBands | `RenameBands` | Specification of how to rename the bands to avoid conflicts | <pre><code>{ "type": "default" }</pre> |
+
+## Types
+
+The following describes the types used in the parameters.
+
+### RenameBands
+
+The `RenameBands` type is used to specify how to rename the bands to avoid conflicts.
+
+| Value                                    | Description                                                                         |
+| ---------------------------------------- | ----------------------------------------------------------------------------------- |
+| `{"type": "default"}`                    | Appends " (n)" to the band name with the smallest `n` that avoids a conflict        |
+| `{"type": "suffix", "values": [string]}` | Specifies a suffix for each input, to be appended to the band names                 |
+| `{"type": "rename", "values": [string]}` | A list of names for each band of all inputs to be used instead of the original name |
 
 ## Inputs
 
@@ -24,7 +40,12 @@ The `RasterStacker` operator supports up to 8 raster inputs.
 ```json
 {
   "type": "RasterStacker",
-  "params": {},
+  "params": {
+    "renameBands": {
+      "type": "rename",
+      "values": ["ndvi", "ndvi_masked"]
+    }
+  },
   "sources": {
     "rasters": [
       {
