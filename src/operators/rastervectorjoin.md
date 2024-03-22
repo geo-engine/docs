@@ -30,13 +30,25 @@ The `RasterVectorJoin` operator expects one _vector_ input and one or more _rast
 
 The `RasterVectorJoin` operator has the following parameters:
 
-| Parameter                         | Type                      | Description                                                                         | Example Value                      |
-| --------------------------------- | ------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------- |
-| `names`                           | `Array<String>`           | Each name reflects the output column of the join result.                            | <pre>"["NDVI", "Elevation"]"</pre> |
-| `featureAggregation`              | `first` or `mean`         | The aggregation function to use for features covering multiple pixels.              | <pre>"first"</pre>                 |
-| `featureAggregationIgnoreNoData`  | (optional) `boolean`      | Whether to ignore no data values in the aggregation. Defaults to `false`            | <pre>false</pre>                   |
-| `temporalAggregation`             | `none`, `first` or `mean` | The aggregation function to use for features covering multiple (raster) time steps. | <pre>"none"</pre>                  |
-| `temporalAggregationIgnoreNoData` | (optional) `boolean`      | Whether to ignore no data values in the aggregation. Defaults to `false`            | <pre>false</pre>                   |
+| Parameter                         | Type                      | Description                                                                         | Example Value                   |
+| --------------------------------- | ------------------------- | ----------------------------------------------------------------------------------- | ------------------------------- |
+| `names`                           | `ColumnNames`             | Specify how the new column names are derived from the raster band names.            | <pre>"{"type": "default}"</pre> |
+| `featureAggregation`              | `first` or `mean`         | The aggregation function to use for features covering multiple pixels.              | <pre>"first"</pre>              |
+| `featureAggregationIgnoreNoData`  | (optional) `boolean`      | Whether to ignore no data values in the aggregation. Defaults to `false`            | <pre>false</pre>                |
+| `temporalAggregation`             | `none`, `first` or `mean` | The aggregation function to use for features covering multiple (raster) time steps. | <pre>"none"</pre>               |
+| `temporalAggregationIgnoreNoData` | (optional) `boolean`      | Whether to ignore no data values in the aggregation. Defaults to `false`            | <pre>false</pre>                |
+
+## Types
+
+### ColumnNames
+
+The `ColumnNames` type is used to specify how the new column names are derived from the raster band names.
+
+| Value                                    | Description                                                                  |
+| ---------------------------------------- | ---------------------------------------------------------------------------- |
+| `{"type": "default"}`                    | Appends " (n)" to the band name with the smallest `n` that avoids a conflict |
+| `{"type": "suffix", "values": [string]}` | Specifies a suffix for each input, to be appended to the band names          |
+| `{"type": "rename", "values": [string]}` | A list of names for each new column                                          |
 
 ## Errors
 
