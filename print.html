@@ -1204,6 +1204,9 @@ The tiles are automatically temporally aligned.</p>
 <h2 id="parameters-10"><a class="header" href="#parameters-10">Parameters</a></h2>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
 <tr><td>renameBands</td><td><code>RenameBands</code></td><td>Specification of how to rename the bands to avoid conflicts</td><td><pre><code>{ &quot;type&quot;: &quot;default&quot; }</pre></td></tr>
+<tr><td>Parameter</td><td>Type</td><td>Description</td><td>Example Value</td></tr>
+<tr><td>-----------</td><td>-------------</td><td>-----------------------------------------------------------</td><td>--------------------------------------</td></tr>
+<tr><td>renameBands</td><td><code>RenameBands</code></td><td>Specification of how to rename the bands to avoid conflicts</td><td><pre><code>{ &quot;type&quot;: &quot;default&quot; }</pre></td></tr>
 </tbody></table>
 <h2 id="types-6"><a class="header" href="#types-6">Types</a></h2>
 <p>The following describes the types used in the parameters.</p>
@@ -1316,11 +1319,19 @@ Other options are <code>first</code> and <code>mean</code> which will calculate 
 <h2 id="parameters-12"><a class="header" href="#parameters-12">Parameters</a></h2>
 <p>The <code>RasterVectorJoin</code> operator has the following parameters:</p>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>names</code></td><td><code>Array&lt;String&gt;</code></td><td>Each name reflects the output column of the join result.</td><td><pre>&quot;[&quot;NDVI&quot;, &quot;Elevation&quot;]&quot;</pre></td></tr>
+<tr><td><code>names</code></td><td><code>ColumnNames</code></td><td>Specify how the new column names are derived from the raster band names.</td><td><pre>&quot;{&quot;type&quot;: &quot;default}&quot;</pre></td></tr>
 <tr><td><code>featureAggregation</code></td><td><code>first</code> or <code>mean</code></td><td>The aggregation function to use for features covering multiple pixels.</td><td><pre>&quot;first&quot;</pre></td></tr>
 <tr><td><code>featureAggregationIgnoreNoData</code></td><td>(optional) <code>boolean</code></td><td>Whether to ignore no data values in the aggregation. Defaults to <code>false</code></td><td><pre>false</pre></td></tr>
 <tr><td><code>temporalAggregation</code></td><td><code>none</code>, <code>first</code> or <code>mean</code></td><td>The aggregation function to use for features covering multiple (raster) time steps.</td><td><pre>&quot;none&quot;</pre></td></tr>
 <tr><td><code>temporalAggregationIgnoreNoData</code></td><td>(optional) <code>boolean</code></td><td>Whether to ignore no data values in the aggregation. Defaults to <code>false</code></td><td><pre>false</pre></td></tr>
+</tbody></table>
+<h2 id="types-7"><a class="header" href="#types-7">Types</a></h2>
+<h3 id="columnnames"><a class="header" href="#columnnames">ColumnNames</a></h3>
+<p>The <code>ColumnNames</code> type is used to specify how the new column names are derived from the raster band names.</p>
+<table><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>{&quot;type&quot;: &quot;default&quot;}</code></td><td>Appends &quot; (n)&quot; to the band name with the smallest <code>n</code> that avoids a conflict</td></tr>
+<tr><td><code>{&quot;type&quot;: &quot;suffix&quot;, &quot;values&quot;: [string]}</code></td><td>Specifies a suffix for each input, to be appended to the band names</td></tr>
+<tr><td><code>{&quot;type&quot;: &quot;rename&quot;, &quot;values&quot;: [string]}</code></td><td>A list of names for each new column</td></tr>
 </tbody></table>
 <h2 id="errors-10"><a class="header" href="#errors-10">Errors</a></h2>
 <p>If the length of <code>names</code> is not equal to the number of raster inputs, an error is thrown.</p>
@@ -1480,7 +1491,7 @@ If we perform a query with an instant like [2021-01-01, 2021-01-01), we will get
 <tr><td><code>windowReference</code></td><td><a href="operators//datatypes/timeinstance.html"><code>TimeInstance</code></a></td><td>(Optional) anchor point for the aggregation windows. Default value is <code>1970-01-01T00:00:00Z</code></td><td><code>1970-01-01T00:00:00Z</code></td></tr>
 <tr><td><code>outputType</code></td><td><a href="operators//datatypes/rasterdatatype.html"><code>RasterDataType</code></a></td><td>(Optional) A raster data type for the output. Same as input, if not specified.</td><td><pre><code>U8</code><pre></td></tr>
 </tbody></table>
-<h2 id="types-7"><a class="header" href="#types-7">Types</a></h2>
+<h2 id="types-8"><a class="header" href="#types-8">Types</a></h2>
 <p>The following describes the types used in the parameters.</p>
 <h3 id="aggregation"><a class="header" href="#aggregation">Aggregation</a></h3>
 <p>There are different methods that can be used to aggregate the raster time series.
@@ -1675,7 +1686,7 @@ The output feature collection contains the result of the centroid expression rep
 <p><em>Note:</em>
 If a name in <code>inputColumns</code> contains any characters other than letters, numbers, and underscores, a canonical variable name has so be used in the expression.
 For example, the column name <code>population size</code> has to be referred to as <code>population_size</code> in the expression.</p>
-<h2 id="types-8"><a class="header" href="#types-8">Types</a></h2>
+<h2 id="types-9"><a class="header" href="#types-9">Types</a></h2>
 <p>The following describes the types used in the parameters.</p>
 <h3 id="expression-1"><a class="header" href="#expression-1">Expression</a></h3>
 <p>Expressions are simple scripts to perform feature-wise computations.

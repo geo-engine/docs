@@ -184,11 +184,19 @@ Other options are <code>first</code> and <code>mean</code> which will calculate 
 <h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
 <p>The <code>RasterVectorJoin</code> operator has the following parameters:</p>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>names</code></td><td><code>Array&lt;String&gt;</code></td><td>Each name reflects the output column of the join result.</td><td><pre>&quot;[&quot;NDVI&quot;, &quot;Elevation&quot;]&quot;</pre></td></tr>
+<tr><td><code>names</code></td><td><code>ColumnNames</code></td><td>Specify how the new column names are derived from the raster band names.</td><td><pre>&quot;{&quot;type&quot;: &quot;default}&quot;</pre></td></tr>
 <tr><td><code>featureAggregation</code></td><td><code>first</code> or <code>mean</code></td><td>The aggregation function to use for features covering multiple pixels.</td><td><pre>&quot;first&quot;</pre></td></tr>
 <tr><td><code>featureAggregationIgnoreNoData</code></td><td>(optional) <code>boolean</code></td><td>Whether to ignore no data values in the aggregation. Defaults to <code>false</code></td><td><pre>false</pre></td></tr>
 <tr><td><code>temporalAggregation</code></td><td><code>none</code>, <code>first</code> or <code>mean</code></td><td>The aggregation function to use for features covering multiple (raster) time steps.</td><td><pre>&quot;none&quot;</pre></td></tr>
 <tr><td><code>temporalAggregationIgnoreNoData</code></td><td>(optional) <code>boolean</code></td><td>Whether to ignore no data values in the aggregation. Defaults to <code>false</code></td><td><pre>false</pre></td></tr>
+</tbody></table>
+<h2 id="types"><a class="header" href="#types">Types</a></h2>
+<h3 id="columnnames"><a class="header" href="#columnnames">ColumnNames</a></h3>
+<p>The <code>ColumnNames</code> type is used to specify how the new column names are derived from the raster band names.</p>
+<table><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>{&quot;type&quot;: &quot;default&quot;}</code></td><td>Appends &quot; (n)&quot; to the band name with the smallest <code>n</code> that avoids a conflict</td></tr>
+<tr><td><code>{&quot;type&quot;: &quot;suffix&quot;, &quot;values&quot;: [string]}</code></td><td>Specifies a suffix for each input, to be appended to the band names</td></tr>
+<tr><td><code>{&quot;type&quot;: &quot;rename&quot;, &quot;values&quot;: [string]}</code></td><td>A list of names for each new column</td></tr>
 </tbody></table>
 <h2 id="errors"><a class="header" href="#errors">Errors</a></h2>
 <p>If the length of <code>names</code> is not equal to the number of raster inputs, an error is thrown.</p>
