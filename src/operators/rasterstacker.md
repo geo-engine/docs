@@ -12,6 +12,9 @@ All inputs must have the same data type and spatial reference.
 | Parameter   | Type          | Description                                                 | Example Value                          |
 | ----------- | ------------- | ----------------------------------------------------------- | -------------------------------------- |
 | renameBands | `RenameBands` | Specification of how to rename the bands to avoid conflicts | <pre><code>{ "type": "default" }</pre> |
+| Parameter   | Type          | Description                                                 | Example Value                          |
+| ----------- | ------------- | ----------------------------------------------------------- | -------------------------------------- |
+| renameBands | `RenameBands` | Specification of how to rename the bands to avoid conflicts | <pre><code>{ "type": "default" }</pre> |
 
 ## Types
 
