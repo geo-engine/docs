@@ -33,15 +33,16 @@ The following describes the types used in the parameters.
 There are different methods that can be used to aggregate the raster time series.
 Encountering a _no data_ value makes the aggregation value of a pixel also _no data_ unless the `ignoreNoData` parameter is set to `true`.
 
-| Variant | Parameters             | Description                |
-| ------- | ---------------------- | -------------------------- |
-| `min`   | `ignoreNoData`: `bool` | minimum value              |
-| `max`   | `ignoreNoData`: `bool` | maximum value              |
-| `first` | `ignoreNoData`: `bool` | first encountered value    |
-| `last`  | `ignoreNoData`: `bool` | last encountered value     |
-| `mean`  | `ignoreNoData`: `bool` | mean value                 |
-| `sum`   | `ignoreNoData`: `bool` | sum of the values          |
-| `count` | `ignoreNoData`: `bool` | count the number of values |
+| Variant              | Parameters                                                 | Description                                                                                              |
+| -------------------- | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `min`                | `ignoreNoData`: `bool`                                     | minimum value                                                                                            |
+| `max`                | `ignoreNoData`: `bool`                                     | maximum value                                                                                            |
+| `first`              | `ignoreNoData`: `bool`                                     | first encountered value                                                                                  |
+| `last`               | `ignoreNoData`: `bool`                                     | last encountered value                                                                                   |
+| `mean`               | `ignoreNoData`: `bool`                                     | mean value                                                                                               |
+| `percentileEstimate` | `ignoreNoData`: `bool`, `percentile`: `number` in `(0, 1)` | computes a percentile estimate using the [P²](https://www.cs.wustl.edu/~jain/papers/ftp/psqr.pdf) method |
+| `sum`                | `ignoreNoData`: `bool`                                     | sum of the values                                                                                        |
+| `count`              | `ignoreNoData`: `bool`                                     | count the number of values                                                                               |
 
 **Attention:** For the variants `sum` and `count`, a saturating addition is used.
 This means, that if the sum of two values exceeds the maximum value of the data type, the result will be the maximum value of the data type.
