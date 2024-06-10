@@ -2247,12 +2247,14 @@ The operator returns an error if one of the selected attributes is not numeric.<
 <h3 id="parameter-2"><a class="header" href="#parameter-2">Parameter</a></h3>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
 <tr><td><code>columnNames</code></td><td><code>Vec&lt;String&gt;</code></td><td>The names of the attributes to generate statistics for.</td><td><code>[&quot;x&quot;,&quot;y&quot;]</code></td></tr>
+<tr><td><code>percentiles</code></td><td><code>Vec&lt;number&gt;</code></td><td>The percentiles to compute for each attribute.</td><td><code>[0.25, 0.5, 0.75]</code></td></tr>
 </tbody></table>
 <h2 id="raster-data-2"><a class="header" href="#raster-data-2">Raster Data</a></h2>
 <p>For raster data, the operator generates one statistic for each input raster.</p>
 <h3 id="parameter-3"><a class="header" href="#parameter-3">Parameter</a></h3>
 <table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
 <tr><td><code>columnNames</code></td><td><code>Vec&lt;String&gt;</code></td><td><em>Optional</em>: An alias for each input source. The operator will automatically name the rasters <code>Raster-1</code>, <code>Raster-2</code>, ... if this parameter is empty. If aliases are given, the number of aliases must match the number of input rasters. Otherwise an error is returned.</td><td><code>[&quot;A&quot;,&quot;B&quot;]</code>.</td></tr>
+<tr><td><code>percentiles</code></td><td><code>Vec&lt;number&gt;</code></td><td>The percentiles to compute for each band.</td><td><code>[0.25, 0.5, 0.75]</code></td></tr>
 </tbody></table>
 <h2 id="inputs-26"><a class="header" href="#inputs-26">Inputs</a></h2>
 <p>The operator consumes exactly one <em>vector</em> or multiple <em>raster</em> operators.</p>
@@ -2270,7 +2272,8 @@ The operator returns an error if one of the selected attributes is not numeric.<
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;Statistics&quot;,
   &quot;params&quot;: {
-    &quot;columnNames&quot;: [&quot;A&quot;]
+    &quot;columnNames&quot;: [&quot;A&quot;],
+    &quot;percentiles&quot;: [0.25, 0.5, 0.75]
   },
   &quot;sources&quot;: {
     &quot;source&quot;: [
@@ -2292,7 +2295,21 @@ The operator returns an error if one of the selected attributes is not numeric.<
     &quot;min&quot;: 1.0,
     &quot;max&quot;: 6.0,
     &quot;mean&quot;: 3.5,
-    &quot;stddev&quot;: 1.707
+    &quot;stddev&quot;: 1.707,
+    &quot;percentiles&quot;: [
+      {
+        &quot;percentile&quot;: 0.25,
+        &quot;value&quot;: 2.0
+      },
+      {
+        &quot;percentile&quot;: 0.5,
+        &quot;value&quot;: 3.5
+      },
+      {
+        &quot;percentile&quot;: 0.75,
+        &quot;value&quot;: 5.0
+      }
+    ]
   }
 }
 </code></pre>
