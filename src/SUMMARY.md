@@ -33,6 +33,7 @@
 
 - [Operators](./operators/intro.md)
 
+  - [BandNeighborhood](./operators/band-neighborhood.md)
   - [BandwiseExpression](./operators/bandwise-expression.md)
   - [ColumnRangeFilter](./operators/columnrangefilter.md)
   - [Expression](./operators/expression.md)
