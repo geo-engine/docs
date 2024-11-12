@@ -6,7 +6,7 @@ src = "src"
 title = "Geo Engine Docs"
 
 [rust]
-edition = "2018" # TODO: use 2021
+edition = "2021"
 
 [output.html]
 theme = "theme"

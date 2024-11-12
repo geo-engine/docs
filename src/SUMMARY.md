@@ -47,7 +47,6 @@
   - [RasterTypeConversion](./operators/rastertypeconversion.md)
   - [RasterVectorJoin](./operators/rastervectorjoin.md)
   - [Reprojection](./operators/reprojection.md)
-  - [RGB](./operators/rgb.md)
   - [TemporalRasterAggregation](./operators/temporalrasteraggregation.md)
   - [TimeProjection](./operators/timeprojection.md)
   - [TimeShift](./operators/timeshift.md)
