@@ -87,7 +87,7 @@ However, the last expression must be without a semicolon.
 
 ## Inputs
 
-The `Expression` operator expects one rater input with at most 8 bands.
+The `Expression` operator expects one raster input with at most 8 bands.
 
 | Parameter | Type                 |
 | --------- | -------------------- |

@@ -17,9 +17,10 @@ The operator returns an error if one of the selected attributes is not numeric.
 
 ### Parameter
 
-| Parameter     | Type          | Description                                             | Example Value |
-| ------------- | ------------- |---------------------------------------------------------| ------------- |
-| `columnNames` | `Vec<String>` | The names of the attributes to generate statistics for. | `["x","y"]`   |
+| Parameter     | Type          | Description                                             | Example Value       |
+| ------------- | ------------- | ------------------------------------------------------- | ------------------- |
+| `columnNames` | `Vec<String>` | The names of the attributes to generate statistics for. | `["x","y"]`         |
+| `percentiles` | `Vec<number>` | The percentiles to compute for each attribute.          | `[0.25, 0.5, 0.75]` |
 
 ## Raster Data
 
@@ -27,9 +28,10 @@ For raster data, the operator generates one statistic for each input raster.
 
 ### Parameter
 
-| Parameter       | Type          | Description                                                                                                                                                                                                                                                              | Example Value |
-| --------------- | ------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ------------- |
-| `columnNames`   | `Vec<String>` | _Optional_: An alias for each input source. The operator will automatically name the rasters `Raster-1`, `Raster-2`, ... if this parameter is empty. If aliases are given, the number of aliases must match the number of input rasters. Otherwise an error is returned. | `["A","B"]`.  |
+| Parameter     | Type          | Description                                                                                                                                                                                                                                                              | Example Value       |
+| ------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------- |
+| `columnNames` | `Vec<String>` | _Optional_: An alias for each input source. The operator will automatically name the rasters `Raster-1`, `Raster-2`, ... if this parameter is empty. If aliases are given, the number of aliases must match the number of input rasters. Otherwise an error is returned. | `["A","B"]`.        |
+| `percentiles` | `Vec<number>` | The percentiles to compute for each band.                                                                                                                                                                                                                                | `[0.25, 0.5, 0.75]` |
 
 ## Inputs
 
@@ -53,7 +55,8 @@ The operator returns an error in the following cases.
 {
   "type": "Statistics",
   "params": {
-    "columnNames": ["A"]
+    "columnNames": ["A"],
+    "percentiles": [0.25, 0.5, 0.75]
   },
   "sources": {
     "source": [
@@ -78,7 +81,21 @@ The operator returns an error in the following cases.
     "min": 1.0,
     "max": 6.0,
     "mean": 3.5,
-    "stddev": 1.707
+    "stddev": 1.707,
+    "percentiles": [
+      {
+        "percentile": 0.25,
+        "value": 2.0
+      },
+      {
+        "percentile": 0.5,
+        "value": 3.5
+      },
+      {
+        "percentile": 0.75,
+        "value": 5.0
+      }
+    ]
   }
 }
 ```
