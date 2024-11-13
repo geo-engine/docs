@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js geo-engine">
+<html lang="en" class="geo-engine sidebar-visible" dir="">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -9,10 +9,9 @@
         <!-- Custom HTML head -->
         
 
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
                 <link rel="icon" href="../favicon.svg">
                         <link rel="shortcut icon" href="../favicon.png">
@@ -33,17 +32,20 @@
         <!-- Custom theme stylesheets -->
         
                 <!-- MathJax -->
-        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-            </head>
-    <body>
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
+        <script>
             var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "geo-engine" : "geo-engine";
         </script>
-
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
@@ -59,46 +61,60 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
+        <script>
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('geo-engine')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
 
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
+            sidebar_toggle.checked = sidebar === 'visible';
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            
-            <div class="sidebar-scrollbox">
-                <!-- TODO: Replace with standard functionality: https://github.com/rust-lang/mdBook/pull/1584 -->
-                <div class="sidebar-book-logo">
+             <!-- TODO: Replace with standard functionality: https://github.com/rust-lang/mdBook/pull/1584 -->
+            <div class="sidebar-book-logo">
                     <img src="../images/GeoEngine_Mainlogo.png" alt="Geo Engine">
-                </div>
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../welcome.html"><strong aria-hidden="true">1.</strong> Welcome to Geo Engine Docs</a></li><li class="chapter-item expanded "><a href="../geoengine/intro.html"><strong aria-hidden="true">2.</strong> The Geo Engine</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../geoengine/datasets.html"><strong aria-hidden="true">2.1.</strong> Datasets</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.2.</strong> Engine</div></li><li class="chapter-item expanded "><a href="../geoengine/layers.html"><strong aria-hidden="true">2.3.</strong> Layers</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.4.</strong> Workflows</div></li></ol></li><li class="chapter-item expanded "><a href="../pro/intro.html"><strong aria-hidden="true">3.</strong> Pro Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../pro/users.html"><strong aria-hidden="true">3.1.</strong> Users and Permissions</a></li></ol></li><li class="chapter-item expanded "><a href="../api/intro.html"><strong aria-hidden="true">4.</strong> API</a></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">4.1.</strong> Datasets</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.2.</strong> Projects</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.3.</strong> Upload</div></li><li class="chapter-item expanded "><a href="../api/workflows.html"><strong aria-hidden="true">4.4.</strong> Workflows</a></li></ol></li><li class="chapter-item expanded "><a href="../datatypes/intro.html"><strong aria-hidden="true">5.</strong> Datatypes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../datatypes/colorizer.html"><strong aria-hidden="true">5.1.</strong> Colorizer</a></li><li class="chapter-item expanded "><a href="../datatypes/measurement.html"><strong aria-hidden="true">5.2.</strong> Measurement</a></li><li class="chapter-item expanded "><a href="../datatypes/queryrectangle.html"><strong aria-hidden="true">5.3.</strong> QueryRectangle</a></li><li class="chapter-item expanded "><a href="../datatypes/rasterbanddescriptor.html"><strong aria-hidden="true">5.4.</strong> RasterBandDescriptor</a></li><li class="chapter-item expanded "><a href="../datatypes/rasterdatatype.html"><strong aria-hidden="true">5.5.</strong> RasterDataType</a></li><li class="chapter-item expanded "><a href="../datatypes/timeinstance.html"><strong aria-hidden="true">5.6.</strong> TimeInstance</a></li><li class="chapter-item expanded "><a href="../datatypes/timeinterval.html"><strong aria-hidden="true">5.7.</strong> TimeInterval</a></li><li class="chapter-item expanded "><a href="../datatypes/timestep.html"><strong aria-hidden="true">5.8.</strong> TimeStep</a></li></ol></li><li class="chapter-item expanded "><a href="../operators/intro.html"><strong aria-hidden="true">6.</strong> Operators</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../operators/band-neighborhood-aggregate.html"><strong aria-hidden="true">6.1.</strong> BandNeighborhoodAggregate</a></li><li class="chapter-item expanded "><a href="../operators/bandwise-expression.html"><strong aria-hidden="true">6.2.</strong> BandwiseExpression</a></li><li class="chapter-item expanded "><a href="../operators/columnrangefilter.html"><strong aria-hidden="true">6.3.</strong> ColumnRangeFilter</a></li><li class="chapter-item expanded "><a href="../operators/expression.html"><strong aria-hidden="true">6.4.</strong> Expression</a></li><li class="chapter-item expanded "><a href="../operators/gdalsource.html"><strong aria-hidden="true">6.5.</strong> GdalSource</a></li><li class="chapter-item expanded "><a href="../operators/interpolation.html"><strong aria-hidden="true">6.6.</strong> Interpolation</a></li><li class="chapter-item expanded "><a href="../operators/linesimplification.html"><strong aria-hidden="true">6.7.</strong> LineSimplification</a></li><li class="chapter-item expanded "><a href="../operators/neighborhoodaggregate.html"><strong aria-hidden="true">6.8.</strong> NeighborhoodAggregate</a></li><li class="chapter-item expanded "><a href="../operators/ogrsource.html"><strong aria-hidden="true">6.9.</strong> OgrSource</a></li><li class="chapter-item expanded "><a href="../operators/pointinpolygon.html" class="active"><strong aria-hidden="true">6.10.</strong> PointInPolygon</a></li><li class="chapter-item expanded "><a href="../operators/rasterization.html"><strong aria-hidden="true">6.11.</strong> Rasterization</a></li><li class="chapter-item expanded "><a href="../operators/rasterscaling.html"><strong aria-hidden="true">6.12.</strong> RasterScaling</a></li><li class="chapter-item expanded "><a href="../operators/rasterstacker.html"><strong aria-hidden="true">6.13.</strong> RasterStacker</a></li><li class="chapter-item expanded "><a href="../operators/rastertypeconversion.html"><strong aria-hidden="true">6.14.</strong> RasterTypeConversion</a></li><li class="chapter-item expanded "><a href="../operators/rastervectorjoin.html"><strong aria-hidden="true">6.15.</strong> RasterVectorJoin</a></li><li class="chapter-item expanded "><a href="../operators/reprojection.html"><strong aria-hidden="true">6.16.</strong> Reprojection</a></li><li class="chapter-item expanded "><a href="../operators/rgb.html"><strong aria-hidden="true">6.17.</strong> RGB</a></li><li class="chapter-item expanded "><a href="../operators/temporalrasteraggregation.html"><strong aria-hidden="true">6.18.</strong> TemporalRasterAggregation</a></li><li class="chapter-item expanded "><a href="../operators/timeprojection.html"><strong aria-hidden="true">6.19.</strong> TimeProjection</a></li><li class="chapter-item expanded "><a href="../operators/timeshift.html"><strong aria-hidden="true">6.20.</strong> TimeShift</a></li><li class="chapter-item expanded "><a href="../operators/vectorexpression.html"><strong aria-hidden="true">6.21.</strong> VectorExpression</a></li><li class="chapter-item expanded "><a href="../operators/vectorjoin.html"><strong aria-hidden="true">6.22.</strong> VectorJoin</a></li><li class="chapter-item expanded "><a href="../operators/visualpointclustering.html"><strong aria-hidden="true">6.23.</strong> VisualPointClustering</a></li></ol></li><li class="chapter-item expanded "><a href="../plots/intro.html"><strong aria-hidden="true">7.</strong> Plots</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../plots/boxplot.html"><strong aria-hidden="true">7.1.</strong> BoxPlot</a></li><li class="chapter-item expanded "><a href="../plots/classHistogram.html"><strong aria-hidden="true">7.2.</strong> ClassHistogram</a></li><li class="chapter-item expanded "><a href="../plots/featureattributevaluesoverTime.html"><strong aria-hidden="true">7.3.</strong> FeatureAttributeValuesOverTime</a></li><li class="chapter-item expanded "><a href="../plots/histogram.html"><strong aria-hidden="true">7.4.</strong> Histogram</a></li><li class="chapter-item expanded "><a href="../plots/meanrasterpixelvaluesovertime.html"><strong aria-hidden="true">7.5.</strong> MeanRasterPixelValuesOverTime</a></li><li class="chapter-item expanded "><a href="../plots/piechart.html"><strong aria-hidden="true">7.6.</strong> PieChart</a></li><li class="chapter-item expanded "><a href="../plots/scatterplot.html"><strong aria-hidden="true">7.7.</strong> ScatterPlot</a></li><li class="chapter-item expanded "><a href="../plots/statistics.html"><strong aria-hidden="true">7.8.</strong> Statistics</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> OGC Access</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">8.1.</strong> WMS</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> Solutions</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">9.1.</strong> Geo Engine Pro</div></li></ol></li></ol>                <ol class="chapter">
-                    <li class="part-title">API Reference</li>
-                    <li class="chapter-item">
-                        <a href="https://python.docs.geoengine.io" style="width: 100%; display: flex; flex-direction: row;">
-                            <span style="flex: 1;">Python</span>
-                            <i class="fa fa-external-link" style="align-self: center;"></i>
-                        </a>
-                    </li>
-                </ol>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            </div>
+
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox">
+                <ol class="chapter">
+                <li class="part-title">API Reference</li>
+                <li class="chapter-item">
+                    <a href="https://python.docs.geoengine.io" style="width: 100%; display: flex; flex-direction: row;">
+                        <span style="flex: 1;">Python</span>
+                        <i class="fa fa-external-link" style="align-self: center;"></i>
+                    </a>
+                </li>
+            </ol>
+            </mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+
+            
+
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -106,13 +122,12 @@
             <div class="page">
                 
                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
-                        <!-- TODO: include back if we have a dark theme -->
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list" style="display: none;">
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
@@ -149,7 +164,7 @@
                 </div>
                 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
+                <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
@@ -206,7 +221,7 @@ All features, that weren't inside any forest polygon, are considered either part
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
-                                                    <a rel="next" href="../operators/rasterization.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                                    <a rel="next prefetch" href="../operators/rasterization.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -220,7 +235,7 @@ All features, that weren't inside any forest polygon, are considered either part
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
-                                    <a rel="next" href="../operators/rasterization.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                    <a rel="next prefetch" href="../operators/rasterization.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                             </nav>
@@ -230,21 +245,22 @@ All features, that weren't inside any forest polygon, are considered either part
         
         
         
-                <script type="text/javascript">
+                <script>
             window.playground_copyable = true;
         </script>
         
         
-                <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+                <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
         
-        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
         
         
+    </div>
     </body>
 </html>
