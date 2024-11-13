@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -13,19 +13,18 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Setup mdBook
-      uses: peaceiris/actions-mdbook@v1
-      with:
-        mdbook-version: '0.4.12'
-      
-    - name: Build
-      run: mdbook build
-      
-    - name: Run tests
-      run: mdbook test
+      - uses: actions/checkout@v2
+
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@v1
+        with:
+          mdbook-version: "0.4.42"
+
+      - name: Build
+        run: mdbook build
+
+      - name: Run tests
+        run: mdbook test
