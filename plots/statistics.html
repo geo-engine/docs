@@ -1,39 +1,38 @@
 <!DOCTYPE HTML>
-<html lang="en" class="geo-engine sidebar-visible" dir="">
+<html lang="en" class="geo-engine sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Statistics - Geo Engine Docs</title>
-                
+
 
         <!-- Custom HTML head -->
-        
 
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-                <link rel="icon" href="../favicon.svg">
-                        <link rel="shortcut icon" href="../favicon.png">
-                <link rel="stylesheet" href="../css/variables.css">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
-                <link rel="stylesheet" href="../css/print.css" media="print">
-        
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
         <!-- Fonts -->
         <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-                <link rel="stylesheet" href="../fonts/fonts.css">
-        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../highlight.css">
         <link rel="stylesheet" href="../tomorrow-night.css">
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
-                <!-- MathJax -->
+
+        <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        
+
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
@@ -120,7 +119,6 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
@@ -137,22 +135,22 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
-                                            </div>
+                    </div>
 
                     <h1 class="menu-title">Geo Engine Docs</h1>
 
                     <div class="right-buttons">
-                                                <a href="../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                                                                        
+
                     </div>
                 </div>
 
-                                <div id="search-wrapper" class="hidden">
+                <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
                         <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
@@ -162,7 +160,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -187,22 +185,25 @@ Then, you can use this operator to get basic count statistics.</p>
 <p>In the case of vector data, the operator generates one statistic for each of the selected numerical attributes.
 The operator returns an error if one of the selected attributes is not numeric.</p>
 <h3 id="parameter"><a class="header" href="#parameter">Parameter</a></h3>
-<table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>columnNames</code></td><td><code>Vec&lt;String&gt;</code></td><td>The names of the attributes to generate statistics for.</td><td><code>[&quot;x&quot;,&quot;y&quot;]</code></td></tr>
+<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<tr><td><code>columnNames</code></td><td><code>Vec&lt;String&gt;</code></td><td>The names of the attributes to generate statistics for.</td><td><code>["x","y"]</code></td></tr>
 <tr><td><code>percentiles</code></td><td><code>Vec&lt;number&gt;</code></td><td>The percentiles to compute for each attribute.</td><td><code>[0.25, 0.5, 0.75]</code></td></tr>
 </tbody></table>
+</div>
 <h2 id="raster-data"><a class="header" href="#raster-data">Raster Data</a></h2>
 <p>For raster data, the operator generates one statistic for each input raster.</p>
 <h3 id="parameter-1"><a class="header" href="#parameter-1">Parameter</a></h3>
-<table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>columnNames</code></td><td><code>Vec&lt;String&gt;</code></td><td><em>Optional</em>: An alias for each input source. The operator will automatically name the rasters <code>Raster-1</code>, <code>Raster-2</code>, ... if this parameter is empty. If aliases are given, the number of aliases must match the number of input rasters. Otherwise an error is returned.</td><td><code>[&quot;A&quot;,&quot;B&quot;]</code>.</td></tr>
+<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<tr><td><code>columnNames</code></td><td><code>Vec&lt;String&gt;</code></td><td><em>Optional</em>: An alias for each input source. The operator will automatically name the rasters <code>Raster-1</code>, <code>Raster-2</code>, ... if this parameter is empty. If aliases are given, the number of aliases must match the number of input rasters. Otherwise an error is returned.</td><td><code>["A","B"]</code>.</td></tr>
 <tr><td><code>percentiles</code></td><td><code>Vec&lt;number&gt;</code></td><td>The percentiles to compute for each band.</td><td><code>[0.25, 0.5, 0.75]</code></td></tr>
 </tbody></table>
+</div>
 <h2 id="inputs"><a class="header" href="#inputs">Inputs</a></h2>
 <p>The operator consumes exactly one <em>vector</em> or multiple <em>raster</em> operators.</p>
-<table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
 <tr><td><code>source</code></td><td><code>MultipleRasterOrSingleVectorSource</code></td></tr>
 </tbody></table>
+</div>
 <h2 id="errors"><a class="header" href="#errors">Errors</a></h2>
 <p>The operator returns an error in the following cases.</p>
 <ul>
@@ -212,17 +213,17 @@ The operator returns an error if one of the selected attributes is not numeric.<
 </ul>
 <h2 id="example-json"><a class="header" href="#example-json">Example JSON</a></h2>
 <pre><code class="language-json">{
-  &quot;type&quot;: &quot;Statistics&quot;,
-  &quot;params&quot;: {
-    &quot;columnNames&quot;: [&quot;A&quot;],
-    &quot;percentiles&quot;: [0.25, 0.5, 0.75]
+  "type": "Statistics",
+  "params": {
+    "columnNames": ["A"],
+    "percentiles": [0.25, 0.5, 0.75]
   },
-  &quot;sources&quot;: {
-    &quot;source&quot;: [
+  "sources": {
+    "source": [
       {
-        &quot;type&quot;: &quot;GdalSource&quot;,
-        &quot;params&quot;: {
-          &quot;data&quot;: &quot;ndvi&quot;
+        "type": "GdalSource",
+        "params": {
+          "data": "ndvi"
         }
       }
     ]
@@ -231,25 +232,25 @@ The operator returns an error if one of the selected attributes is not numeric.<
 </code></pre>
 <h3 id="example-output"><a class="header" href="#example-output">Example Output</a></h3>
 <pre><code class="language-json">{
-  &quot;A&quot;: {
-    &quot;valueCount&quot;: 6,
-    &quot;validCount&quot;: 6,
-    &quot;min&quot;: 1.0,
-    &quot;max&quot;: 6.0,
-    &quot;mean&quot;: 3.5,
-    &quot;stddev&quot;: 1.707,
-    &quot;percentiles&quot;: [
+  "A": {
+    "valueCount": 6,
+    "validCount": 6,
+    "min": 1.0,
+    "max": 6.0,
+    "mean": 3.5,
+    "stddev": 1.707,
+    "percentiles": [
       {
-        &quot;percentile&quot;: 0.25,
-        &quot;value&quot;: 2.0
+        "percentile": 0.25,
+        "value": 2.0
       },
       {
-        &quot;percentile&quot;: 0.5,
-        &quot;value&quot;: 3.5
+        "percentile": 0.5,
+        "value": 3.5
       },
       {
-        &quot;percentile&quot;: 0.75,
-        &quot;value&quot;: 5.0
+        "percentile": 0.75,
+        "value": 5.0
       }
     ]
   }
@@ -260,44 +261,44 @@ The operator returns an error if one of the selected attributes is not numeric.<
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                                                    <a rel="prev" href="../plots/scatterplot.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../plots/scatterplot.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
-                        
+
+
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                                    <a rel="prev" href="../plots/scatterplot.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../plots/scatterplot.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
-                            </nav>
+
+            </nav>
 
         </div>
 
-        
-        
-        
-                <script>
+
+
+
+        <script>
             window.playground_copyable = true;
         </script>
-        
-        
-                <script src="../elasticlunr.min.js"></script>
+
+
+        <script src="../elasticlunr.min.js"></script>
         <script src="../mark.min.js"></script>
         <script src="../searcher.js"></script>
-        
+
         <script src="../clipboard.min.js"></script>
         <script src="../highlight.js"></script>
         <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
-        
-        
+
+
     </div>
     </body>
 </html>
