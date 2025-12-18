@@ -1,6 +1,6 @@
 # Users and Permission
 
-The Pro version of Geo Engine includes a user management system.
+Geo Engine includes a user management system.
 Users can either be _anonymous_ or _registered_.
 On the first startup, an admin user will be created.
 
