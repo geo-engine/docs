@@ -7,11 +7,8 @@
   - [Datasets](./geoengine/datasets.md)
   - [Engine]()
   - [Layers](./geoengine/layers.md)
+  - [Users and Permissions](./geoengine/users.md)
   - [Workflows]()
-
-- [Pro Features](./pro/intro.md)
-
-  - [Users and Permissions](pro/users.md)
 
 - [API](./api/intro.md)
 
@@ -70,7 +67,3 @@
 - [OGC Access]()
 
   - [WMS]()
-
-- [Solutions]()
-
-  - [Geo Engine Pro]()
