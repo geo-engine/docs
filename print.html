@@ -13,42 +13,54 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="favicon-6d2138ad.svg">
+        <link rel="shortcut icon" href="favicon-35be89bf.png">
+        <link rel="stylesheet" href="css/variables-09492115.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-3feed658.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-        <!-- Provide site root to javascript -->
+        <!-- Provide site root and default themes to javascript -->
         <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "geo-engine" : "geo-engine";
+            const path_to_root = "";
+            const default_light_theme = "geo-engine";
+            const default_dark_theme = "geo-engine";
+            window.path_to_searchindex_js = "searchindex-9e5a954c.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc.js"></script>
+        <script src="toc-3ac5cf7e.js"></script>
     </head>
     <body>
-    <div id="body-container">
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -62,7 +74,8 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
@@ -71,29 +84,31 @@
             html.classList.add("js");
         </script>
 
-        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-             <!-- TODO: Replace with standard functionality: https://github.com/rust-lang/mdBook/pull/1584 -->
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- TODO: Replace with standard functionality: https://github.com/rust-lang/mdBook/pull/1584 -->
             <div class="sidebar-book-logo">
                     <img src="images/GeoEngine_Mainlogo.png" alt="Geo Engine">
             </div>
-
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox">
                 <ol class="chapter">
@@ -101,7 +116,7 @@
                 <li class="chapter-item">
                     <a href="https://python.docs.geoengine.io" style="width: 100%; display: flex; flex-direction: row;">
                         <span style="flex: 1;">Python</span>
-                        <i class="fa fa-external-link" style="align-self: center;"></i>
+                        <span style="align-self: center;"><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-17.7 0-32 14.3-32 32s14.3 32 32 32h50.7L169.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L384 141.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V64c0-17.7-14.3-32-32-32H288zM80 64C35.8 64 0 99.8 0 144V400c0 44.2 35.8 80 80 80H336c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v80c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V144c0-8.8 7.2-16 16-16h80c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/></svg></span></span>
                     </a>
                 </li>
             </ol>
@@ -109,35 +124,33 @@
             <noscript>
                 <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
             </noscript>
-
-            
-
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <div id="page-wrapper" class="page-wrapper">
+        <div id="mdbook-page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
                         </label>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
                         </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
                         </button>
                     </div>
 
@@ -145,38 +158,44 @@
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
                     </div>
                 </div>
 
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
                     </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
                         </ul>
                     </div>
                 </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script>
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
-                <div id="content" class="content">
+                <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="welcome-to-geo-engine-docs"><a class="header" href="#welcome-to-geo-engine-docs">Welcome to Geo Engine Docs</a></h1>
 <p>Geo Engine is a cloud-ready geo-spatial data processing platform.
 This documentation presents the foundations of the system and how to use it.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="the-geo-engine"><a class="header" href="#the-geo-engine">The Geo Engine</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="the-geo-engine"><a class="header" href="#the-geo-engine">The Geo Engine</a></h1>
 <p>Geo Engine is a cloud-ready geospatial data processing platform.
 Here, we give an overview of its architecture and describe the main components.</p>
 <h2 id="architecture"><a class="header" href="#architecture">Architecture</a></h2>
@@ -186,7 +205,7 @@ Take from Google Slide…
  - Crop with Inkscape,
  - and scale x2.
 -->
-<p><img src="geoengine/../images/architecture.svg" alt="Architecture" /></p>
+<p><img src="images/architecture.svg" alt="Architecture"></p>
 <p>Geo Engine consists of the backend and several frontends.
 The backend is subdivided into three subcomponents: services, operators, and data types.
 Data types specify primitives like feature collections for vector or gridded raster data.
@@ -201,9 +220,10 @@ Each of the subcomponents can have additions in Geo Engine Pro, for instance, Us
 3rd party applications like QGIS can access Geo Engine via its OGC interfaces.</p>
 <p>All components of Geo Engine are fully containerized and Docker-ready.
 Geo Engine builds upon several technologies, including GDAL, arrow, Angular, and OpenLayers.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="datasets"><a class="header" href="#datasets">Datasets</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="datasets"><a class="header" href="#datasets">Datasets</a></h1>
 <p>A dataset is a loadable unit in Geo Engine.
-It is a parameter of a source operator (e.g., a <a href="geoengine/../operators/gdalsource.html"><code>GdalSource</code></a>) and identifies the data that is loaded.
+It is a parameter of a source operator (e.g., a <a href="#gdalsource"><code>GdalSource</code></a>) and identifies the data that is loaded.
 Geo Engine supports different types of data, reflected by a <code>DataId</code>, which refers to internal datasets and external data.</p>
 <h2 id="internal-dataset"><a class="header" href="#internal-dataset">Internal dataset</a></h2>
 <p>An internal dataset is a dataset that is stored in the Geo Engine.
@@ -221,29 +241,32 @@ While the <code>DatasetProviderId</code> is usually a UUID that identifies the d
 The namespace cannot be omitted and is <code>_</code> for the global namespace.
 For instance, <code>_:{uuid}:name</code> or <code>namespace:{uuid}:name</code> refer to datasets.
 If the <em>name</em> is a complex string, it can be enclosed by backticks, e.g., <code>namespace:{uuid}:`name with spaces`</code>.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="layers"><a class="header" href="#layers">Layers</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="layers"><a class="header" href="#layers">Layers</a></h1>
 <!-- TODO: Link to workflow section in `/geoengine` rather than `/api` when available -->
 <p>A layer is a browsable unit in Geo Engine.
-In general, it is a named <a href="geoengine/../api/workflows.html"><code>Workflow</code></a> with additional meta information like a description and a default <a href="geoengine/../datatypes/colorizer.html"><code>Colorizer</code></a>.
+In general, it is a named <a href="#workflows"><code>Workflow</code></a> with additional meta information like a description and a default <a href="#colorizer"><code>Colorizer</code></a>.
 Layers are identified by a <code>LayerId</code>, which is usually a UUID.
-Every layer can be part of one or more <a href="geoengine/./layers.html#layer-collections"><code>Layer collections</code></a>.</p>
+Every layer can be part of one or more <a href="#layer-collections"><code>Layer collections</code></a>.</p>
 <h2 id="layer-collections"><a class="header" href="#layer-collections">Layer collections</a></h2>
-<p>Layer collections are groups of <a href="geoengine/./layers.html"><code>Layers</code></a>.
+<p>Layer collections are groups of <a href="#layers"><code>Layers</code></a>.
 The collections themselves can be grouped inside other collections.
 Every layer collection has a name and a description.
 Layer collections, just like layers, can be part of one or more other layer collections.</p>
 <h2 id="browsing"><a class="header" href="#browsing">Browsing</a></h2>
-<p>Inside Geo Engine's web interface, you can browse the available layers and layer collections when adding data.</p>
+<p>Inside Geo Engine’s web interface, you can browse the available layers and layer collections when adding data.</p>
 <p>Inside Python, you can use the</p>
 <pre><code class="language-python">ge.layer_collection()
 </code></pre>
 <p>function to get a list of the root collection which contains paths to all underlying layers.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="pro-features"><a class="header" href="#pro-features">Pro Features</a></h1>
-<p>While much of Geo Engine's functionality is Open Source and freely usable, some parts are only available in the Pro version.
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="pro-features"><a class="header" href="#pro-features">Pro Features</a></h1>
+<p>While much of Geo Engine’s functionality is Open Source and freely usable, some parts are only available in the Pro version.
 To use the Pro version, you need to purchase a Pro license.
 You may, however, be eligible for a free academic license.
 Please contact us at <a href="mailto:info@geoengine.de?subject=Academic%20License">info@geoengine.de</a> to request one.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="users-and-permission"><a class="header" href="#users-and-permission">Users and Permission</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="users-and-permission"><a class="header" href="#users-and-permission">Users and Permission</a></h1>
 <p>The Pro version of Geo Engine includes a user management system.
 Users can either be <em>anonymous</em> or <em>registered</em>.
 On the first startup, an admin user will be created.</p>
@@ -262,7 +285,7 @@ Please refer to the API documentation (TODO: link) for more information.
 Alternatively, you can also use our Python library to manage permissions.
 Please refer to the <a href="https://python.docs.geoengine.io/">Python library documentation</a> for more information.</p>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
-<p>Let's say Alice creates a project P.
+<p>Let’s say Alice creates a project P.
 She automatically gets the <code>Owner</code> permission assigned on the project to her user role.
 Then, she adds a <code>Read</code> permission for User Bob.
 Before the permission is added, the system checks for the <code>Owner</code> permission on project P.
@@ -323,9 +346,11 @@ When later on Erin gets the role R assigned, she automatically gains access to p
 </ul>
 </li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="api"><a class="header" href="#api">API</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="api"><a class="header" href="#api">API</a></h1>
 <p>This chapter introduces the API of Geo Engine.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="workflows"><a class="header" href="#workflows">Workflows</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="workflows"><a class="header" href="#workflows">Workflows</a></h1>
 <p>This section introduces the workflow API of Geo Engine.</p>
 <h2 id="resultdescriptor"><a class="header" href="#resultdescriptor">ResultDescriptor</a></h2>
 <p>Call <code>/workflow/{workflowId}/metadata</code> to get the result descriptor of the workflow. It describes the result of the workflow by data type, spatial reference, temporal and spatial extent and some more information that is specific to raster and vector results.</p>
@@ -367,9 +392,11 @@ When later on Erin gets the role R assigned, she automatically gains access to p
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="datatypes"><a class="header" href="#datatypes">Datatypes</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="datatypes"><a class="header" href="#datatypes">Datatypes</a></h1>
 <p>This chapter introduces the datatypes of Geo Engine.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="colorizer"><a class="header" href="#colorizer">Colorizer</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="colorizer"><a class="header" href="#colorizer">Colorizer</a></h1>
 <p>A colorizer specifies a mapping between values and pixels/objects of an output image.
 Different variants of colorizers perform different kinds of mapping.
 In general, there are two families of colorizers: <strong><em>gradient</em></strong> and <strong><em>palette</em></strong>.
@@ -381,7 +408,7 @@ The fields <code>overColor</code> and <code>underColor</code> are used for all o
 For instance, if there are breakpoints defined from <code>0</code> to <code>10</code>, but a value of <code>-5</code> or <code>11</code> is mapped to a color, the respective field will be chosen instead.
 This way, you can specifically highlight values that lie outside of a given range.</p>
 <p>For a <code>palette</code> colorizer, there are no <code>overColor</code> and <code>underColor</code> fields.
-If a given value does not match any entry in the palette's definition, it is mapped to the <code>defaultColor</code>.
+If a given value does not match any entry in the palette’s definition, it is mapped to the <code>defaultColor</code>.
 The <code>noDataColor</code> works in the same manner as in the <em>gradiant</em> variants.</p>
 <p>Colors are defined as RGBA arrays, where the first three values refer to red, green and blue and the fourth one to alpha, which means transparency.
 The values range from <code>0</code> to <code>255</code>.
@@ -449,7 +476,7 @@ Unmapped values result in the <code>defaultColor</code>.</p>
 }
 </code></pre>
 <h2 id="rgba"><a class="header" href="#rgba">RGBA</a></h2>
-<p>The RGBA colorizer maps <code>U32</code> values "as is" to RGBA colors.
+<p>The RGBA colorizer maps <code>U32</code> values “as is” to RGBA colors.
 8 and 16 bit values are interpreted as grayscale colors.
 64 bit values are interpreted as RGBA colors (but loose precision).</p>
 <h3 id="example-json-3"><a class="header" href="#example-json-3">Example JSON</a></h3>
@@ -457,7 +484,8 @@ Unmapped values result in the <code>defaultColor</code>.</p>
   "type": "rgba"
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="measurement"><a class="header" href="#measurement">Measurement</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="measurement"><a class="header" href="#measurement">Measurement</a></h1>
 <p>Measurements describe stored data, i.e. what is measured and in which unit.</p>
 <h2 id="unitless"><a class="header" href="#unitless">Unitless</a></h2>
 <p>Some values do not have an associated measurement or no information is present.</p>
@@ -468,7 +496,7 @@ Unmapped values result in the <code>defaultColor</code>.</p>
 </code></pre>
 <h2 id="continuous"><a class="header" href="#continuous">Continuous</a></h2>
 <p>The type <code>continuous</code> specifies a continuous variable that is measured in a certain unit.</p>
-<h3 id="example-json-5"><a class="header" href="#example-json-5">Example JSON</a></h3>
+<h3 id="example-json-1-1"><a class="header" href="#example-json-1-1">Example JSON</a></h3>
 <pre><code class="language-json">{
   "type": "continuous",
   "measurement": "Reflectance",
@@ -477,7 +505,7 @@ Unmapped values result in the <code>defaultColor</code>.</p>
 </code></pre>
 <h2 id="classification"><a class="header" href="#classification">Classification</a></h2>
 <p>A classification maps numbers to named classes.</p>
-<h3 id="example-json-6"><a class="header" href="#example-json-6">Example JSON</a></h3>
+<h3 id="example-json-2-1"><a class="header" href="#example-json-2-1">Example JSON</a></h3>
 <pre><code class="language-json">{
   "type": "classification",
   "measurement": "Land Cover",
@@ -488,7 +516,8 @@ Unmapped values result in the <code>defaultColor</code>.</p>
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="queryrectangle"><a class="header" href="#queryrectangle">QueryRectangle</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="queryrectangle"><a class="header" href="#queryrectangle">QueryRectangle</a></h1>
 <p>A query rectangle defines a multi-dimensional spatial query in Geo Engine.
 It consists of three parts:</p>
 <ul>
@@ -501,7 +530,7 @@ For raster queries, the spatial bounds define a spatial partition.
 This means the lower right corner of the spatial bounds is not included in the query.
 For vector queries, the spatial bounds define a bounding box, i.e., a rectangle where all bounds are included.
 Plot queries behave like vector queries.</p>
-<h1 id="example-json-7"><a class="header" href="#example-json-7">Example JSON</a></h1>
+<h1 id="example-json-5"><a class="header" href="#example-json-5">Example JSON</a></h1>
 <pre><code class="language-json">{
   "spatial_bounds": {
     "upper_left_coordinate": {
@@ -523,10 +552,11 @@ Plot queries behave like vector queries.</p>
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="rasterbanddescriptor"><a class="header" href="#rasterbanddescriptor">RasterBandDescriptor</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="rasterbanddescriptor"><a class="header" href="#rasterbanddescriptor">RasterBandDescriptor</a></h1>
 <p>A raster band descriptor describes a single band of a raster source.
-The description contains a name and a <a href="datatypes//datatypes/measurement.html">Measurement</a>.</p>
-<h2 id="example-json-8"><a class="header" href="#example-json-8">Example JSON</a></h2>
+The description contains a name and a <a href="/datatypes/measurement.html">Measurement</a>.</p>
+<h2 id="example-json-6"><a class="header" href="#example-json-6">Example JSON</a></h2>
 <pre><code class="language-json">{
   "name": "NDVI",
   "measurement": {
@@ -535,7 +565,8 @@ The description contains a name and a <a href="datatypes//datatypes/measurement.
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="raster-data-type"><a class="header" href="#raster-data-type">Raster Data Type</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="raster-data-type"><a class="header" href="#raster-data-type">Raster Data Type</a></h1>
 <p>Rasters can have the following data types:</p>
 <ul>
 <li>U8: unsigned 8-bit integer</li>
@@ -549,25 +580,27 @@ The description contains a name and a <a href="datatypes//datatypes/measurement.
 <li>F32: 32-bit floating-point</li>
 <li>F64: 64-bit floating-point</li>
 </ul>
-<h1 id="example-json-9"><a class="header" href="#example-json-9">Example JSON</a></h1>
+<h1 id="example-json-7"><a class="header" href="#example-json-7">Example JSON</a></h1>
 <pre><code class="language-json">"U8"
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="time-instance"><a class="header" href="#time-instance">Time Instance</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="time-instance"><a class="header" href="#time-instance">Time Instance</a></h1>
 <p>A time instance is a single point in time.
 It is specified in UTC time zone 0 and has a maximum resolution of milliseconds.</p>
-<h1 id="example-json-10"><a class="header" href="#example-json-10">Example JSON</a></h1>
+<h1 id="example-json-8"><a class="header" href="#example-json-8">Example JSON</a></h1>
 <p>Specifying in ISO 8601:</p>
 <pre><code class="language-json">"2010-01-01T00:00:00Z"
 </code></pre>
 <p>Using the same date as a UNIX timestamp in milliseconds:</p>
 <pre><code class="language-json">1262304000000
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="time-interval"><a class="header" href="#time-interval">Time Interval</a></h1>
-<p>A time interval consists of two <a href="datatypes/./timeinstance.html"><code>TimeInstance</code>s</a>.
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="time-interval"><a class="header" href="#time-interval">Time Interval</a></h1>
+<p>A time interval consists of two <a href="#time-instance"><code>TimeInstance</code>s</a>.
 Please be aware, that the interval is defined in close-open semantics.
 This means, that the start time is inclusive and the end time of the interval is exclusive.
 In mathematical notation, the interval is defined as <code>[start, end)</code>.</p>
-<h1 id="example-json-11"><a class="header" href="#example-json-11">Example JSON</a></h1>
+<h1 id="example-json-9"><a class="header" href="#example-json-9">Example JSON</a></h1>
 <p>Specifying in ISO 8601:</p>
 <pre><code class="language-json">{
   "start": "2010-01-01T00:00:00Z",
@@ -580,18 +613,30 @@ In mathematical notation, the interval is defined as <code>[start, end)</code>.<
   "end": 1293840000000
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="time-step"><a class="header" href="#time-step">Time Step</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="time-step"><a class="header" href="#time-step">Time Step</a></h1>
 <p>A time step consists of granularity and the number of steps.
 For instance, you can specify yearly steps by settings the granularity to <code>Years</code> and the number of steps to 1.
 Half-yearly steps can be specified by setting the granularity to <code>Months</code> and the number of steps to 6.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
 <tr><td><code>granularity</code></td><td><code>TimeGranularity</code></td><td>granularity of the time steps</td><td><code>months</code></td></tr>
 <tr><td><code>step</code></td><td><code>integer</code></td><td>number of time steps</td><td>1</td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="timegranularity"><a class="header" href="#timegranularity">TimeGranularity</a></h2>
 <p>The granularity of the time steps can take one of the following values.</p>
-<div class="table-wrapper"><table><thead><tr><th>Variant</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Variant</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td><code>millis</code></td><td>milliseconds</td></tr>
 <tr><td><code>seconds</code></td><td>seconds</td></tr>
 <tr><td><code>minutes</code></td><td>minutes</td></tr>
@@ -599,25 +644,34 @@ Half-yearly steps can be specified by setting the granularity to <code>Months</c
 <tr><td><code>days</code></td><td>days</td></tr>
 <tr><td><code>months</code></td><td>months</td></tr>
 <tr><td><code>years</code></td><td>years</td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
-<h1 id="example-json-12"><a class="header" href="#example-json-12">Example JSON</a></h1>
+<h1 id="example-json-10"><a class="header" href="#example-json-10">Example JSON</a></h1>
 <pre><code class="language-json">{
   "granularity": "months",
   "step": 1
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="operators"><a class="header" href="#operators">Operators</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="operators"><a class="header" href="#operators">Operators</a></h1>
 <p>This chapter introduces the operators of Geo Engine.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="band-neighborhood-agrgegate"><a class="header" href="#band-neighborhood-agrgegate">Band Neighborhood Agrgegate</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="band-neighborhood-agrgegate"><a class="header" href="#band-neighborhood-agrgegate">Band Neighborhood Agrgegate</a></h1>
 <p>The <code>BandNeighborhoodAggregate</code> operator performs a pixel-wise aggregate function over the neighboring bands.
 The output is a raster time-series with the same number of bands as the input raster.
 The pixel values are replaced by the result of the aggregate function.
 This allows e.g. the computation of a moving average over the bands of a raster time-series.</p>
 <h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
 <tr><td><code>aggregate</code></td><td><code>NeighborhoodAggregate</code></td><td>The aggrate method</td><td><code>{"type": "average", "windowSize": 3}</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="types"><a class="header" href="#types">Types</a></h2>
 <p>The following describes the types used in the parameters.</p>
@@ -650,7 +704,7 @@ Currently, the band distance is assumed to be constant and can be specified in t
   "distance": 1.0
 }
 </code></pre>
-<h4 id="example-2"><a class="header" href="#example-2">Example</a></h4>
+<h4 id="example-1-1"><a class="header" href="#example-1-1">Example</a></h4>
 <pre><code class="language-json">{
   "type": "firstDerivative",
   "bandDistance": {
@@ -661,13 +715,19 @@ Currently, the band distance is assumed to be constant and can be specified in t
 </code></pre>
 <h2 id="inputs"><a class="header" href="#inputs">Inputs</a></h2>
 <p>The <code>BandNeighborhoodAggregate</code> operator expects a single raster input .</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>source</code></td><td><code>SingleRasterSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-1"><a class="header" href="#errors-1">Errors</a></h2>
 <p>The operation fails if there are not enough bands in the input raster to compute the aggregate function or the number of bands does not match the requirements of the aggregate function.</p>
-<h2 id="example-json-13"><a class="header" href="#example-json-13">Example JSON</a></h2>
+<h2 id="example-json-11"><a class="header" href="#example-json-11">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "BandNeighborhoodAggregate",
   "params": {
@@ -704,27 +764,46 @@ Currently, the band distance is assumed to be constant and can be specified in t
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="bandwise-raster-expression"><a class="header" href="#bandwise-raster-expression">Bandwise Raster Expression</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="bandwise-raster-expression"><a class="header" href="#bandwise-raster-expression">Bandwise Raster Expression</a></h1>
 <p>The <code>BandwiseExpression</code> operator performs a pixel-wise mathematical expression on each band of a raster source.
-For more details on the expression syntax, see the <a href="operators//operators/expressions.html">Expression</a> operator.
+For more details on the expression syntax, see the <a href="/operators/expressions.html">Expression</a> operator.
 Note, that in the <code>BandwiseExpression</code> operator, it is only possible to map one pixel value to another and not reference any other pixels or bands.
 The variable name for the pixel value is <code>x</code>.</p>
 <h2 id="parameters-1"><a class="header" href="#parameters-1">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>expression</code></td><td><code>Expression</code></td><td>Expression script</td><td><pre><code>ln(1/x)</code></pre></td></tr>
-<tr><td><code>outputType</code></td><td><a href="operators//datatypes/rasterdatatype.html"><code>RasterDataType</code></a></td><td>A raster data type for the output</td><td><pre><code>U8</code></pre></td></tr>
-<tr><td><code>mapNoData</code></td><td><code>bool</code></td><td>Should NO DATA values be mapped with the <code>expression</code>? Otherwise, they are mapped automatically to NO DATA.</td><td><pre><code>false</code></pre></td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>expression</code></td><td><code>Expression</code></td><td>Expression script</td><td>
+<pre><code>ln(1/x)</code></pre>
+</td></tr>
+<tr><td><code>outputType</code></td><td><a href="/datatypes/rasterdatatype.html"><code>RasterDataType</code></a></td><td>A raster data type for the output</td><td>
+<pre><code>U8</code></pre>
+</td></tr>
+<tr><td><code>mapNoData</code></td><td><code>bool</code></td><td>Should NO DATA values be mapped with the <code>expression</code>? Otherwise, they are mapped automatically to NO DATA.</td><td>
+<pre><code>false</code></pre>
+</td></tr>
+</tbody>
+</table>
 </div>
 <h2 id="inputs-1"><a class="header" href="#inputs-1">Inputs</a></h2>
 <p>The <code>Expression</code> operator expects a single raster input .</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>source</code></td><td><code>SingleRasterSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-2"><a class="header" href="#errors-2">Errors</a></h2>
 <p>The parsing of the expression can fail if there are, e.g., syntax errors.</p>
-<h2 id="example-json-14"><a class="header" href="#example-json-14">Example JSON</a></h2>
+<h2 id="example-json-12"><a class="header" href="#example-json-12">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "BandwiseExpression",
   "params": {
@@ -756,7 +835,8 @@ The variable name for the pixel value is <code>x</code>.</p>
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="columnrangefilter"><a class="header" href="#columnrangefilter">ColumnRangeFilter</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="columnrangefilter"><a class="header" href="#columnrangefilter">ColumnRangeFilter</a></h1>
 <p>The <code>ColumnRangeFilter</code> operator allows filtering <code>FeatureCollection</code>s.
 Users can define one or more data ranges for a column in the data table that is then filtered.
 The filter can be used for numerical as well as textual columns.
@@ -764,21 +844,39 @@ Each range is inclusive, i.e., <code>[start, end]</code> includes as well the <c
 <p>For instance, you can filter a collection to only include column values that are either in the range 0-10 or 20-30.
 Moreover, you can specify the range <code>a</code> to <code>k</code> to dismiss all column values that start with larger letters in the alphabet.</p>
 <h2 id="parameters-2"><a class="header" href="#parameters-2">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>column</code></td><td>string</td><td>a column name of the <code>FeatureCollection</code></td><td><pre>"precipitation"</pre></td></tr>
-<tr><td><code>ranges</code></td><td>List of either string or number ranges</td><td>one or more ranges of either strings or numbers; each range works as an <em>or</em> for the filter</td><td><pre>[[42,43]]</pre></td></tr>
-<tr><td><code>keepNulls</code></td><td>boolean</td><td>should null values be kept or discarded?</td><td><pre>true</pre></td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>column</code></td><td>string</td><td>a column name of the <code>FeatureCollection</code></td><td>
+<pre>“precipitation”</pre>
+</td></tr>
+<tr><td><code>ranges</code></td><td>List of either string or number ranges</td><td>one or more ranges of either strings or numbers; each range works as an <em>or</em> for the filter</td><td>
+<pre>[[42,43]]</pre>
+</td></tr>
+<tr><td><code>keepNulls</code></td><td>boolean</td><td>should null values be kept or discarded?</td><td>
+<pre>true</pre>
+</td></tr>
+</tbody>
+</table>
 </div>
 <h2 id="inputs-2"><a class="header" href="#inputs-2">Inputs</a></h2>
 <p>The <code>ColumnRangeFilter</code> operator expects exactly one <em>vector</em> input.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>vector</code></td><td><code>SingleVectorSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-3"><a class="header" href="#errors-3">Errors</a></h2>
 <p>If the value in the <code>column</code> parameter is not a column of the feature collection, an error is thrown.</p>
-<h2 id="example-json-15"><a class="header" href="#example-json-15">Example JSON</a></h2>
+<h2 id="example-json-13"><a class="header" href="#example-json-13">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "ColumnRangeFilter",
   "params": {
@@ -818,7 +916,8 @@ Moreover, you can specify the range <code>a</code> to <code>k</code> to dismiss 
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="raster-expression"><a class="header" href="#raster-expression">Raster Expression</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="raster-expression"><a class="header" href="#raster-expression">Raster Expression</a></h1>
 <p>The <code>Expression</code> operator performs a pixel-wise mathematical expression on one or more bands of a raster source.
 The expression is specified as a user-defined script in a very simple language.
 The output is a raster time series with the result of the expression and with time intervals that are the same as for the inputs.
@@ -828,12 +927,26 @@ Internally, the expression is evaluated using floating-point numbers.</p>
 The expression uses a raster source with two bands, referred to as A and B, and calculates the formula <code>(A - B) / (A + B)</code>.
 When the temporal resolution is months, our output NDVI will also be a monthly time series.</p>
 <h2 id="parameters-3"><a class="header" href="#parameters-3">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>expression</code></td><td><code>Expression</code></td><td>Expression script</td><td><pre><code>(A - B) / (A + B)</code></pre></td></tr>
-<tr><td><code>outputType</code></td><td><a href="operators//datatypes/rasterdatatype.html"><code>RasterDataType</code></a></td><td>A raster data type for the output</td><td><pre><code>U8</code></pre></td></tr>
-<tr><td><code>outputBand</code></td><td><a href="operators//datatypes/rasterbanddescriptor.html"><code>RasterBandDescriptor</code></a></td><td>Description about the output</td><td><pre><code>{<br>  "name": "NDVI"<br>  "measurement": {<br>    "type": "continuous",<br>     "measurement": "NDVI"<br>  }<br>}</code></pre></td></tr>
-<tr><td><code>mapNoData</code></td><td><code>bool</code></td><td>Should NO DATA values be mapped with the <code>expression</code>? Otherwise, they are mapped automatically to NO DATA.</td><td><pre><code>false</code></pre></td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>expression</code></td><td><code>Expression</code></td><td>Expression script</td><td>
+<pre><code>(A - B) / (A + B)</code></pre>
+</td></tr>
+<tr><td><code>outputType</code></td><td><a href="/datatypes/rasterdatatype.html"><code>RasterDataType</code></a></td><td>A raster data type for the output</td><td>
+<pre><code>U8</code></pre>
+</td></tr>
+<tr><td><code>outputBand</code></td><td><a href="/datatypes/rasterbanddescriptor.html"><code>RasterBandDescriptor</code></a></td><td>Description about the output</td><td>
+<pre><code>{<br>  “name”: “NDVI”<br>  “measurement”: {<br>    “type”: “continuous”,<br>     “measurement”: “NDVI”<br>  }<br>}</code></pre>
+</td></tr>
+<tr><td><code>mapNoData</code></td><td><code>bool</code></td><td>Should NO DATA values be mapped with the <code>expression</code>? Otherwise, they are mapped automatically to NO DATA.</td><td>
+<pre><code>false</code></pre>
+</td></tr>
+</tbody>
+</table>
 </div>
 <h2 id="types-1"><a class="header" href="#types-1">Types</a></h2>
 <p>The following describes the types used in the parameters.</p>
@@ -883,13 +996,19 @@ mean * coefficient
 However, the last expression must be without a semicolon.</p>
 <h2 id="inputs-3"><a class="header" href="#inputs-3">Inputs</a></h2>
 <p>The <code>Expression</code> operator expects one raster input with at most 8 bands.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>source</code></td><td><code>SingleRasterSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-4"><a class="header" href="#errors-4">Errors</a></h2>
 <p>The parsing of the expression can fail if there are, e.g., syntax errors.</p>
-<h2 id="example-json-16"><a class="header" href="#example-json-16">Example JSON</a></h2>
+<h2 id="example-json-14"><a class="header" href="#example-json-14">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "Expression",
   "params": {
@@ -928,19 +1047,28 @@ However, the last expression must be without a semicolon.</p>
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="gdalsource"><a class="header" href="#gdalsource">GdalSource</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="gdalsource"><a class="header" href="#gdalsource">GdalSource</a></h1>
 <p>The <code>GdalSource</code> is a <em>source operator</em> that reads raster data using GDAL.
-The counterpart for vector data is the <a href="operators/./ogrsource.html"><code>OgrSource</code></a>.</p>
+The counterpart for vector data is the <a href="#ogrsource"><code>OgrSource</code></a>.</p>
 <h2 id="parameters-4"><a class="header" href="#parameters-4">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th><th>Default Value</th></tr></thead><tbody>
-<tr><td><code>data</code></td><td><code>DataId</code></td><td>The id of the data to be loaded</td><td><pre><code>"ndvi"</code></pre></td><td></td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th><th>Default Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>data</code></td><td><code>DataId</code></td><td>The id of the data to be loaded</td><td>
+<pre><code>“ndvi”</code></pre>
+</td><td></td></tr>
+</tbody>
+</table>
 </div>
 <h2 id="inputs-4"><a class="header" href="#inputs-4">Inputs</a></h2>
 <p>None</p>
 <h2 id="errors-5"><a class="header" href="#errors-5">Errors</a></h2>
 <p>If the given dataset does not exist or is not readable, an error is thrown.</p>
-<h2 id="example-json-17"><a class="header" href="#example-json-17">Example JSON</a></h2>
+<h2 id="example-json-15"><a class="header" href="#example-json-15">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "GdalSource",
   "params": {
@@ -948,41 +1076,66 @@ The counterpart for vector data is the <a href="operators/./ogrsource.html"><cod
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="interpolation"><a class="header" href="#interpolation">Interpolation</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="interpolation"><a class="header" href="#interpolation">Interpolation</a></h1>
 <p>The <code>Interpolation</code> operator artificially increases the resolution of a raster by interpolating the values of the input raster.
 If the operator is queried with a resolution that is coarser than the input resolution, the interpolation is not applied but the input raster is returned unchanged.
 Unless a particular input resolution is specified, the resolution of the input raster is used, if it is known.</p>
 <h2 id="parameters-5"><a class="header" href="#parameters-5">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>interpolation</code></td><td><code>InterpolationMethod</code></td><td>the interpolation method to be used</td><td>"nearestNeighbor"</td></tr>
-<tr><td><code>inputResolution</code></td><td><code>InputResolution</code></td><td>the query resolution for the source operator</td><td>"source"</td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>interpolation</code></td><td><code>InterpolationMethod</code></td><td>the interpolation method to be used</td><td>“nearestNeighbor”</td></tr>
+<tr><td><code>inputResolution</code></td><td><code>InputResolution</code></td><td>the query resolution for the source operator</td><td>“source”</td></tr>
+</tbody>
+</table>
 </div>
 <h2 id="types-2"><a class="header" href="#types-2">Types</a></h2>
 <p>The following describes the types used in the parameters.</p>
 <h3 id="interpolationmethod"><a class="header" href="#interpolationmethod">InterpolationMethod</a></h3>
 <p>The operator supports the following interpolation methods:</p>
-<div class="table-wrapper"><table><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td><code>nearestNeighbor</code></td><td>The value of the nearest neighbor is used.</td></tr>
 <tr><td><code>biLinear</code></td><td>The value is computed by bilinear interpolation.</td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h3 id="inputresolution"><a class="header" href="#inputresolution">InputResolution</a></h3>
 <p>The operator supports the following input resolutions:</p>
-<div class="table-wrapper"><table><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td><code>{"type": "source"}</code></td><td>The resolution of the input raster is used.</td></tr>
 <tr><td><code>{"type": "value", "x": 0.1, "y": 0.1}</code></td><td>The resolution is specified explicitly.</td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="inputs-5"><a class="header" href="#inputs-5">Inputs</a></h2>
 <p>The <code>Interpolation</code> operator expects exactly one <em>raster</em> input.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>source</code></td><td><code>SingleRasterSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-6"><a class="header" href="#errors-6">Errors</a></h2>
-<p>If the input resolution is set as "source" but the resolution of the input raster is not known, an error will be thrown.</p>
-<h2 id="example-json-18"><a class="header" href="#example-json-18">Example JSON</a></h2>
+<p>If the input resolution is set as “source” but the resolution of the input raster is not known, an error will be thrown.</p>
+<h2 id="example-json-16"><a class="header" href="#example-json-16">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "Raster",
   "operator": {
@@ -1004,30 +1157,47 @@ Unless a particular input resolution is specified, the resolution of the input r
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="linesimplification"><a class="header" href="#linesimplification">LineSimplification</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="linesimplification"><a class="header" href="#linesimplification">LineSimplification</a></h1>
 <p>The <code>LineSimplification</code> operator allows simplifying <code>FeatureCollection</code>s of (multi-)lines or (multi-)polygons by removing vertices.
 Users can select a simplification algorithm and specify an <code>epsilon</code> for parametrization.
-Alternatively, they can omit the <code>epsilon</code>, which results in the <code>epsilon</code> being automatically determined by the query's spatial resolution.</p>
+Alternatively, they can omit the <code>epsilon</code>, which results in the <code>epsilon</code> being automatically determined by the query’s spatial resolution.</p>
 <p>For instance, you can remove the vertices of a large country polygon for drawing it on a small map.
 This results in a simpler polygon that is easier to draw and reduces the amount of data that needs to be transferred.</p>
 <h2 id="parameters-6"><a class="header" href="#parameters-6">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>epsilon</code></td><td>(optional) number</td><td>Specify the parametrization of the simplification algorith, e.g. the distance threshold for two nodes in <em>Douglas-Peucker</em>. Must be &gt; 0.</td><td><pre>1.0</pre></td></tr>
-<tr><td><code>algorithm</code></td><td><code>douglasPeucker</code> or <code>visvalingam</code></td><td>Select a simplification algorith for being used, e.g. <a href="https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm">Douglas-Peucker</a> or <a href="https://en.wikipedia.org/wiki/Visvalingam%E2%80%93Whyatt_algorithm">Visvalingam</a></td><td><pre>"douglasPeucker"</pre></td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>epsilon</code></td><td>(optional) number</td><td>Specify the parametrization of the simplification algorith, e.g. the distance threshold for two nodes in <em>Douglas-Peucker</em>. Must be &gt; 0.</td><td>
+<pre>1.0</pre>
+</td></tr>
+<tr><td><code>algorithm</code></td><td><code>douglasPeucker</code> or <code>visvalingam</code></td><td>Select a simplification algorith for being used, e.g. <a href="https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm">Douglas-Peucker</a> or <a href="https://en.wikipedia.org/wiki/Visvalingam%E2%80%93Whyatt_algorithm">Visvalingam</a></td><td>
+<pre>“douglasPeucker”</pre>
+</td></tr>
+</tbody>
+</table>
 </div>
 <h2 id="inputs-6"><a class="header" href="#inputs-6">Inputs</a></h2>
 <p>The <code>LineSimplification</code> operator expects exactly one <em>vector</em> input.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>vector</code></td><td><code>SingleVectorSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-7"><a class="header" href="#errors-7">Errors</a></h2>
 <ul>
 <li>If <code>epsilon</code> is set but &lt;= 0, an error is thrown.</li>
 <li>If the input is not <code>MultiPolygon</code> or <code>MultiLineString</code>, an error is thrown.</li>
 </ul>
-<h2 id="example-json-19"><a class="header" href="#example-json-19">Example JSON</a></h2>
+<h2 id="example-json-17"><a class="header" href="#example-json-17">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "LineSimplification",
   "params": {
@@ -1059,7 +1229,8 @@ This results in a simpler polygon that is easier to draw and reduces the amount 
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="neighborhood-aggregate"><a class="header" href="#neighborhood-aggregate">Neighborhood Aggregate</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="neighborhood-aggregate"><a class="header" href="#neighborhood-aggregate">Neighborhood Aggregate</a></h1>
 <p>The <code>NeighborhoodAggregate</code> operator computes an aggregate function for a pixel and its neighborhood.
 The operator can be defined as a neighborhood matrix with either weights or predefined shapes and an aggregate function.</p>
 <p>An example usage scenario is to calculate a Gaussian filter to smoothen or blur an image.
@@ -1067,10 +1238,20 @@ For each time step in the raster time series, the operator computes the aggregat
 <p>The output data type is the same as the input data type.
 As the matrix and the aggregate in- and outputs are defined as floating point values, the internal computation is done as floating point calculations.</p>
 <h2 id="parameters-7"><a class="header" href="#parameters-7">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>neighborhood</code></td><td><code>Neighborhood</code></td><td>Pixel neighborhood specification</td><td><pre><code>{<br>  "type": "weightsMatrix",<br>  "weights": [<br>    [1.0, 2.0, 3.0],<br>    [4.0, 5.0, 6.0],<br>    [7.0, 8.0, 9.0]<br>  ]<br>}</code></pre></td></tr>
-<tr><td><code>aggregateFunction</code></td><td><code>AggregateFunction</code></td><td>An aggregate function for a set of values</td><td><pre><code>"sum"</code></pre></td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>neighborhood</code></td><td><code>Neighborhood</code></td><td>Pixel neighborhood specification</td><td>
+<pre><code>{<br>  “type”: “weightsMatrix”,<br>  “weights”: [<br>    [1.0, 2.0, 3.0],<br>    [4.0, 5.0, 6.0],<br>    [7.0, 8.0, 9.0]<br>  ]<br>}</code></pre>
+</td></tr>
+<tr><td><code>aggregateFunction</code></td><td><code>AggregateFunction</code></td><td>An aggregate function for a set of values</td><td>
+<pre><code>“sum”</code></pre>
+</td></tr>
+</tbody>
+</table>
 </div>
 <h2 id="types-3"><a class="header" href="#types-3">Types</a></h2>
 <p>The following describes the types used in the parameters.</p>
@@ -1110,13 +1291,19 @@ This ignores <code>NO DATA</code> values.</li>
 </ul>
 <h2 id="inputs-7"><a class="header" href="#inputs-7">Inputs</a></h2>
 <p>The <code>NeighborhoodAggregate</code> operator expects exactly one <em>raster</em> input.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>source</code></td><td><code>SingleRasterSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-8"><a class="header" href="#errors-8">Errors</a></h2>
 <p>If the neighborhood rows or columns are not positive or odd, an error will be thrown.</p>
-<h2 id="example-json-20"><a class="header" href="#example-json-20">Example JSON</a></h2>
+<h2 id="example-json-18"><a class="header" href="#example-json-18">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "NeighborhoodAggregate",
   "params": {
@@ -1140,31 +1327,48 @@ This ignores <code>NO DATA</code> values.</li>
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="ogrsource"><a class="header" href="#ogrsource">OgrSource</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="ogrsource"><a class="header" href="#ogrsource">OgrSource</a></h1>
 <p>The <code>OgrSource</code> is a <em>source operator</em> that reads vector data using OGR.
-The counterpart for raster data is the <a href="operators/./gdalsource.html"><code>GdalSource</code></a>.</p>
+The counterpart for raster data is the <a href="#gdalsource"><code>GdalSource</code></a>.</p>
 <h2 id="parameters-8"><a class="header" href="#parameters-8">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th><th>Default Value</th></tr></thead><tbody>
-<tr><td><code>data</code></td><td><code>DataId</code></td><td>The id of the data to be loaded</td><td><pre><code>"places"</code></pre></td><td></td></tr>
-<tr><td><code>attributeProjection</code></td><td><code>Array&lt;String&gt;</code></td><td>(Optional) The list of attributes to load. If nothing is specified, all attributes will be loaded.</td><td><code>["name", "population"]</code></td><td></td></tr>
-<tr><td><code>attributeFilters</code></td><td><code>Array&lt;AttributeFilter&gt;</code></td><td>(Optional) The list of filters to apply on the attributes of features. Only the features that match all of the filters will be loaded.</td><td><pre><code>[{"attribute": "population",<br> "ranges": [[1000, 10000]]<br>}]</code></pre></td><td></td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th><th>Default Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>data</code></td><td><code>DataId</code></td><td>The id of the data to be loaded</td><td>
+<pre><code>“places”</code></pre>
+</td><td></td></tr>
+<tr><td><code>attributeProjection</code></td><td><code>Array&lt;String&gt;</code></td><td>(Optional) The list of attributes to load. If nothing is specified, all attributes will be loaded.</td><td><code>[“name”, “population”]</code></td><td></td></tr>
+<tr><td><code>attributeFilters</code></td><td><code>Array&lt;AttributeFilter&gt;</code></td><td>(Optional) The list of filters to apply on the attributes of features. Only the features that match all of the filters will be loaded.</td><td>
+<pre><code>[{“attribute”: “population”,<br> “ranges”: [[1000, 10000]]<br>}]</code></pre>
+</td><td></td></tr>
+</tbody>
+</table>
 </div>
 <h2 id="types-4"><a class="header" href="#types-4">Types</a></h2>
 <p>The following describes the types used in the parameters.</p>
 <h3 id="attributefilter"><a class="header" href="#attributefilter">AttributeFilter</a></h3>
 <p>The <code>AttributeFilter</code> defines one or more ranges on the values of an attribute. The ranges include the lower and upper bounds of the range.</p>
-<div class="table-wrapper"><table><thead><tr><th>Field</th><th>Type</th><th>Description</th><th></th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Description</th><th></th></tr>
+</thead>
+<tbody>
 <tr><td><code>attribute</code></td><td><code>String</code></td><td>The name of the attribute to filter.</td><td></td></tr>
 <tr><td><code>ranges</code></td><td><code>Array&lt;Array&lt;String | Number&gt;&gt;</code></td><td>The list of ranges to filter.</td><td></td></tr>
 <tr><td><code>keepNulls</code></td><td><code>bool</code></td><td>(Optional) Specifies whether to keep null/no data entries, defaults to <code>false</code>.</td><td></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="inputs-8"><a class="header" href="#inputs-8">Inputs</a></h2>
 <p>None</p>
 <h2 id="errors-9"><a class="header" href="#errors-9">Errors</a></h2>
 <p>If the given dataset does not exist or is not readable, an error is thrown.</p>
-<h2 id="example-json-21"><a class="header" href="#example-json-21">Example JSON</a></h2>
+<h2 id="example-json-19"><a class="header" href="#example-json-19">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "OgrSource",
   "params": {
@@ -1180,25 +1384,32 @@ The counterpart for raster data is the <a href="operators/./gdalsource.html"><co
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="pointinpolygon"><a class="header" href="#pointinpolygon">PointInPolygon</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="pointinpolygon"><a class="header" href="#pointinpolygon">PointInPolygon</a></h1>
 <p>The <code>PointInPolygon</code> operator filters point features of a (multi-)point collection with polygons.
 In more detail, the points of each feature are checked against the polygons of the other collection.
-If one or more point is included in any polygon's ring, the feature is included in the output.</p>
+If one or more point is included in any polygon’s ring, the feature is included in the output.</p>
 <p>For instance, you can filter tree features inside the polygons of a forest.
-All features, that weren't inside any forest polygon, are considered either part of another forest or outliers and are thus removed.</p>
+All features, that weren’t inside any forest polygon, are considered either part of another forest or outliers and are thus removed.</p>
 <h2 id="parameters-9"><a class="header" href="#parameters-9">Parameters</a></h2>
 <p>The operator is parameterless.</p>
 <h2 id="inputs-9"><a class="header" href="#inputs-9">Inputs</a></h2>
 <p>The <code>PointInPolygon</code> operator expects two <em>vector</em> inputs.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>points</code></td><td><code>SingleVectorSource</code></td></tr>
 <tr><td><code>polygons</code></td><td><code>SingleVectorSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-10"><a class="header" href="#errors-10">Errors</a></h2>
 <p>If the <code>points</code> vector input is not a (multi-)point feature collection, an error is thrown.</p>
 <p>If the <code>polygons</code> vector input is not a (multi-)polygon feature collection, an error is thrown.</p>
-<h2 id="example-json-22"><a class="header" href="#example-json-22">Example JSON</a></h2>
+<h2 id="example-json-20"><a class="header" href="#example-json-20">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "PointInPolygon",
   "params": {},
@@ -1219,46 +1430,71 @@ All features, that weren't inside any forest polygon, are considered either part
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="rasterization"><a class="header" href="#rasterization">Rasterization</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="rasterization"><a class="header" href="#rasterization">Rasterization</a></h1>
 <p>The <code>Rasterization</code> operator creates a raster from a point vector source.
 It offers two options for rasterization: A grid rasterization and a (gaussian) density rasterization (heatmap).</p>
 <h2 id="inputs-10"><a class="header" href="#inputs-10">Inputs</a></h2>
 <p>The <code>Rasterization</code> operator expects exactly one <em>vector</em> input.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>source</code></td><td><code>SingleVectorSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="parameters-10"><a class="header" href="#parameters-10">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
 <tr><td><code>params</code></td><td><code>GridOrDensity</code></td><td>The type and parameters for the rasterization to perform.</td><td><code>{"type": "grid", ...}</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <p><code>GridOrDensity</code> contains a field <code>type</code> which can have the value <code>grid</code> or <code>density</code> for a grid rasterization or density rasterization, respectively.</p>
 <p><code>GridOrDensity</code> has additional fields which are parameters specific to the type of the rasterization. These are described below separately.</p>
 <h3 id="grid-rasterization"><a class="header" href="#grid-rasterization">Grid Rasterization</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
 <tr><td><code>spatialResolution</code></td><td><code>SpatialResolution</code></td><td>The spatial resolution of the grid/size of the grid cells.</td><td><code>{"x": 10.0, "y": 10.0}</code></td></tr>
 <tr><td><code>originCoordinate</code></td><td><code>Coordinate2D</code></td><td>The origin coordinate to which the grid is aligned.</td><td><code>{"x": 0.0, "y": 0.0}</code></td></tr>
 <tr><td><code>gridSizeMode</code></td><td><code>fixed</code> or <code>relative</code></td><td>The mode how the grid resolution is interpreted.</td><td><code>"fixed"</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h4 id="types-5"><a class="header" href="#types-5">Types</a></h4>
 <p>The following describes the types used in the grid rasterization parameters.</p>
 <p>The parameters <code>spatialResolution</code> and <code>originCoordinate</code> consist of two fields <code>x</code> and <code>y</code> which describe a resolution/position in x/y direction.</p>
 <p>For <code>gridSizeMode</code> the two options <code>fixed</code> and <code>relative</code> are available.
 <code>Fixed</code> means the <code>spatialResolution</code> is interpreted as a constant grid cell size.
-<code>Relative</code> means the <code>spatialResolution</code> is used as a multiplier for a query's spatial resolution, making the resulting grid size adaptive to the query resolution.</p>
+<code>Relative</code> means the <code>spatialResolution</code> is used as a multiplier for a query’s spatial resolution, making the resulting grid size adaptive to the query resolution.</p>
 <h3 id="density-rasterization"><a class="header" href="#density-rasterization">Density Rasterization</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
 <tr><td><code>cutoff</code></td><td><code>number</code></td><td>Defines the cutoff (as percentage of maximum density) down to which a point is taken into account for an output pixel density value</td><td><code>0.01</code></td></tr>
 <tr><td><code>stddev</code></td><td><code>number</code></td><td>The standard deviation parameter for the gaussian function.</td><td><code>1.0</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <p>The <code>cutoff</code> percentage (must be in [0, 1)) is treated as a hard cutoff point. A larger <code>cutoff</code> percentage leads to faster processing, however it also introduces inaccuracies in the result since points further than the derived radius away from a pixel do not influence its value.
 It is meant to be set such that the ignored density values are small enough to not make a visible difference in the resulting raster.</p>
 <h4 id="errors-11"><a class="header" href="#errors-11">Errors</a></h4>
 <p>If the <code>cutoff</code> is not in [0, 1) or the <code>stddev</code> is negative, an error will be thrown.</p>
-<h2 id="example-json-23"><a class="header" href="#example-json-23">Example JSON</a></h2>
+<h2 id="example-json-21"><a class="header" href="#example-json-21">Example JSON</a></h2>
 <h3 id="grid-rasterization-1"><a class="header" href="#grid-rasterization-1">Grid Rasterization</a></h3>
 <pre><code class="language-json">{
   "type": "Raster",
@@ -1312,14 +1548,15 @@ It is meant to be set such that the ignored density values are small enough to n
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="rasterscaling"><a class="header" href="#rasterscaling">RasterScaling</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="rasterscaling"><a class="header" href="#rasterscaling">RasterScaling</a></h1>
 <p>The raster scaling operator scales/unscales the values of a raster by a given slope factor and offset.
 This allows to shrink and expand the value range of the pixel values needed to store a raster. It also allows to shift values to all-positive values and back.
 We use the <a href="https://gdal.org/index.html">GDAL</a> terms of <a href="https://gdal.org/programs/gdal_translate.html#cmdoption-gdal_translate-scale">scale</a> and <a href="https://gdal.org/programs/gdal_translate.html#cmdoption-gdal_translate-unscale">unscale</a>.
 Raster data is often scaled to reduce memory/storage consumption.
-To get the "real" raster values the unscale operation is applied.
+To get the “real” raster values the unscale operation is applied.
 Keep in mind that scaling might reduce the precision of the pixel values.
-(To actually reduce the size of the raster, use the <a href="operators/./rastertypeconversion.html">raster type conversion operator</a> and transform to a smaller datatype after scaling.)</p>
+(To actually reduce the size of the raster, use the <a href="#rastertypeconversion">raster type conversion operator</a> and transform to a smaller datatype after scaling.)</p>
 <p>The operator applies the following formulas to every pixel.</p>
 <p>For <em>unscaling</em> the formula is: <code>p_new = p_old * slope + offset</code>. The key for this mode is <code>mulSlopeAddOffset</code>.</p>
 <p>For <em>scaling</em> the formula is: <code>p_new = (p_old - offset) / slope</code>. The key for this mode is <code>subOffsetDivSlope</code>.</p>
@@ -1330,31 +1567,49 @@ Keep in mind that scaling might reduce the precision of the pixel values.
 <li>slope: <code>msg.calibration_slope</code></li>
 </ul>
 <h2 id="parameters-11"><a class="header" href="#parameters-11">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
 <tr><td><code>slope</code></td><td><code>SlopeOffsetSelection</code></td><td>the key or value to use for <code>slope</code></td><td><code>{"type": "metadataKey" "domain": "", "key": "scale" }</code></td></tr>
 <tr><td><code>offset</code></td><td><code>SlopeOffsetSelection</code></td><td>the key or value to use for <code>offset</code></td><td><code>{"type": "constant" "value": 0.1 }</code></td></tr>
 <tr><td><code>scalingMode</code></td><td><code>mulSlopeAddOffset</code> OR <code>subOffsetDivSlope</code></td><td>select scale or unscale mode</td><td><code>"mulSlopeAddOffset"</code></td></tr>
-<tr><td><code>outputMeasurement</code>*</td><td>(optional) <a href="operators//datatypes/measurement.html"><code>Measurement</code></a></td><td>the measurement of the data produced by the operator</td><td><code>{"type": "continuous", "measurement": "Reflectance","unit": "%"}</code></td></tr>
-</tbody></table>
+<tr><td><code>outputMeasurement</code>*</td><td>(optional) <a href="/datatypes/measurement.html"><code>Measurement</code></a></td><td>the measurement of the data produced by the operator</td><td><code>{"type": "continuous", "measurement": "Reflectance","unit": "%"}</code></td></tr>
+</tbody>
+</table>
 </div>
 <p>* if no <code>outputMeasurement</code> is given, the measurement of the input raster is used.</p>
 <p>The <code>RasterScaling</code> operator expects exactly one <em>raster</em> input.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>source</code></td><td><code>SingleRasterSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="types-6"><a class="header" href="#types-6">Types</a></h2>
 <p>The following describes the types used in the parameters.</p>
 <h3 id="slopeoffsetselection"><a class="header" href="#slopeoffsetselection">SlopeOffsetSelection</a></h3>
 <p>The <code>SlopeOffsetSelection</code> type is used to specify a metadata key or a constant value.</p>
-<div class="table-wrapper"><table><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td><code>{"type": "auto"}</code> *</td><td>Use slope and offset from the tiles properties</td></tr>
 <tr><td><code>{"type": "constant", "value": number}</code></td><td>A constant value.</td></tr>
 <tr><td><code>{"type": "metadataKey", "domain": string, "key": string}</code></td><td>A metadata key to lookup dynamic values from raster (tile) properties.</td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <p>* if set to <code>"auto"</code>, the operator will use the values from the decicated (GDAL) raster properties for scale and offset.</p>
-<h2 id="example-json-24"><a class="header" href="#example-json-24">Example JSON</a></h2>
+<h2 id="example-json-22"><a class="header" href="#example-json-22">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "RasterScaling",
   "params": {
@@ -1380,37 +1635,53 @@ Keep in mind that scaling might reduce the precision of the pixel values.
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="rasterstacker"><a class="header" href="#rasterstacker">RasterStacker</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="rasterstacker"><a class="header" href="#rasterstacker">RasterStacker</a></h1>
 <p>The <code>RasterStacker</code> stacks all of its inputs into a single raster time-series.
 It does so by querying all of its inputs and outputting them by band, space and then time.
 The output raster will have as many bands as the sum of all input bands.
 The tiles are automatically temporally aligned.</p>
 <p>All inputs must have the same data type and spatial reference.</p>
 <h2 id="parameters-12"><a class="header" href="#parameters-12">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td>renameBands</td><td><code>RenameBands</code></td><td>Specification of how to rename the bands to avoid conflicts</td><td><pre><code>{ "type": "default" }</pre></td></tr>
-<tr><td>Parameter</td><td>Type</td><td>Description</td><td>Example Value</td></tr>
-<tr><td>-----------</td><td>-------------</td><td>-----------------------------------------------------------</td><td>--------------------------------------</td></tr>
-<tr><td>renameBands</td><td><code>RenameBands</code></td><td>Specification of how to rename the bands to avoid conflicts</td><td><pre><code>{ "type": "default" }</pre></td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td>renameBands</td><td><code>RenameBands</code></td><td>Specification of how to rename the bands to avoid conflicts</td><td><code>{ "type": "default" }</code></td></tr>
+</tbody>
+</table>
 </div>
 <h2 id="types-7"><a class="header" href="#types-7">Types</a></h2>
 <p>The following describes the types used in the parameters.</p>
 <h3 id="renamebands"><a class="header" href="#renamebands">RenameBands</a></h3>
 <p>The <code>RenameBands</code> type is used to specify how to rename the bands to avoid conflicts.</p>
-<div class="table-wrapper"><table><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>{"type": "default"}</code></td><td>Appends " (n)" to the band name with the smallest <code>n</code> that avoids a conflict</td></tr>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>{"type": "default"}</code></td><td>Appends “ (n)“ to the band name with the smallest <code>n</code> that avoids a conflict</td></tr>
 <tr><td><code>{"type": "suffix", "values": [string]}</code></td><td>Specifies a suffix for each input, to be appended to the band names</td></tr>
 <tr><td><code>{"type": "rename", "values": [string]}</code></td><td>A list of names for each band of all inputs to be used instead of the original name</td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="inputs-11"><a class="header" href="#inputs-11">Inputs</a></h2>
 <p>The <code>RasterStacker</code> operator supports up to 8 raster inputs.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>rasters</code></td><td><code>MultipleRasterSources</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
-<h2 id="example-json-25"><a class="header" href="#example-json-25">Example JSON</a></h2>
+<h2 id="example-json-23"><a class="header" href="#example-json-23">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "RasterStacker",
   "params": {
@@ -1447,7 +1718,8 @@ The tiles are automatically temporally aligned.</p>
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="rastertypeconversion"><a class="header" href="#rastertypeconversion">RasterTypeConversion</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="rastertypeconversion"><a class="header" href="#rastertypeconversion">RasterTypeConversion</a></h1>
 <p>The <code>RasterTypeConversion</code> operator allows changing the data type of raster data.
 It transforms all pixels into the new data type.</p>
 <ol>
@@ -1459,16 +1731,28 @@ It transforms all pixels into the new data type.</p>
 </li>
 </ol>
 <h2 id="parameters-13"><a class="header" href="#parameters-13">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>outputDataType</code></td><td>[<code>RasterDataType</code>]</td><td>the output type</td><td>"U8"</td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>outputDataType</code></td><td>[<code>RasterDataType</code>]</td><td>the output type</td><td>“U8”</td></tr>
+</tbody>
+</table>
 </div>
 <p>The <code>RasterTypeConversion</code> operator expects exactly one <em>raster</em> input.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>source</code></td><td><code>SingleRasterSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
-<h2 id="example-json-26"><a class="header" href="#example-json-26">Example JSON</a></h2>
+<h2 id="example-json-24"><a class="header" href="#example-json-24">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "RasterTypeConversion",
   "params": {
@@ -1484,7 +1768,8 @@ It transforms all pixels into the new data type.</p>
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="rastervectorjoin"><a class="header" href="#rastervectorjoin">RasterVectorJoin</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="rastervectorjoin"><a class="header" href="#rastervectorjoin">RasterVectorJoin</a></h1>
 <p>The <code>RasterVectorJoin</code> operator allows combining a single vector input and multiple raster inputs.
 For each raster input, a new column is added to the collection from the vector input.
 The new column contains the value of the raster at the location of the vector feature.
@@ -1492,7 +1777,7 @@ For features covering multiple pixels like <code>MultiPoints</code> or <code>Mul
 The same is true if the temporal extent of a vector feature covers multiple raster time steps.
 More details are described below.</p>
 <p><strong>Example</strong>:
-You have a collection of agricultural fields (<code>Polygons</code>) and a collection of raster images containing each pixel's monthly NDVI value.
+You have a collection of agricultural fields (<code>Polygons</code>) and a collection of raster images containing each pixel’s monthly NDVI value.
 For your application, you want to know the NDVI value of each field.
 The <code>RasterVectorJoin</code> operator allows you to combine the vector and raster data and offers multiple spatial and temporal aggregation strategies.
 For example, you can use the <code>first</code> aggregation function to get the NDVI value of the first pixel that intersects with each field.
@@ -1503,32 +1788,60 @@ The default is <code>none</code> which will create a new feature for each month.
 Other options are <code>first</code> and <code>mean</code> which will calculate the first or mean NDVI value for each field over time.</p>
 <h2 id="inputs-12"><a class="header" href="#inputs-12">Inputs</a></h2>
 <p>The <code>RasterVectorJoin</code> operator expects one <em>vector</em> input and one or more <em>raster</em> inputs.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>sources</code></td><td><code>SingleVectorMultipleRasterSources</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="parameters-14"><a class="header" href="#parameters-14">Parameters</a></h2>
 <p>The <code>RasterVectorJoin</code> operator has the following parameters:</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>names</code></td><td><code>ColumnNames</code></td><td>Specify how the new column names are derived from the raster band names.</td><td><pre>"{"type": "default}"</pre></td></tr>
-<tr><td><code>featureAggregation</code></td><td><code>first</code> or <code>mean</code></td><td>The aggregation function to use for features covering multiple pixels.</td><td><pre>"first"</pre></td></tr>
-<tr><td><code>featureAggregationIgnoreNoData</code></td><td>(optional) <code>boolean</code></td><td>Whether to ignore no data values in the aggregation. Defaults to <code>false</code></td><td><pre>false</pre></td></tr>
-<tr><td><code>temporalAggregation</code></td><td><code>none</code>, <code>first</code> or <code>mean</code></td><td>The aggregation function to use for features covering multiple (raster) time steps.</td><td><pre>"none"</pre></td></tr>
-<tr><td><code>temporalAggregationIgnoreNoData</code></td><td>(optional) <code>boolean</code></td><td>Whether to ignore no data values in the aggregation. Defaults to <code>false</code></td><td><pre>false</pre></td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>names</code></td><td><code>ColumnNames</code></td><td>Specify how the new column names are derived from the raster band names.</td><td>
+<pre>“{“type”: “default}”</pre>
+</td></tr>
+<tr><td><code>featureAggregation</code></td><td><code>first</code> or <code>mean</code></td><td>The aggregation function to use for features covering multiple pixels.</td><td>
+<pre>“first”</pre>
+</td></tr>
+<tr><td><code>featureAggregationIgnoreNoData</code></td><td>(optional) <code>boolean</code></td><td>Whether to ignore no data values in the aggregation. Defaults to <code>false</code></td><td>
+<pre>false</pre>
+</td></tr>
+<tr><td><code>temporalAggregation</code></td><td><code>none</code>, <code>first</code> or <code>mean</code></td><td>The aggregation function to use for features covering multiple (raster) time steps.</td><td>
+<pre>“none”</pre>
+</td></tr>
+<tr><td><code>temporalAggregationIgnoreNoData</code></td><td>(optional) <code>boolean</code></td><td>Whether to ignore no data values in the aggregation. Defaults to <code>false</code></td><td>
+<pre>false</pre>
+</td></tr>
+</tbody>
+</table>
 </div>
 <h2 id="types-8"><a class="header" href="#types-8">Types</a></h2>
 <h3 id="columnnames"><a class="header" href="#columnnames">ColumnNames</a></h3>
 <p>The <code>ColumnNames</code> type is used to specify how the new column names are derived from the raster band names.</p>
-<div class="table-wrapper"><table><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>{"type": "default"}</code></td><td>Appends " (n)" to the band name with the smallest <code>n</code> that avoids a conflict</td></tr>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>{"type": "default"}</code></td><td>Appends “ (n)“ to the band name with the smallest <code>n</code> that avoids a conflict</td></tr>
 <tr><td><code>{"type": "suffix", "values": [string]}</code></td><td>Specifies a suffix for each input, to be appended to the band names</td></tr>
 <tr><td><code>{"type": "rename", "values": [string]}</code></td><td>A list of names for each new column</td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-12"><a class="header" href="#errors-12">Errors</a></h2>
 <p>If the length of <code>names</code> is not equal to the number of raster inputs, an error is thrown.</p>
-<h2 id="example-json-27"><a class="header" href="#example-json-27">Example JSON</a></h2>
+<h2 id="example-json-25"><a class="header" href="#example-json-25">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "RasterVectorJoin",
   "params": {
@@ -1555,7 +1868,8 @@ Other options are <code>first</code> and <code>mean</code> which will calculate 
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="reprojection"><a class="header" href="#reprojection">Reprojection</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="reprojection"><a class="header" href="#reprojection">Reprojection</a></h1>
 <p>The <code>Reprojection</code> operator reprojects data from one spatial reference system to another.
 It accepts exactly one input which can either be a raster or a vector data stream.
 The operator produces all data that, after reprojection, is contained in the query rectangle.</p>
@@ -1575,19 +1889,31 @@ Please refer to the source code for details.</p>
 <p>In case a tile, or part of a tile, is not available in the source projection because it is outside of the defined extent, the operator will produce pixels with <em>no data</em> values.
 If the input raster stream has no <em>no data</em> value defined, the value <em>0</em> will be used instead.</p>
 <h2 id="parameters-15"><a class="header" href="#parameters-15">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
 <tr><td><code>targetSpatialReference</code></td><td><code>String</code></td><td>The srs string (<em>authority:code</em>) of the target spatial reference.</td><td><code>EPSG:4326</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="inputs-13"><a class="header" href="#inputs-13">Inputs</a></h2>
 <p>The <code>Reprojection</code> operator expects exactly one <em>raster</em> or <em>vector</em> input.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>source</code></td><td><code>RasterOrVectorOperator</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-13"><a class="header" href="#errors-13">Errors</a></h2>
 <p>The operator returns an error if the target projection is unknown or if the input data cannot be reprojected.</p>
-<h2 id="example-json-28"><a class="header" href="#example-json-28">Example JSON</a></h2>
+<h2 id="example-json-26"><a class="header" href="#example-json-26">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "Reprojection",
   "params": {
@@ -1603,7 +1929,8 @@ If the input raster stream has no <em>no data</em> value defined, the value <em>
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="temporalrasteraggregation"><a class="header" href="#temporalrasteraggregation">TemporalRasterAggregation</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="temporalrasteraggregation"><a class="header" href="#temporalrasteraggregation">TemporalRasterAggregation</a></h1>
 <p>The <code>TemporalRasterAggregation</code> aggregates a raster time series into uniform time intervals (windows).
 The output is a time series that begins with the first window that contains the <code>start</code> of the query time.
 Each time slice has the same length, defined by the <code>window</code> parameter.
@@ -1618,19 +1945,30 @@ The aggregation method allows calculating, e.g., the maximum or mean value for e
 If we perform a query with time [2021-01-01, 2021-04-01), we would get a time series with three time steps.
 If we perform a query with an instant like [2021-01-01, 2021-01-01), we will get a single time step containing the aggregated values for January 2021.</p>
 <h2 id="parameters-16"><a class="header" href="#parameters-16">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>aggregation</code></td><td><a href="operators/temporalrasteraggregation.html#aggregation"><code>Aggregation</code></a></td><td>method for aggregating pixels</td><td><pre><code>{<br>  "type": "max",<br>  "ignoreNoData": false<br>}</code></pre></td></tr>
-<tr><td><code>window</code></td><td><a href="operators//datatypes/timestep.html"><code>TimeStep</code></a></td><td>length of time steps</td><td><pre><code>{<br>  "granularity": "Months",<br>  "step": 1<br>}</code></pre></td></tr>
-<tr><td><code>windowReference</code></td><td><a href="operators//datatypes/timeinstance.html"><code>TimeInstance</code></a></td><td>(Optional) anchor point for the aggregation windows. Default value is <code>1970-01-01T00:00:00Z</code></td><td><code>1970-01-01T00:00:00Z</code></td></tr>
-<tr><td><code>outputType</code></td><td><a href="operators//datatypes/rasterdatatype.html"><code>RasterDataType</code></a></td><td>(Optional) A raster data type for the output. Same as input, if not specified.</td><td><pre><code>U8</code><pre></td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>aggregation</code></td><td><a href="#aggregation"><code>Aggregation</code></a></td><td>method for aggregating pixels</td><td><code>{</code><br><code>  "type": "max",</code><br><code>  "ignoreNoData": false</code><br><code>}</code></td></tr>
+<tr><td><code>window</code></td><td><a href="/datatypes/timestep.html"><code>TimeStep</code></a></td><td>length of time steps</td><td><code>{</code><br><code>  "granularity": "Months",</code><br><code>  "step": 1</code><br><code>}</code></td></tr>
+<tr><td><code>windowReference</code></td><td><a href="/datatypes/timeinstance.html"><code>TimeInstance</code></a></td><td>(Optional) anchor point for the aggregation windows. Default value is <code>1970-01-01T00:00:00Z</code></td><td><code>1970-01-01T00:00:00Z</code></td></tr>
+<tr><td><code>outputType</code></td><td><a href="/datatypes/rasterdatatype.html"><code>RasterDataType</code></a></td><td>(Optional) A raster data type for the output. Same as input, if not specified.</td><td><code>U8</code></td></tr>
+</tbody>
+</table>
 </div>
 <h2 id="types-9"><a class="header" href="#types-9">Types</a></h2>
 <p>The following describes the types used in the parameters.</p>
 <h3 id="aggregation"><a class="header" href="#aggregation">Aggregation</a></h3>
 <p>There are different methods that can be used to aggregate the raster time series.
 Encountering a <em>no data</em> value makes the aggregation value of a pixel also <em>no data</em> unless the <code>ignoreNoData</code> parameter is set to <code>true</code>.</p>
-<div class="table-wrapper"><table><thead><tr><th>Variant</th><th>Parameters</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Variant</th><th>Parameters</th><th>Description</th></tr>
+</thead>
+<tbody>
 <tr><td><code>min</code></td><td><code>ignoreNoData</code>: <code>bool</code></td><td>minimum value</td></tr>
 <tr><td><code>max</code></td><td><code>ignoreNoData</code>: <code>bool</code></td><td>maximum value</td></tr>
 <tr><td><code>first</code></td><td><code>ignoreNoData</code>: <code>bool</code></td><td>first encountered value</td></tr>
@@ -1639,20 +1977,27 @@ Encountering a <em>no data</em> value makes the aggregation value of a pixel als
 <tr><td><code>percentileEstimate</code></td><td><code>ignoreNoData</code>: <code>bool</code>, <code>percentile</code>: <code>number</code> in <code>(0, 1)</code></td><td>computes a percentile estimate using the <a href="https://www.cs.wustl.edu/~jain/papers/ftp/psqr.pdf">P²</a> method</td></tr>
 <tr><td><code>sum</code></td><td><code>ignoreNoData</code>: <code>bool</code></td><td>sum of the values</td></tr>
 <tr><td><code>count</code></td><td><code>ignoreNoData</code>: <code>bool</code></td><td>count the number of values</td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <p><strong>Attention:</strong> For the variants <code>sum</code> and <code>count</code>, a saturating addition is used.
 This means, that if the sum of two values exceeds the maximum value of the data type, the result will be the maximum value of the data type.
 Thus, users must be aware to choose a data type that is large enough to hold the result of the aggregation.</p>
 <h2 id="inputs-14"><a class="header" href="#inputs-14">Inputs</a></h2>
 <p>The <code>TemporalRasterAggregation</code> operator expects exactly one <em>raster</em> input.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>raster</code></td><td><code>SingleRasterSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-14"><a class="header" href="#errors-14">Errors</a></h2>
 <p>If the aggregation method is <code>first</code>, <code>last</code>, or <code>mean</code> and the input raster has no <em>no data</em> value, an error is thrown.</p>
-<h2 id="example-json-29"><a class="header" href="#example-json-29">Example JSON</a></h2>
+<h2 id="example-json-27"><a class="header" href="#example-json-27">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "TemporalRasterAggregation",
   "params": {
@@ -1676,31 +2021,48 @@ Thus, users must be aware to choose a data type that is large enough to hold the
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="timeprojection"><a class="header" href="#timeprojection">TimeProjection</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="timeprojection"><a class="header" href="#timeprojection">TimeProjection</a></h1>
 <p>The <code>TimeProjection</code> projects vector dataset timestamps to new granularities and ranges.
 The output is a new vector dataset with the same geometry and attributes as the input.
 However, each time step is projected to a new time range.
-Moreover, the <a href="operators/./../datatypes/queryrectangle.html"><code>QueryRectangle</code>'s</a> temporal extent is enlarged as well to include the projected time range.</p>
+Moreover, the <a href="#queryrectangle"><code>QueryRectangle</code>’s</a> temporal extent is enlarged as well to include the projected time range.</p>
 <p>An example usage scenario is to transform snapshot observations into yearly time slices.
 For instance, animal occurrences are observed at a daily granularity.
 If you want to aggregate the data to a yearly granularity, you can use the <code>TimeProjection</code> operator.
 This will change the validity of each element in the dataset to the full year where it was observed.
 This is, for instance, useful when you want to combine it with raster time series and use different temporal semantics than the originally recorded validities.</p>
 <h2 id="parameters-17"><a class="header" href="#parameters-17">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>step</code></td><td><a href="operators//datatypes/timestep.html"><code>TimeStep</code></a></td><td>time granularity and size for the projection</td><td><pre><code>{<br>  "granularity": "years",<br>  "step": 1<br>}</code></pre></td></tr>
-<tr><td><code>stepReference</code></td><td><a href="operators//datatypes/timeinstance.html"><code>TimeInstance</code></a></td><td>(Optional) an anchor point for the time <code>step</code></td><td><pre>"2010-01-01T00:00:00Z"</pre></td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>step</code></td><td><a href="/datatypes/timestep.html"><code>TimeStep</code></a></td><td>time granularity and size for the projection</td><td>
+<pre><code>{<br>  “granularity”: “years”,<br>  “step”: 1<br>}</code></pre>
+</td></tr>
+<tr><td><code>stepReference</code></td><td><a href="/datatypes/timeinstance.html"><code>TimeInstance</code></a></td><td>(Optional) an anchor point for the time <code>step</code></td><td>
+<pre>“2010-01-01T00:00:00Z”</pre>
+</td></tr>
+</tbody>
+</table>
 </div>
 <h2 id="inputs-15"><a class="header" href="#inputs-15">Inputs</a></h2>
 <p>The <code>TimeProjection</code> operator expects exactly one <em>vector</em> input.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>vector</code></td><td><code>SingleVectorSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-15"><a class="header" href="#errors-15">Errors</a></h2>
 <p>If the <code>step</code> is negative, an error is thrown.</p>
-<h2 id="example-json-30"><a class="header" href="#example-json-30">Example JSON</a></h2>
+<h2 id="example-json-28"><a class="header" href="#example-json-28">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "TimeProjection",
   "params": {
@@ -1719,15 +2081,16 @@ This is, for instance, useful when you want to combine it with raster time serie
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="timeshift"><a class="header" href="#timeshift">TimeShift</a></h1>
-<p>The <code>TimeShift</code> operator allows retrieving data temporally relative to the actual <a href="operators/./../datatypes/queryrectangle.html"><code>QueryRectangle</code></a>.
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="timeshift"><a class="header" href="#timeshift">TimeShift</a></h1>
+<p>The <code>TimeShift</code> operator allows retrieving data temporally relative to the actual <a href="#queryrectangle"><code>QueryRectangle</code></a>.
 It shifts the query rectangle by a given amount of time and modifies the result data accordingly.
 Users have two options for specifying the time shift:</p>
 <ol>
 <li>Relative shift – shift relatively to the query rectangle, e.g., one month or one year to the past.
 This can be useful for comparing multiple points in time relative to the query rectangle.</li>
 <li>Absolute shift – change query rectangle to a fixed temporal reference, e.g., January 2014.
-This can be used to compare data in the query rectangle's time to a fixed point of reference.</li>
+This can be used to compare data in the query rectangle’s time to a fixed point of reference.</li>
 </ol>
 <p>The output is either a stream of raster data or a stream of vector data depending on the input.</p>
 <p>An example usage scenario is to compare the current time with the previous time of the same raster data.
@@ -1736,40 +2099,72 @@ If you want to compute the difference between the current month and the previous
 You will have two workflows.
 One is the unmodified temperature raster source.
 The other is the same source, shifted by one month.
-Then, you can use both workflows as sources of an <a href="operators/./expression.html"><code>Expression</code></a> operator.</p>
+Then, you can use both workflows as sources of an <a href="#raster-expression"><code>Expression</code></a> operator.</p>
 <p><em>Note</em>: This operator modifies the time values of the returned data.
 For rasters and vector data, it shifts the time intervals opposite to the time shift specified in the operator.
-This is necessary to have only data inside the result that is part of the <a href="operators/./../datatypes/queryrectangle.html"><code>QueryRectangle</code>'s</a> time interval.
+This is necessary to have only data inside the result that is part of the <a href="#queryrectangle"><code>QueryRectangle</code>’s</a> time interval.
 As an example, we shift monthly data by one month to the past.
 Our query rectangle points to February.
 Then, the operator shifts the query rectangle to January.
 The data, originally valid for January, is shifted forward to February again, to fit into the original query rectangle, which is February.
-<img src="operators/../images/time-shift-explanation.png" alt="Time Shift" /></p>
+<img src="images/time-shift-explanation.png" alt="Time Shift"></p>
 <h2 id="parameters-18"><a class="header" href="#parameters-18">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>type</code></td><td><code>relative</code> or <code>absolute</code></td><td>shift relatively or absolute</td><td><pre>"relative"</pre></td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>type</code></td><td><code>relative</code> or <code>absolute</code></td><td>shift relatively or absolute</td><td>
+<pre>“relative”</pre>
+</td></tr>
+</tbody>
+</table>
 </div>
 <h3 id="relative"><a class="header" href="#relative">Relative</a></h3>
 <p>If <code>type</code> is <code>relative</code>, you need to specify the following parameters:</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>granularity</code></td><td><a href="operators//datatypes/timestep.html"><code>TimeGranularity</code></a></td><td>time granularity and for the shift</td><td><pre>"months"</pre></td></tr>
-<tr><td><code>value</code></td><td><code>integer</code></td><td>the size of the step</td><td><pre>-1</pre></td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>granularity</code></td><td><a href="/datatypes/timestep.html"><code>TimeGranularity</code></a></td><td>time granularity and for the shift</td><td>
+<pre>“months”</pre>
+</td></tr>
+<tr><td><code>value</code></td><td><code>integer</code></td><td>the size of the step</td><td>
+<pre>-1</pre>
+</td></tr>
+</tbody>
+</table>
 </div>
 <h3 id="absolute"><a class="header" href="#absolute">Absolute</a></h3>
 <p>If the <code>type</code> is <code>absolute</code>, you need to specify the following parameters:</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>timeInterval</code></td><td><a href="operators//datatypes/timeinterval.html"><code>TimeInterval</code></a></td><td>A fixed shift of the <a href="operators/./../datatypes/queryrectangle.html"><code>QueryRectangle</code>'s</a> time</td><td><pre><code>{<br>  "start": "2010-01-01T00:00:00Z",<br>  "end": "2010-02-01T00:00:00Z"<br>}</code></pre></td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>timeInterval</code></td><td><a href="/datatypes/timeinterval.html"><code>TimeInterval</code></a></td><td>A fixed shift of the <a href="#queryrectangle"><code>QueryRectangle</code>’s</a> time</td><td>
+<pre><code>{<br>  “start”: “2010-01-01T00:00:00Z”,<br>  “end”: “2010-02-01T00:00:00Z”<br>}</code></pre>
+</td></tr>
+</tbody>
+</table>
 </div>
 <h2 id="inputs-16"><a class="header" href="#inputs-16">Inputs</a></h2>
 <p>The <code>TimeShift</code> operator expects either one <em>vector</em> input or one <em>raster</em> input.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>source</code></td><td><code>SingleRasterOrVectorSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
-<h2 id="example-json-31"><a class="header" href="#example-json-31">Example JSON</a></h2>
+<h2 id="example-json-29"><a class="header" href="#example-json-29">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "TimeShift",
   "params": {
@@ -1806,7 +2201,8 @@ The data, originally valid for January, is shifted forward to February again, to
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="vector-expression"><a class="header" href="#vector-expression">Vector Expression</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="vector-expression"><a class="header" href="#vector-expression">Vector Expression</a></h1>
 <p>The <code>VectorExpression</code> operator performs a feature-wise expression function on a feature collection of a vector source.
 The expression is specified as a user-defined script in a very simple language.
 The output is a feature collection with the result of the expression and with time intervals that are the same as for the inputs.
@@ -1819,13 +2215,29 @@ The output feature collection contains the result of the density expression in a
 The expression uses a feature collection with a geometry column and calculates the formula <code>centroid(geom)</code>.
 The output feature collection contains the result of the centroid expression replacing the original geometries.</p>
 <h2 id="parameters-19"><a class="header" href="#parameters-19">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>expression</code></td><td><code>Expression</code></td><td>Expression script</td><td><pre><code>area / population_size</code></pre></td></tr>
-<tr><td><code>inputColumns</code></td><td><code>Vec&lt;String&gt;</code></td><td>The names of the attributes to generate boxes for.</td><td><pre><code>[<code>area</code>, <code>population_size</code>]</code></pre></td></tr>
-<tr><td><code>outputColumn</code></td><td><code>OutputColumn</code></td><td>An output column name <em>or</em> a geometry type</td><td><pre><code>{"type": "column", "value": "density"}</code> <code>{"type": "geometry", "value": "MultiPoint"}</code></pre></td></tr>
-<tr><td><code>geometryColumnName</code></td><td><code>String</code> (optional)</td><td>A name for the geometry variable. <code>geom</code> by default.</td><td><pre><code>geom</code></pre></td></tr>
-<tr><td><code>outputMeasurement</code></td><td><a href="operators//datatypes/measurement.html"><code>Measurement</code></a></td><td>Description about the output</td><td><pre><code>{<br>  "type": "continuous",<br>  "measurement": "Density"<br>}</code></pre></td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>expression</code></td><td><code>Expression</code></td><td>Expression script</td><td>
+<pre><code>area / population_size</code></pre>
+</td></tr>
+<tr><td><code>inputColumns</code></td><td><code>Vec&lt;String&gt;</code></td><td>The names of the attributes to generate boxes for.</td><td>
+<pre><code>[<code>area</code>, <code>population_size</code>]</code></pre>
+</td></tr>
+<tr><td><code>outputColumn</code></td><td><code>OutputColumn</code></td><td>An output column name <em>or</em> a geometry type</td><td>
+<pre><code>{“type”: “column”, “value”: “density”}</code> <code>{“type”: “geometry”, “value”: “MultiPoint”}</code></pre>
+</td></tr>
+<tr><td><code>geometryColumnName</code></td><td><code>String</code> (optional)</td><td>A name for the geometry variable. <code>geom</code> by default.</td><td>
+<pre><code>geom</code></pre>
+</td></tr>
+<tr><td><code>outputMeasurement</code></td><td><a href="/datatypes/measurement.html"><code>Measurement</code></a></td><td>Description about the output</td><td>
+<pre><code>{<br>  “type”: “continuous”,<br>  “measurement”: “Density”<br>}</code></pre>
+</td></tr>
+</tbody>
+</table>
 </div>
 <p><em>Note:</em>
 If a name in <code>inputColumns</code> contains any characters other than letters, numbers, and underscores, a canonical variable name has so be used in the expression.
@@ -1887,13 +2299,19 @@ There are several functions to work with geometries:</p>
 </code></pre>
 <h2 id="inputs-17"><a class="header" href="#inputs-17">Inputs</a></h2>
 <p>The <code>VectorExpression</code> operator expects one rater input with at most 8 bands.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>vector</code></td><td><code>SingleVectorSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-16"><a class="header" href="#errors-16">Errors</a></h2>
 <p>The parsing of the expression can fail if there are, e.g., syntax errors.</p>
-<h2 id="example-json-32"><a class="header" href="#example-json-32">Example JSON</a></h2>
+<h2 id="example-json-30"><a class="header" href="#example-json-30">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "VectorExpression",
   "params": {
@@ -1930,7 +2348,8 @@ There are several functions to work with geometries:</p>
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="vectorjoin"><a class="header" href="#vectorjoin">VectorJoin</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="vectorjoin"><a class="header" href="#vectorjoin">VectorJoin</a></h1>
 <p>The <code>VectorJoin</code> operator allows combining multiple vector inputs into a single feature collection.
 There are multiple join variants defined, which are described below.</p>
 <p>For instance, you want to join tabular data to a point collection of buildings.
@@ -1938,23 +2357,49 @@ The point collection contains the geolocation of the buildings and their id.
 The attribute data collection has the building id and the height information.
 Combining the two feature collections leads to a single point collection with geolocation and height information.</p>
 <h2 id="parameters-20"><a class="header" href="#parameters-20">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>type</code></td><td>A value of <code>EquiGeoToData</code>, …</td><td>The type of join</td><td><pre>"EquiGeoToData"</pre></td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>type</code></td><td>A value of <code>EquiGeoToData</code>, …</td><td>The type of join</td><td>
+<pre>“EquiGeoToData”</pre>
+</td></tr>
+</tbody>
+</table>
 </div>
 <h3 id="equigeotodata"><a class="header" href="#equigeotodata">EquiGeoToData</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>leftColumn</code></td><td>string</td><td>The column name of the left input</td><td><pre>"id"</pre></td></tr>
-<tr><td><code>rightColumn</code></td><td>string</td><td>The column name of the right input</td><td><pre>"id"</pre></td></tr>
-<tr><td><code>rightColumn_suffix</code></td><td>(Optional) string</td><td>A value to suffix the right join column to avoid name clashes with the columns of the left input. If nothing is specified, the default value is <code>right</code>.</td><td><pre>"right"</pre></td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>leftColumn</code></td><td>string</td><td>The column name of the left input</td><td>
+<pre>“id”</pre>
+</td></tr>
+<tr><td><code>rightColumn</code></td><td>string</td><td>The column name of the right input</td><td>
+<pre>“id”</pre>
+</td></tr>
+<tr><td><code>rightColumn_suffix</code></td><td>(Optional) string</td><td>A value to suffix the right join column to avoid name clashes with the columns of the left input. If nothing is specified, the default value is <code>right</code>.</td><td>
+<pre>“right”</pre>
+</td></tr>
+</tbody>
+</table>
 </div>
 <h2 id="inputs-18"><a class="header" href="#inputs-18">Inputs</a></h2>
 <p>The <code>VectorJoin</code> operator expects two <em>vector</em> inputs.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>left</code></td><td><code>SingleVectorSource</code></td></tr>
 <tr><td><code>right</code></td><td><code>SingleVectorSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-17"><a class="header" href="#errors-17">Errors</a></h2>
 <p>If the value in the <code>left</code> parameter is not a column of the left feature collection, an error is thrown.</p>
@@ -1962,7 +2407,7 @@ Combining the two feature collections leads to a single point collection with ge
 <h3 id="equigeotodata-1"><a class="header" href="#equigeotodata-1">EquiGeoToData</a></h3>
 <p>If the left input is not a geo data collection, an error is thrown.</p>
 <p>If the right input is not a (non-geo) data collection, an error is thrown.</p>
-<h2 id="example-json-33"><a class="header" href="#example-json-33">Example JSON</a></h2>
+<h2 id="example-json-31"><a class="header" href="#example-json-31">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "VectorJoin",
   "params": {
@@ -1988,7 +2433,8 @@ Combining the two feature collections leads to a single point collection with ge
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="visualpointclustering"><a class="header" href="#visualpointclustering">VisualPointClustering</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="visualpointclustering"><a class="header" href="#visualpointclustering">VisualPointClustering</a></h1>
 <p>The <code>VisualPointClustering</code> is a clustering operator for point collections that removes clutter and preserves the spatial structure of the input.
 The output is a point collection with a count and radius attribute.
 The operator utilizes the input resolution of the query to determine when points, being displayed as circles, would overlap.
@@ -1998,24 +2444,46 @@ For more information on the algorithm, cf. the paper <a href="https://doi.org/10
 There, you can use this operator as the final step of the workflow to cluster the points and display them as circles.
 These circles then pose a decluttered view of the data, e.g., via a WFS endpoint.</p>
 <h2 id="parameters-21"><a class="header" href="#parameters-21">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>minRadiusPx</code></td><td>number</td><td>Minimum circle radius in screen pixels</td><td><pre>10</pre></td></tr>
-<tr><td><code>deltaPx</code></td><td>number</td><td>Minimum circle to circle distance in screen pixels input</td><td><pre>1</pre></td></tr>
-<tr><td><code>radiusColumn</code></td><td>string</td><td>The new column name to store radius information in screen pixels</td><td><pre>"__radius"</pre></td></tr>
-<tr><td><code>countColumn</code></td><td>string</td><td>The new column name to store the number of points represented by each circle</td><td><pre>"__count"</pre></td></tr>
-<tr><td><code>columnAggregates</code></td><td>Map from string to aggregate definition (one of <code>MeanNumber</code>, <code>StringSample</code> or <code>Null</code>)</td><td>Specify how miscellaneous columns should be aggregated. You can optionally set a new <a href="operators/../datatypes/measurement.html"><code>Measurement</code></a>. Otherwise, the <a href="operators/../datatypes/measurement.html"><code>Measurement</code></a> is taken from the source column.</td><td><pre><code>{<br>  "foo": {<br>    "columnName": "numericColumn",<br>    "aggregateType": "MeanNumber",<br>    "measurement": { "type": "unitless" }<br>  },<br>  "bar": {<br>    "columnName": "textColumn",<br>    "aggregateType": "StringSample"<br>  }<br>}</code></pre></td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>minRadiusPx</code></td><td>number</td><td>Minimum circle radius in screen pixels</td><td>
+<pre>10</pre>
+</td></tr>
+<tr><td><code>deltaPx</code></td><td>number</td><td>Minimum circle to circle distance in screen pixels input</td><td>
+<pre>1</pre>
+</td></tr>
+<tr><td><code>radiusColumn</code></td><td>string</td><td>The new column name to store radius information in screen pixels</td><td>
+<pre>“__radius”</pre>
+</td></tr>
+<tr><td><code>countColumn</code></td><td>string</td><td>The new column name to store the number of points represented by each circle</td><td>
+<pre>“__count”</pre>
+</td></tr>
+<tr><td><code>columnAggregates</code></td><td>Map from string to aggregate definition (one of <code>MeanNumber</code>, <code>StringSample</code> or <code>Null</code>)</td><td>Specify how miscellaneous columns should be aggregated. You can optionally set a new <a href="#measurement"><code>Measurement</code></a>. Otherwise, the <a href="#measurement"><code>Measurement</code></a> is taken from the source column.</td><td>
+<pre><code>{<br>  “foo”: {<br>    “columnName”: “numericColumn”,<br>    “aggregateType”: “MeanNumber”,<br>    “measurement”: { “type”: “unitless” }<br>  },<br>  “bar”: {<br>    “columnName”: “textColumn”,<br>    “aggregateType”: “StringSample”<br>  }<br>}</code></pre>
+</td></tr>
+</tbody>
+</table>
 </div>
 <h2 id="inputs-19"><a class="header" href="#inputs-19">Inputs</a></h2>
 <p>The <code>VisualPointClustering</code> operator expects exactly one <em>vector</em> input that must be a point collection.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>vector</code></td><td><code>SingleVectorSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-18"><a class="header" href="#errors-18">Errors</a></h2>
 <p>If the source value <code>vector</code> is not a point collection, an error is thrown.</p>
 <p>If multiple columns in <code>columnAggregates</code> have the same names, an error is thrown.</p>
-<h2 id="example-json-34"><a class="header" href="#example-json-34">Example JSON</a></h2>
+<h2 id="example-json-32"><a class="header" href="#example-json-32">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "VisualPointClustering",
   "params": {
@@ -2046,7 +2514,8 @@ These circles then pose a decluttered view of the data, e.g., via a WFS endpoint
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="plots"><a class="header" href="#plots">Plots</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="plots"><a class="header" href="#plots">Plots</a></h1>
 <p>Plots are special kinds of operators that generate visualizations.</p>
 <p>Geo Engine supports three output types:</p>
 <ul>
@@ -2055,7 +2524,8 @@ These circles then pose a decluttered view of the data, e.g., via a WFS endpoint
 <li><code>imagePng</code>: a PNG image</li>
 </ul>
 <p>Thus, plots can contain statistics, visualizations, and images.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="boxplot"><a class="header" href="#boxplot">BoxPlot</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="boxplot"><a class="header" href="#boxplot">BoxPlot</a></h1>
 <p>The <code>BoxPlot</code> is a <em>plot operator</em> that computes a box plot over</p>
 <ul>
 <li>a selection of numerical columns of a single vector dataset, or</li>
@@ -2067,22 +2537,40 @@ These circles then pose a decluttered view of the data, e.g., via a WFS endpoint
 <p>In the case of vector data, the operator generates one box for each of the selected numerical attributes.
 The operator returns an error if one of the selected attributes is not numeric.</p>
 <h3 id="parameter"><a class="header" href="#parameter">Parameter</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
 <tr><td><code>columnNames</code></td><td><code>Vec&lt;String&gt;</code></td><td>The names of the attributes to generate boxes for.</td><td><code>["x","y"]</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="raster-data-1"><a class="header" href="#raster-data-1">Raster Data</a></h2>
 <p>For raster data, the operator generates one box for each input raster.</p>
 <h3 id="parameter-1"><a class="header" href="#parameter-1">Parameter</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>columnNames</code></td><td><code>Vec&lt;String&gt;</code></td><td><em>Optional</em>: An alias for each input source. The operator will automatically name the boxes <code>Raster-1</code>, <code>Raster-2</code>, ... if this parameter is empty. If aliases are given, the number of aliases must match the number of input rasters. Otherwise an error is returned.</td><td><code>["A","B"]</code>.</td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>columnNames</code></td><td><code>Vec&lt;String&gt;</code></td><td><em>Optional</em>: An alias for each input source. The operator will automatically name the boxes <code>Raster-1</code>, <code>Raster-2</code>, … if this parameter is empty. If aliases are given, the number of aliases must match the number of input rasters. Otherwise an error is returned.</td><td><code>["A","B"]</code>.</td></tr>
+</tbody>
+</table>
 </div>
 <h2 id="inputs-20"><a class="header" href="#inputs-20">Inputs</a></h2>
 <p>The operator consumes exactly one <em>vector</em> or multiple <em>raster</em> operators.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>source</code></td><td><code>MultipleRasterOrSingleVectorSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-19"><a class="header" href="#errors-19">Errors</a></h2>
 <p>The operator returns an error in the following cases.</p>
@@ -2098,7 +2586,7 @@ the median and quartiles are estimated using the P^2 algorithm described in:</p>
 histograms without storing observations, Communications of the ACM,
 Volume 28 (October), Number 10, 1985, p. 1076-1085.
 <a href="https://www.cse.wustl.edu/~jain/papers/ftp/psqr.pdf">https://www.cse.wustl.edu/~jain/papers/ftp/psqr.pdf</a></p>
-<h2 id="example-json-35"><a class="header" href="#example-json-35">Example JSON</a></h2>
+<h2 id="example-json-33"><a class="header" href="#example-json-33">Example JSON</a></h2>
 <h3 id="vector"><a class="header" href="#vector">Vector</a></h3>
 <pre><code class="language-json">{
   "type": "BoxPlot",
@@ -2139,34 +2627,47 @@ Volume 28 (October), Number 10, 1985, p. 1076-1085.
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="classhistogram"><a class="header" href="#classhistogram">ClassHistogram</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="classhistogram"><a class="header" href="#classhistogram">ClassHistogram</a></h1>
 <p>The <code>ClassHistogram</code> is a <em>plot operator</em> that computes a histogram plot either over categorical attributes of a vector dataset or categorical values of a raster source.
 The output is a plot in <a href="https://vega.github.io/vega-lite/">Vega-Lite</a> specification.</p>
 <p>For instance, you want to plot the frequencies of the classes of a categorical attribute of a feature collection.
 Then you can use a class histogram to visualize and assess this.</p>
 <h2 id="parameters-22"><a class="header" href="#parameters-22">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
 <tr><td><code>columnName</code></td><td><code>string</code> (optional)</td><td>The name of the attribute making up the x-axis of the histogram. Must be set for a vector sources, must not be set for rasters.</td><td><code>"temperature"</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="inputs-21"><a class="header" href="#inputs-21">Inputs</a></h2>
 <p>The operator consumes either one <em>vector</em> or one <em>raster</em> operator.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>source</code></td><td><code>SingleRasterOrVectorSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-20"><a class="header" href="#errors-20">Errors</a></h2>
 <p>The operator returns an error if…</p>
 <ul>
 <li>the selected column (<code>columnName</code>) does not exist or is not numeric,</li>
 <li>the source is a raster and the property <code>columnName</code> is set, or</li>
-<li>the input <a href="plots/../datatypes/measurement.html"><code>Measurement</code></a> is not categorical.</li>
+<li>the input <a href="#measurement"><code>Measurement</code></a> is not categorical.</li>
 </ul>
 <p>The operator returns an error if</p>
 <h2 id="notes-1"><a class="header" href="#notes-1">Notes</a></h2>
-<p>The operator only uses values of the categorical <a href="plots/../datatypes/measurement.html"><code>Measurement</code></a>.
-It ignores missing or no-data values and values that are not covered by the <a href="plots/../datatypes/measurement.html"><code>Measurement</code></a>.</p>
-<h2 id="example-json-36"><a class="header" href="#example-json-36">Example JSON</a></h2>
+<p>The operator only uses values of the categorical <a href="#measurement"><code>Measurement</code></a>.
+It ignores missing or no-data values and values that are not covered by the <a href="#measurement"><code>Measurement</code></a>.</p>
+<h2 id="example-json-34"><a class="header" href="#example-json-34">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "ClassHistogram",
   "params": {
@@ -2182,31 +2683,44 @@ It ignores missing or no-data values and values that are not covered by the <a h
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="featureattributevaluesovertime"><a class="header" href="#featureattributevaluesovertime">FeatureAttributeValuesOverTime</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="featureattributevaluesovertime"><a class="header" href="#featureattributevaluesovertime">FeatureAttributeValuesOverTime</a></h1>
 <p>The <code>FeatureAttributeValuesOverTime</code> is a <em>plot operator</em> that computes a multi-line plot for feature attribute values over time.
 For distinguishing features, the data requires an id column.
 The output is a plot in Vega-Lite specification.</p>
-<p><img src="plots/../images/feature_attribute_values_over_time_example.png" alt="Feature Attribute Values Over Time" /></p>
+<p><img src="images/feature_attribute_values_over_time_example.png" alt="Feature Attribute Values Over Time"></p>
 <p>For instance, you want to plot the NDVI values of a feature collection of trees.
 Then, you can use a multi-line plot to visualize the trees by their id.</p>
 <h2 id="parameters-23"><a class="header" href="#parameters-23">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
 <tr><td><code>idColumn</code></td><td><code>string</code></td><td>The column name of the <code>id</code> attribute (one line per <code>id</code>.)</td><td><code>"id"</code></td></tr>
 <tr><td><code>valueColumn</code></td><td><code>string</code></td><td>The column name of the <code>value</code> attribute (y-axis values).</td><td><code>"temperature"</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="inputs-22"><a class="header" href="#inputs-22">Inputs</a></h2>
 <p>The operator consumes exactly one <em>vector</em> operator.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>vector</code></td><td><code>SingleVectorSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-21"><a class="header" href="#errors-21">Errors</a></h2>
 <p>The operator returns an error if the selected columns ( <code>idColumn</code> and <code>valueColumn</code>) do not exist or <code>valueColumn</code> is not numeric.</p>
 <h2 id="notes-2"><a class="header" href="#notes-2">Notes</a></h2>
 <p>The operator processes a maximum of <code>20</code> different ids.
 After recognizing more than <code>20</code> different ids, the operator ignores the rest.</p>
-<h2 id="example-json-37"><a class="header" href="#example-json-37">Example JSON</a></h2>
+<h2 id="example-json-35"><a class="header" href="#example-json-35">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "FeatureAttributeValuesOverTime",
   "params": {
@@ -2223,31 +2737,48 @@ After recognizing more than <code>20</code> different ids, the operator ignores 
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="histogram"><a class="header" href="#histogram">Histogram</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="histogram"><a class="header" href="#histogram">Histogram</a></h1>
 <p>The <code>Histogram</code> is a <em>plot operator</em> that computes a histogram plot either over attributes of a vector dataset or values of a raster source.
 The output is a plot in <a href="https://vega.github.io/vega-lite/">Vega-Lite</a> specification.</p>
 <p>For instance, you want to plot the data distribution of numeric attributes of a feature collection.
 Then you can use a histogram with a suitable number of buckets to visualize and assess this.</p>
 <h2 id="parameters-24"><a class="header" href="#parameters-24">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
 <tr><td><code>columnName</code></td><td><code>string</code>, ignored for raster input</td><td>The name of the attribute making up the x-axis of the histogram.</td><td><code>"temperature"</code></td></tr>
-<tr><td><code>bounds</code></td><td><code>HistogramBounds</code> (either <code>data</code> or specified <code>values</code>)</td><td>If <code>data</code>, it computes the bounds of the underlying data. If <code>values</code>, one can specify custom bounds.</td><td><pre><code>{<br>  "min": 0.0,<br>  "max": 20.0<br>}</code></pre> <code>"data"</code></td></tr>
-<tr><td><code>buckets</code></td><td><code>Number</code> or <code>SquareRootChoiceRule</code></td><td>The number of buckets. The value can be specified or calculated.</td><td><pre><code>{<br>  "type": "number",<br>  "value": 20<br>}</code></pre></td></tr>
+<tr><td><code>bounds</code></td><td><code>HistogramBounds</code> (either <code>data</code> or specified <code>values</code>)</td><td>If <code>data</code>, it computes the bounds of the underlying data. If <code>values</code>, one can specify custom bounds.</td><td>
+<pre><code>{<br>  “min”: 0.0,<br>  “max”: 20.0<br>}</code></pre>
+ <code>"data"</code></td></tr>
+<tr><td><code>buckets</code></td><td><code>Number</code> or <code>SquareRootChoiceRule</code></td><td>The number of buckets. The value can be specified or calculated.</td><td>
+<pre><code>{<br>  “type”: “number”,<br>  “value”: 20<br>}</code></pre>
+</td></tr>
 <tr><td><code>interactive</code></td><td>(Optional) <code>boolean</code></td><td>Flag, if the histogram should have user interactions for a range selection. It is <code>false</code> by default.</td><td><code>true</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="inputs-23"><a class="header" href="#inputs-23">Inputs</a></h2>
 <p>The operator consumes either one <em>vector</em> or one <em>raster</em> operator.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>source</code></td><td><code>SingleRasterOrVectorSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-22"><a class="header" href="#errors-22">Errors</a></h2>
 <p>The operator returns an error if the selected column (<code>columnName</code>) does not exist or is not numeric.</p>
 <h2 id="notes-3"><a class="header" href="#notes-3">Notes</a></h2>
 <p>If <code>bounds</code> or <code>buckets</code> are not defined, the operator will determine these values by itself which requires processing the data twice.</p>
 <p>If the <code>buckets</code> parameter is set to <code>squareRootChoiceRule</code>, the operator estimates it using the square root of the number of elements in the data.</p>
-<h2 id="example-json-38"><a class="header" href="#example-json-38">Example JSON</a></h2>
+<h2 id="example-json-36"><a class="header" href="#example-json-36">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "Histogram",
   "params": {
@@ -2272,25 +2803,38 @@ Then you can use a histogram with a suitable number of buckets to visualize and 
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="meanrasterpixelvaluesovertime"><a class="header" href="#meanrasterpixelvaluesovertime">MeanRasterPixelValuesOverTime</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="meanrasterpixelvaluesovertime"><a class="header" href="#meanrasterpixelvaluesovertime">MeanRasterPixelValuesOverTime</a></h1>
 <p>The <code>MeanRasterPixelValuesOverTime</code> is a <em>plot operator</em> that computes a time series plot of mean raster values.
 For each time step in the raster time series, it computes one mean value.
 The output is a plot in Vega-Lite specification.</p>
 <p>For instance, you want to plot the mean temperature of a monthly raster time series.
 Then, you can use this operator to generate a time series plot.</p>
 <h2 id="parameters-25"><a class="header" href="#parameters-25">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
 <tr><td><code>timePosition</code></td><td>string (<code>start</code>, <code>center</code> or <code>end</code>)</td><td>Where should the x-axis (time) tick be positioned? At either time start, time end or in the center.</td><td><code>"start"</code></td></tr>
 <tr><td><code>area</code></td><td>(Optional) <code>boolean</code></td><td>Whether to fill the area under the curve. Defaults to <code>true</code>.</td><td><code>false</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="inputs-24"><a class="header" href="#inputs-24">Inputs</a></h2>
 <p>The operator consumes exactly one <em>raster</em> operator.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>raster</code></td><td><code>SingleRasterSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
-<h2 id="example-json-39"><a class="header" href="#example-json-39">Example JSON</a></h2>
+<h2 id="example-json-37"><a class="header" href="#example-json-37">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "MeanRasterPixelValuesOverTime",
   "params": {
@@ -2307,16 +2851,23 @@ Then, you can use this operator to generate a time series plot.</p>
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="piechart"><a class="header" href="#piechart">PieChart</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="piechart"><a class="header" href="#piechart">PieChart</a></h1>
 <p>The <code>PieChart</code> is a <em>plot operator</em> that computes a pie chart for a given vector dataset.
 Moreover, the operator considers all data in the given query rectangle.</p>
 <p>There are multiple variants on how to compute the slices of the pie chart.
 In addition, it is possible to compute a donut chart instead of a standard pie chart.</p>
 <h2 id="parameters-26"><a class="header" href="#parameters-26">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
 <tr><td><code>type</code></td><td>Pie Chart Type</td><td>The type of aggregation that is used to create the slices of the pie chart.</td><td><code>"count"</code></td></tr>
 <tr><td><code>columnName</code></td><td><code>String</code></td><td>The names of the attribute to generate pies for.</td><td><code>"name"</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h3 id="pie-chart-type"><a class="header" href="#pie-chart-type">Pie Chart Type</a></h3>
 <p>The <code>type</code> parameter can be one of the following values:</p>
@@ -2326,9 +2877,15 @@ Then, it counts the number of occurrences.</li>
 </ul>
 <h2 id="inputs-25"><a class="header" href="#inputs-25">Inputs</a></h2>
 <p>The operator consumes exactly one <em>vector</em> operator.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>vector</code></td><td><code>SingleVectorSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-23"><a class="header" href="#errors-23">Errors</a></h2>
 <p>The operator returns an error in the following cases.</p>
@@ -2337,8 +2894,8 @@ Then, it counts the number of occurrences.</li>
 <li>The number of slices is too large: If the number of slices is greater than <code>32</code>, the operator returns an error.</li>
 </ul>
 <h2 id="notes-4"><a class="header" href="#notes-4">Notes</a></h2>
-<p>If the attribute has a <a href="plots//datatypes/measurement.html#classification"><code>Measurement</code></a> of type <code>Classification</code>, the operator uses the class name instead of the raw value.</p>
-<h2 id="example-json-40"><a class="header" href="#example-json-40">Example JSON</a></h2>
+<p>If the attribute has a <a href="/datatypes/measurement.html#classification"><code>Measurement</code></a> of type <code>Classification</code>, the operator uses the class name instead of the raw value.</p>
+<h2 id="example-json-38"><a class="header" href="#example-json-38">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "PieChart",
   "params": {
@@ -2356,22 +2913,35 @@ Then, it counts the number of occurrences.</li>
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="scatterplot"><a class="header" href="#scatterplot">ScatterPlot</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="scatterplot"><a class="header" href="#scatterplot">ScatterPlot</a></h1>
 <p>The <code>ScatterPlot</code> is a <em>plot operator</em> that computes a scatter plot over two attributes of a vector dataset.
 Thereby, the operator considers all data in the given query rectangle.</p>
 <p>In case of more than <code>500</code> points to plot, the representation changes from a regular scatter plot
 to a 2D Histogram with buckets determined from the underlying data.</p>
 <h2 id="parameters-27"><a class="header" href="#parameters-27">Parameters</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
 <tr><td><code>columnX</code></td><td><code>String</code></td><td>The name of the attribute making up the x-axis of the plot.</td><td><code>"width"</code></td></tr>
 <tr><td><code>columnY</code></td><td><code>String</code></td><td>The name of the attribute making up the y-axis of the plot.</td><td><code>"height"</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="inputs-26"><a class="header" href="#inputs-26">Inputs</a></h2>
 <p>The operator consumes exactly one <em>vector</em> operator.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>source</code></td><td><code>SingleVectorSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-24"><a class="header" href="#errors-24">Errors</a></h2>
 <p>The operator returns an error if one of the selected columns does not exist or is not numeric.</p>
@@ -2379,7 +2949,7 @@ to a 2D Histogram with buckets determined from the underlying data.</p>
 <p>If your dataset contains <code>infinite</code> or <code>NAN</code> values, they are ignored for the computation. Moreover, if
 your dataset contains more than <code>10.000</code> values, the buckets of the histogram are generated based on
 those <code>10.000</code> values. Later values outside those bounds are ignored.</p>
-<h2 id="example-json-41"><a class="header" href="#example-json-41">Example JSON</a></h2>
+<h2 id="example-json-39"><a class="header" href="#example-json-39">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "ScatterPlot",
   "params": {
@@ -2396,7 +2966,8 @@ those <code>10.000</code> values. Later values outside those bounds are ignored.
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="statistics"><a class="header" href="#statistics">Statistics</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="statistics"><a class="header" href="#statistics">Statistics</a></h1>
 <p>The <code>Statistics</code> operator is a <em>plot operator</em> that computes count statistics over</p>
 <ul>
 <li>a selection of numerical columns of a single vector dataset, or</li>
@@ -2409,24 +2980,42 @@ Then, you can use this operator to get basic count statistics.</p>
 <p>In the case of vector data, the operator generates one statistic for each of the selected numerical attributes.
 The operator returns an error if one of the selected attributes is not numeric.</p>
 <h3 id="parameter-2"><a class="header" href="#parameter-2">Parameter</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
 <tr><td><code>columnNames</code></td><td><code>Vec&lt;String&gt;</code></td><td>The names of the attributes to generate statistics for.</td><td><code>["x","y"]</code></td></tr>
 <tr><td><code>percentiles</code></td><td><code>Vec&lt;number&gt;</code></td><td>The percentiles to compute for each attribute.</td><td><code>[0.25, 0.5, 0.75]</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="raster-data-2"><a class="header" href="#raster-data-2">Raster Data</a></h2>
 <p>For raster data, the operator generates one statistic for each input raster.</p>
-<h3 id="parameter-3"><a class="header" href="#parameter-3">Parameter</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr></thead><tbody>
-<tr><td><code>columnNames</code></td><td><code>Vec&lt;String&gt;</code></td><td><em>Optional</em>: An alias for each input source. The operator will automatically name the rasters <code>Raster-1</code>, <code>Raster-2</code>, ... if this parameter is empty. If aliases are given, the number of aliases must match the number of input rasters. Otherwise an error is returned.</td><td><code>["A","B"]</code>.</td></tr>
+<h3 id="parameter-1-1"><a class="header" href="#parameter-1-1">Parameter</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td><code>columnNames</code></td><td><code>Vec&lt;String&gt;</code></td><td><em>Optional</em>: An alias for each input source. The operator will automatically name the rasters <code>Raster-1</code>, <code>Raster-2</code>, … if this parameter is empty. If aliases are given, the number of aliases must match the number of input rasters. Otherwise an error is returned.</td><td><code>["A","B"]</code>.</td></tr>
 <tr><td><code>percentiles</code></td><td><code>Vec&lt;number&gt;</code></td><td>The percentiles to compute for each band.</td><td><code>[0.25, 0.5, 0.75]</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="inputs-27"><a class="header" href="#inputs-27">Inputs</a></h2>
 <p>The operator consumes exactly one <em>vector</em> or multiple <em>raster</em> operators.</p>
-<div class="table-wrapper"><table><thead><tr><th>Parameter</th><th>Type</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Parameter</th><th>Type</th></tr>
+</thead>
+<tbody>
 <tr><td><code>source</code></td><td><code>MultipleRasterOrSingleVectorSource</code></td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="errors-25"><a class="header" href="#errors-25">Errors</a></h2>
 <p>The operator returns an error in the following cases.</p>
@@ -2435,7 +3024,7 @@ The operator returns an error if one of the selected attributes is not numeric.<
 <li>Vector data: The <code>attribute</code> for one of the given <code>columnNames</code> does not exist.</li>
 <li>Raster data: The length of the <code>columnNames</code> parameter does not match the number of input rasters.</li>
 </ul>
-<h2 id="example-json-42"><a class="header" href="#example-json-42">Example JSON</a></h2>
+<h2 id="example-json-40"><a class="header" href="#example-json-40">Example JSON</a></h2>
 <pre><code class="language-json">{
   "type": "Statistics",
   "params": {
@@ -2498,6 +3087,11 @@ The operator returns an error if one of the selected attributes is not numeric.<
 
         </div>
 
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
 
@@ -2506,13 +3100,13 @@ The operator returns an error if one of the selected attributes is not numeric.<
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
 
@@ -2523,6 +3117,7 @@ The operator returns an error if one of the selected attributes is not numeric.<
             });
         });
         </script>
+
 
     </div>
     </body>
