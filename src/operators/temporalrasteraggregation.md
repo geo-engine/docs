@@ -17,12 +17,12 @@ If we perform a query with an instant like [2021-01-01, 2021-01-01), we will get
 
 ## Parameters
 
-| Parameter         | Type                                             | Description                                                                                  | Example Value                                                                                     |
-| ----------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `aggregation`     | [`Aggregation`](#aggregation)                    | method for aggregating pixels                                                                | <pre><code>{<br>&nbsp;&nbsp;"type": "max",<br>&nbsp;&nbsp;"ignoreNoData": false<br>}</code></pre> |
-| `window`          | [`TimeStep`](/datatypes/timestep.md)             | length of time steps                                                                         | <pre><code>{<br>&nbsp;&nbsp;"granularity": "Months",<br>&nbsp;&nbsp;"step": 1<br>}</code></pre>   |
-| `windowReference` | [`TimeInstance`](/datatypes/timeinstance.md)     | (Optional) anchor point for the aggregation windows. Default value is `1970-01-01T00:00:00Z` | `1970-01-01T00:00:00Z`                                                                            |
-| `outputType`      | [`RasterDataType`](/datatypes/rasterdatatype.md) | (Optional) A raster data type for the output. Same as input, if not specified.               | <pre><code>U8</code><pre>                                                                         |
+| Parameter         | Type                                             | Description                                                                                  | Example Value                                                 |
+| ----------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| `aggregation`     | [`Aggregation`](#aggregation)                    | method for aggregating pixels                                                                | `{`<br>`  "type": "max",`<br>`  "ignoreNoData": false`<br>`}` |
+| `window`          | [`TimeStep`](/datatypes/timestep.md)             | length of time steps                                                                         | `{`<br>`  "granularity": "Months",`<br>`  "step": 1`<br>`}`   |
+| `windowReference` | [`TimeInstance`](/datatypes/timeinstance.md)     | (Optional) anchor point for the aggregation windows. Default value is `1970-01-01T00:00:00Z` | `1970-01-01T00:00:00Z`                                        |
+| `outputType`      | [`RasterDataType`](/datatypes/rasterdatatype.md) | (Optional) A raster data type for the output. Same as input, if not specified.               | `U8`                                                          |
 
 ## Types
 
