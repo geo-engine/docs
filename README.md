@@ -1,17 +1,7 @@
-# Geo Engine Docs
+# Geo Engine Docs Redirect
 
-This repository is a central place for the Geo Engine user documentation available at https://docs.geoengine.io.
+This repository is deprecated and only exists to redirect
+https://docs.geoengine.io to https://www.geoengine.io/docs.
 
-## Develop locally
-
-```sh
-cargo install mdbook
-
-mdbook serve
-```
-
-## Publish
-
-You can create a pull request.
-It is tested within our CI.
-Once it is merged, changes are automatically deployed.
+The Geo Engine documentation now lives in the monorepo:
+https://github.com/geo-engine/geoengine/tree/main/www
